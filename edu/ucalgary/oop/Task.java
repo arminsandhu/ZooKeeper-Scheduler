@@ -1,31 +1,44 @@
 package edu.ucalgary.oop;
 
 public class Task {
-    private Task task;
-    private String volunteerName;
-    private String backupVolunteerName;
+    protected final int ANIMALID;
+    protected final int TASKID;
+    private final String DESCRIPTION;
+    private final static int MAXWINDOW;
+    private final int DURATION;
 
-    public void volunteer(String id, String name, String backupName) {
-        
+
+    public Task(int taskID, String description, int duration, int maxWindow) {
+        // ADD STUFFF
     }
 
-    public String setVolunteerName(String name) {
-        return "";      // FINISH
+    public int getTaskID() {
+        return this.TASKID;
     }
 
-    public Task getTask() {
-        return this.task;
+    public String getDescription() {
+        return this.DESCRIPTION
     }
 
-    public String getBackupVolunteer() {
-        return this.backupVolunteerName;
+    public int getDuration() {
+        return this.DURATION;
     }
 
-    public String getVolunteerName() {
-        return this.volunteerName;
+    public int getAnimalID() {
+        return this.ANIMALID;
     }
 
-    public void setBackupVolunteer(String name) {
-        this.backupVolunteerName = name;
+    public int getMaxWindow() {
+        return this.MAXWINDOW;
     }
+
+    public int feedingTime() {
+        // ADD STUFFF
+    }
+
+
+    // DO WE NEED SETTERS???
+
+
+
 }
