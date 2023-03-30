@@ -21,7 +21,7 @@ public class Scheduling {
         // ADD STUFF
     }
 
-    private Task[][] prioritizeTasks() {
+    public Task[][] prioritizeTasks() {
         // ADD STUFF
     }
 }
