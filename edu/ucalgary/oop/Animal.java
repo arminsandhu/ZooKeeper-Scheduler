@@ -16,6 +16,7 @@ public class Animal {
     }
 
     public String getAnimalSpecies() {
+        // DO WE TAKE IN AN INPUT TO GET SPECIES FROM ENUM?
         return this.ANIMALSPECIES;
     }
 
@@ -30,4 +31,6 @@ public class Animal {
     public String getNickname() {
         return this.ANIMALNICKNAME;
     }
+
+    // DO WE NEED SETTERS???
 }
