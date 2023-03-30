@@ -47,7 +47,7 @@
         <mxCell id="ZW0RrzrD-icC0tRyj8_A-8" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="ZW0RrzrD-icC0tRyj8_A-6" vertex="1">
           <mxGeometry y="104" width="330" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="ZW0RrzrD-icC0tRyj8_A-29" value="+ volunteer(id: String, name: String, backupName: String" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="ZW0RrzrD-icC0tRyj8_A-6" vertex="1">
+        <mxCell id="ZW0RrzrD-icC0tRyj8_A-29" value="+ Volunteer(id: String, name: String, backupName: String" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="ZW0RrzrD-icC0tRyj8_A-6" vertex="1">
           <mxGeometry y="132" width="330" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ZW0RrzrD-icC0tRyj8_A-30" value="+ setVolunteerName(name: String)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="ZW0RrzrD-icC0tRyj8_A-6" vertex="1">
