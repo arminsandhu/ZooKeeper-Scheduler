@@ -8,7 +8,7 @@ public class Task {
     private final int DURATION;
 
 
-    public Task(int taskID, String description, int duration, int maxWindow) {
+    public Task(int taskID, String description, int duration, int maxWindow) implements FormattedOutput{
         // ADD STUFFF
     }
 

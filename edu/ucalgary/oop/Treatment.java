@@ -1,6 +1,6 @@
 package edu.ucalgary.oop;
 
-public class Treatment {
+public class Treatment implements FormattedOutput {
     private final int ANIMALID;
     private final int TASKID;
     private final int STARTHOUR;
