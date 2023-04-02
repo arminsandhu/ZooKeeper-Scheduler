@@ -1,36 +1,29 @@
 package edu.ucalgary.oop;
 
 public class Animal {
-    private final int ANIMALID;
-    private final String ANIMALSPECIES;
-    private Task assignedTask;
-    private final String ANIMALNICKNAME;
+    private int ANIMALID;
+    private String ANIMALNICKNAME;
+    private String ANIMALSPECIES;
 
-
-    public Animal(int id, String name, String species, Task task) {
-        // ADD STUFF
+    public Task(int animalId, String animalNickname, String animalSpecies) {
+        this.ANIMALID = animalId;
+        this.ANIMALNICKNAME = animalNickname;
+        this.ANIMALSPECIES = animalSpecies;
     }
 
-    public void setAssignedTask(Task task) {
-        this.assignedTask = task;
-    }
+    // getters
+    // we dont need setters
 
-    public String getAnimalSpecies() {
-        // DO WE TAKE IN AN INPUT TO GET SPECIES FROM ENUM?
-        return this.ANIMALSPECIES;
-    }
-
-    public Task getAssignedTask() {
-        return this.assignedTask;
-    }
-
-    public int getAnimalID() {
+    public int getAnimalId() {
         return this.ANIMALID;
     }
 
-    public String getNickname() {
+    public String getAnimalNickname() {
         return this.ANIMALNICKNAME;
     }
 
-    // DO WE NEED SETTERS???
+    public String getAnimalSpecies() {
+        return this.ANIMALSPECIES;
+    }
+
 }
