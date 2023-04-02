@@ -8,7 +8,10 @@ public class Treatment implements FormattedOutput {
     private final int ANIMALID;
     private final int TASKID;
     private int startHour;
-
+    private boolean isScheduled = false;
+    
+    private Object[][] treatmentsToSchedule; // addded on saturday, need to change
+    
 
     public Treatment(int id, int taskID, int hour) {
         this.ANIMALID = id;
@@ -35,19 +38,3 @@ public class Treatment implements FormattedOutput {
 
 
 }
-
-    // private boolean isScheduled = false;
-
-    // private Object[][] treatmentsToSchedule;
-
-    // public Treatment(Object[] tasksArray, Object[] treatmentsArray) {
-    //     // treatmentTasks = [[(int)animalID, (int)taskID, (int)startHour, (int)duration, (int)maxWindow, (boolean)schdeuled?]]
-    // }
-
-    // public boolean getScheduled(int index) {
-    //     return this.treatmentsToSchedule[index][5];
-    // }
-
-    // public boolean setScheduled(int index) {
-    //     this.treatmentsToSchedule[index][5]
-    // }
