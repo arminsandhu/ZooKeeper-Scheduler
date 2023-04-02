@@ -5,7 +5,7 @@ public class Animal {
     private String ANIMALNICKNAME;
     private String ANIMALSPECIES;
 
-    public Task(int animalId, String animalNickname, String animalSpecies) {
+    public Animal(int animalId, String animalNickname, String animalSpecies) {
         this.ANIMALID = animalId;
         this.ANIMALNICKNAME = animalNickname;
         this.ANIMALSPECIES = animalSpecies;

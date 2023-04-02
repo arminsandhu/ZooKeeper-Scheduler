@@ -7,7 +7,7 @@ public class Treatment implements FormattedOutput {
      */
     private final int ANIMALID;
     private final int TASKID;
-    private final int startHour;
+    private int startHour;
 
 
     public Treatment(int id, int taskID, int hour) {
@@ -29,7 +29,7 @@ public class Treatment implements FormattedOutput {
     }
     
     
-    public int setStartHour(int hour) {
+    public void setStartHour(int hour) {
         this.startHour = hour;
     }
 

@@ -3,6 +3,7 @@ package edu.ucalgary.oop;
 import java.sql.*;
 import java.util.ArrayList;
 
+
 public class ScheduleBuilder {
     /*
      * 
@@ -10,7 +11,7 @@ public class ScheduleBuilder {
      * 
      */
     private Connection dbConnection;
-    private ResultSets results;
+    private ResultSet results;
     private ArrayList<Animal> animalsArray; // should we change it back to object?
     private ArrayList<Treatment> treatmentsArray;
     private ArrayList<Task> tasksArray;
@@ -30,14 +31,15 @@ public class ScheduleBuilder {
     }
 
     public void setAnimalsArray() {
-        animalsArray = new ArrayList<Animal>()
+        animalsArray = new ArrayList<Animal>();
         try {                    
-            Statement myStmt = dbConnect.createStatement();
+            Statement myStmt = dbConnection.createStatement();
             results = myStmt.executeQuery("SELECT * FROM animals");
             
-            while (results.next()){                
-               System.out.println("Print results: " + results.getInt("AnimalID") + ", " + results.getString("AnimalNickname") ", " + results.getString("AnimalSpecies"));
-               animalsArray.add(new Animal(results.getInt("AnimalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies")));
+            while (results.next()){          
+                // uncomment out the bottom to test if it works on your computer
+            //    System.out.println("Print results: " + results.getInt("AnimalID") + ", " + results.getString("AnimalNickname") + ", " + results.getString("AnimalSpecies"));
+                animalsArray.add(new Animal(results.getInt("AnimalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies")));
             }
             
             myStmt.close();
@@ -50,9 +52,9 @@ public class ScheduleBuilder {
     }
 
     public void setTreatmentsArray() {
-        treatmentsArray = new ArrayList<Treatment>()        
+        treatmentsArray = new ArrayList<Treatment>();       
         try {                    
-            Statement myStmt = dbConnect.createStatement();
+            Statement myStmt = dbConnection.createStatement();
             results = myStmt.executeQuery("SELECT * FROM treatments");
             
             // this may be not work
@@ -70,9 +72,9 @@ public class ScheduleBuilder {
     }
 
     public void setTasksArray() {
-        tasksArray = new ArrayList<Task>()
+        tasksArray = new ArrayList<Task>();
         try {                    
-            Statement myStmt = dbConnect.createStatement();
+            Statement myStmt = dbConnection.createStatement();
             results = myStmt.executeQuery("SELECT * FROM tasks");
             
             while (results.next()){                
@@ -89,20 +91,20 @@ public class ScheduleBuilder {
         //use queries
     }
 
-    public Object[][] getAnimalsArray() {
+    public ArrayList<Animal> getAnimalsArray() {
         return this.animalsArray;
     }
 
-    public Object[][] getTreatmentsArray() {
+    public ArrayList<Treatment> getTreatmentsArray() {
         return this.treatmentsArray;
     }
 
-    public Object[][] getTasksArray() {
+    public ArrayList<Task> getTasksArray() {
         return this.tasksArray;
     }
 
 
-    public static void main() {
+    public static void main(String[] args) {
 
         //print gui welcome message
 
@@ -116,10 +118,10 @@ public class ScheduleBuilder {
         schedule.setAnimalsArray();
 
         //call method to populate tasksArray
-        // schdeule.setTasksArray();
+        schedule.setTasksArray();
 
         //call method to populate treatmentsArray
-        // schedule.setTreatmentsArray();
+        schedule.setTreatmentsArray();
 
         
 
