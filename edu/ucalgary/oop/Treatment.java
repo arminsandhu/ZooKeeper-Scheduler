@@ -9,7 +9,6 @@ public class Treatment {
     private final int ANIMALID;
     private final int TASKID;
     private int startHour;
-    private boolean isScheduled = false;
     
     private ArrayList<Task> treatmentTasks; // addded on saturday, need to change
     

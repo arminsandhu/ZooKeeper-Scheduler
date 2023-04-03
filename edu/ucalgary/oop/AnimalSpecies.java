@@ -4,122 +4,102 @@ public enum AnimalSpecies {
     /*
      * this will hold all the info about each species look at the photo i(ella) took
      */
-    COYOTE {
-        public String toString() {
-            return "coyote";
-        }
+    COYOTE, FOX, PORCUPINE, RACCOON, BEAVER;
 
-        public int getCleaningTime() {
-            return 5;
+    public int getCleaningTime() {
+        switch(this) {
+            default:
+                return 5; 
         }
+    }
 
-        public int getFoodPrepTime() {
-            return 10;
+    public int getFeedingTime() {
+        switch(this) {
+            default:
+                return 5;
         }
+    }
 
-        public int getFeedingTime() {
-            return 5;
-        }
+    public int getFoodPrepTime() {
+        switch(this) {
+            case FOX:
+                return 10;
+            
+            case COYOTE:
+                return 10;
 
-        public int getStartHour() {
-            return 19;
+            default:
+                return 0;
         }
+    }
 
-        public int getMaxWindow() {
-            return 3;
-        }
-    },
-    FOX {
-        public String toString() {
-            return "fox";
-        }
+    public int getStartHour() {
+        switch(this) {
+            case FOX:
+                return 0;
 
-        public int getCleaningTime() {
-            return 5;
-        }
+            case RACCOON:
+                return 0;
+            
+            case COYOTE: 
+                return 19;
+            
+            case PORCUPINE:
+                return 19;
 
-        public int getFoodPrepTime() {
-            return 10;
-        }
+            case BEAVER:
+                return 8;
 
-        public int getFeedingTime() {
-            return 5;
+            default:
+                return 0;
         }
+    }
+    public int getMaxWindow() {
+        switch(this) {
+            default:
+                return 3;
+        }
+    }
+    public String getCleaningDescription() {
+        switch(this) {
+            case FOX:
+                return "Cleaning fox cage";
 
-        public int getStartHour() {
-            return 0;
-        }
+            case RACCOON:
+                return "Cleaning raccoon cage";
+            
+            case COYOTE: 
+                return "Cleaning coyote cage";
+            
+            case PORCUPINE:
+                return "Cleaning porcupine cage";
 
-        public int getMaxWindow() {
-            return 3;
-        }
-    },
-    PORCUPINE {
-        public String toString() {
-            return "porcupine";
-        }
+            case BEAVER:
+                return "Cleaning beaver cage";
 
-        public int getCleaningTime() {
-            return 5;
+            default:
+                return null;
         }
+    }
+    public String getFeedingDescription() {
+        switch(this) {
+            case FOX:
+                return "Feed foxes";
 
-        public int getFeedingTime() {
-            return 5;
+            case RACCOON:
+                return "Feed raccoons";
+            
+            case COYOTE: 
+                return "Feed coyotes";
+            
+            case PORCUPINE:
+                return "Feed porcupines";
+
+            case BEAVER:
+                return "Feed beavers";
+
+            default:
+                return null;
         }
-
-        public int getStartHour() {
-            return 19;
-        }
-
-        public int getMaxWindow() {
-            return 3;
-        }
-    },
-    RACCOON {
-        public String toString() {
-            return "raccoon";
-        }
-
-        public int getCleaningTime() {
-            return 5;
-        }
-
-        public int getFeedingTime() {
-            return 5;
-        }
-
-        public int getStartHour() {
-            return 0;
-        }
-
-        public int getMaxWindow() {
-            return 3;
-        }
-    },
-    BEAVER {
-        public String toString() {
-            return "beaver";
-        }
-
-        public int getCleaningTime() {
-            return 5;
-        }
-
-        public int getFeedingTime() {
-            return 5;
-        }
-
-        public int getStartHour() {
-            return 8;
-        }
-
-        public int getMaxWindow() {
-            return 3;
-        }
-
-    };
-
-    public abstract String toString();
-
-    public abstract int getC
+    }
 }
