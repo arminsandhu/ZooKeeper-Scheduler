@@ -8,7 +8,7 @@ public class Task {
 
     public Task(int taskId, String description, int duration, int maxWindow) {
         this.TASKID = taskId;
-        this.DESCRIPTION = description;
+        this.DESCRIPTION = description; 
         this.DURATION = duration;
         this.MAXWINDOW = maxWindow;
     }

@@ -20,6 +20,14 @@ public enum AnimalSpecies {
         public int getFeedingTime() {
             return 5;
         }
+
+        public int getStartHour() {
+            return 19;
+        }
+
+        public int getMaxWindow() {
+            return 3;
+        }
     },
     FOX {
         public String toString() {
@@ -37,6 +45,14 @@ public enum AnimalSpecies {
         public int getFeedingTime() {
             return 5;
         }
+
+        public int getStartHour() {
+            return 0;
+        }
+
+        public int getMaxWindow() {
+            return 3;
+        }
     },
     PORCUPINE {
         public String toString() {
@@ -47,12 +63,16 @@ public enum AnimalSpecies {
             return 5;
         }
 
-        public int getFoodPrepTime() {
-            return 10;
-        }
-
         public int getFeedingTime() {
             return 5;
+        }
+
+        public int getStartHour() {
+            return 19;
+        }
+
+        public int getMaxWindow() {
+            return 3;
         }
     },
     RACCOON {
@@ -64,12 +84,16 @@ public enum AnimalSpecies {
             return 5;
         }
 
-        public int getFoodPrepTime() {
-            return 10;
-        }
-
         public int getFeedingTime() {
             return 5;
+        }
+
+        public int getStartHour() {
+            return 0;
+        }
+
+        public int getMaxWindow() {
+            return 3;
         }
     },
     BEAVER {
@@ -81,13 +105,18 @@ public enum AnimalSpecies {
             return 5;
         }
 
-        public int getFoodPrepTime() {
-            return 10;
-        }
-
         public int getFeedingTime() {
             return 5;
         }
+
+        public int getStartHour() {
+            return 8;
+        }
+
+        public int getMaxWindow() {
+            return 3;
+        }
+
     };
 
     public abstract String toString();

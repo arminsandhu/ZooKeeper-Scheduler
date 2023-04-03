@@ -1,6 +1,7 @@
 package edu.ucalgary.oop;
+import java.util.ArrayList;
 
-public class Treatment implements FormattedOutput {
+public class Treatment {
     /*
      * populate treatmentTask array (highest priority)
      * treatmentTasks = [[(int)animalID, (int)taskID, (int)startHour, (int)duration, (int)maxWindow, (boolean)schdeuled?]]
@@ -10,7 +11,7 @@ public class Treatment implements FormattedOutput {
     private int startHour;
     private boolean isScheduled = false;
     
-    private Object[][] treatmentsToSchedule; // addded on saturday, need to change
+    private ArrayList<Task> treatmentTasks; // addded on saturday, need to change
     
 
     public Treatment(int id, int taskID, int hour) {
