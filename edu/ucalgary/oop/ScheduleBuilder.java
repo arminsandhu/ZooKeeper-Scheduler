@@ -123,130 +123,136 @@ public class ScheduleBuilder {
         //call method to populate treatmentsArray
         schedule.setTreatmentsArray();
 
-        int timeRemaining = 60;
+        // This is here only to test printing the 
+        CreateArrayList instance = new CreateArrayList();
+        System.out.println(instance.getFeedingTasks());
+        System.out.println(instance.getPreppedFeedingTasks());
+        System.out.println(instance.getCleaningTasks());
 
-        for (int hour = 0; hour < 24; hour++) {
-            while (timeRemaining > 0) {
+        // int timeRemaining = 60;
 
-                ArrayList<Treatment> treatmentArray; // Supposed to be treatments array
+        // for (int hour = 0; hour < 24; hour++) {
+        //     while (timeRemaining > 0) {
+
+        //         ArrayList<Treatment> treatmentArray; // Supposed to be treatments array
                 
-                for (Treatment treatment : treatmentArray) {
-                    if (treatment.getStartHour() <= hour) {
-                        for (Task task : tasksArray) { //tasksArray is an array list of all task objects
-                            if (task.getIsScheduled() == false) {
-                                if (task.getTaskId() == treatment.getTaskID()) {
-                                    if (timeRemaining == 0) {
-                                        break;
-                                    }
-                                    if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
-                                        continue;
-                                    }
-                                    else if (timeRemaining > task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                    }
-                                    else if (timeRemaining == task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                        break;
-                                    }
-                                    // Idk like I think we add task to schedule and set specified task to false right?
-                                }
-                                if (timeRemaining == 0) {
-                                    break;
-                                }
-                            }
-                            if (timeRemaining == 0) {
-                                break;
-                            }
-                        }
-                        if (timeRemaining == 0) {
-                            break;
-                        }
-                    }
-                    if (timeRemaining == 0) {
-                        break;
-                    }
-                }
+        //         for (Treatment treatment : treatmentArray) {
+        //             if (treatment.getStartHour() <= hour) {
+        //                 for (Task task : tasksArray) { //tasksArray is an array list of all task objects
+        //                     if (task.getIsScheduled() == false) {
+        //                         if (task.getTaskId() == treatment.getTaskID()) {
+        //                             if (timeRemaining == 0) {
+        //                                 break;
+        //                             }
+        //                             if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
+        //                                 continue;
+        //                             }
+        //                             else if (timeRemaining > task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                             }
+        //                             else if (timeRemaining == task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                                 break;
+        //                             }
+        //                             // Idk like I think we add task to schedule and set specified task to false right?
+        //                         }
+        //                         if (timeRemaining == 0) {
+        //                             break;
+        //                         }
+        //                     }
+        //                     if (timeRemaining == 0) {
+        //                         break;
+        //                     }
+        //                 }
+        //                 if (timeRemaining == 0) {
+        //                     break;
+        //                 }
+        //             }
+        //             if (timeRemaining == 0) {
+        //                 break;
+        //             }
+        //         }
 
-                ArrayList<PreppedFeeding> preppedArray;
+        //         ArrayList<PreppedFeeding> preppedArray;
 
-                for (PreppedFeeding prep : preppedArray) {
-                    if (prep.getStartHour() <= hour) {
-                        for (Task task : tasksArray) { //tasksArray is an array list of all task objects
-                            if (task.getIsScheduled() == false) {
-                                if (task.getUniqueId() == prep.getUniqueID()) {
-                                    if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
-                                        continue;
-                                    }
-                                    else if (timeRemaining > task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                    }
-                                    else if (timeRemaining == task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        //         for (PreppedFeeding prep : preppedArray) {
+        //             if (prep.getStartHour() <= hour) {
+        //                 for (Task task : tasksArray) { //tasksArray is an array list of all task objects
+        //                     if (task.getIsScheduled() == false) {
+        //                         if (task.getUniqueId() == prep.getUniqueID()) {
+        //                             if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
+        //                                 continue;
+        //                             }
+        //                             else if (timeRemaining > task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                             }
+        //                             else if (timeRemaining == task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                                 break;
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
 
-                ArrayList<Feeding> feedingArray;
+        //         ArrayList<Feeding> feedingArray;
 
-                for (Feeding feeding : feedingArray) {
-                    if (feeding.getStartHour() <= hour) {
-                        for (Task task : tasksArray) { //tasksArray is an array list of all task objects
-                            if (task.getIsScheduled() == false) {
-                                if (task.getUniqueId() == feeding.getUniqueID()) {
-                                    if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
-                                        continue;
-                                    }
-                                    else if (timeRemaining > task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                    }
-                                    else if (timeRemaining == task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        //         for (Feeding feeding : feedingArray) {
+        //             if (feeding.getStartHour() <= hour) {
+        //                 for (Task task : tasksArray) { //tasksArray is an array list of all task objects
+        //                     if (task.getIsScheduled() == false) {
+        //                         if (task.getUniqueId() == feeding.getUniqueID()) {
+        //                             if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
+        //                                 continue;
+        //                             }
+        //                             else if (timeRemaining > task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                             }
+        //                             else if (timeRemaining == task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                                 break;
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
 
 
 
-                ArrayList<Cleaning> cleaningArray;
+        //         ArrayList<Cleaning> cleaningArray;
 
-                for (Cleaning clean : cleaningArray) {
-                    if (clean.getStartHour() <= hour) {
-                        for (Task task : tasksArray) { //tasksArray is an array list of all task objects (for ex, we would have unique ids 1-30 for treatment, and then 31-? would be the rest of the tasks such as prepped feeding, feeding and cleaning)
-                            if (task.getIsScheduled() == false) {
-                                if (task.getUniqueId() == clean.getUniqueID()) {
-                                    if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
-                                        continue;
-                                    }
-                                    else if (timeRemaining > task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                    }
-                                    else if (timeRemaining == task.getDuration()) {
-                                        timeRemaining -= task.getDuration();
-                                        task.setIsScheduled();
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //         for (Cleaning clean : cleaningArray) {
+        //             if (clean.getStartHour() <= hour) {
+        //                 for (Task task : tasksArray) { //tasksArray is an array list of all task objects (for ex, we would have unique ids 1-30 for treatment, and then 31-? would be the rest of the tasks such as prepped feeding, feeding and cleaning)
+        //                     if (task.getIsScheduled() == false) {
+        //                         if (task.getUniqueId() == clean.getUniqueID()) {
+        //                             if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
+        //                                 continue;
+        //                             }
+        //                             else if (timeRemaining > task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                             }
+        //                             else if (timeRemaining == task.getDuration()) {
+        //                                 timeRemaining -= task.getDuration();
+        //                                 task.setIsScheduled();
+        //                                 break;
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
 
 

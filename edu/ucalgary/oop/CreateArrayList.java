@@ -74,4 +74,8 @@ public class CreateArrayList extends ScheduleBuilder {
             }
         }
     }
+
+    public ArrayList<Feeding> getFeedingTasks() { return this.feedingTasks; }
+    public ArrayList<PreppedFeeding> getPreppedFeedingTasks() { return this.preppedFeedingTasks; }
+    public ArrayList<Cleaning> getCleaningTasks() { return this.cleaningTasks; }
 }
