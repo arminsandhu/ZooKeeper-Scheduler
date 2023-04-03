@@ -130,7 +130,7 @@ public class ScheduleBuilder {
         System.out.println(instance.getCleaningTasks());
 
         // int timeRemaining = 60;
-
+        // int timeCompleted = 0;
         // for (int hour = 0; hour < 24; hour++) {
         //     while (timeRemaining > 0) {
 
@@ -149,10 +149,12 @@ public class ScheduleBuilder {
         //                             }
         //                             else if (timeRemaining > task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                             }
         //                             else if (timeRemaining == task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                                 break;
         //                             }
@@ -187,10 +189,12 @@ public class ScheduleBuilder {
         //                             }
         //                             else if (timeRemaining > task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                             }
         //                             else if (timeRemaining == task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                                 break;
         //                             }
@@ -212,10 +216,12 @@ public class ScheduleBuilder {
         //                             }
         //                             else if (timeRemaining > task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                             }
         //                             else if (timeRemaining == task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                                 break;
         //                             }
@@ -239,10 +245,12 @@ public class ScheduleBuilder {
         //                             }
         //                             else if (timeRemaining > task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                             }
         //                             else if (timeRemaining == task.getDuration()) {
         //                                 timeRemaining -= task.getDuration();
+        //                                 timeCompleted += task.getDuration();
         //                                 task.setIsScheduled();
         //                                 break;
         //                             }
