@@ -1,6 +1,6 @@
 package edu.ucalgary.oop;
 
-public class FinalSchedule {
+public class FinalSchedule implements Comparable<FinalSchedule> {
     private final int UNIQUEID;
     private String description;
     private int quantity;
@@ -33,6 +33,17 @@ public class FinalSchedule {
 
     public int getTimeAvailable() {
         return this.timeAvailable;
+    }
+
+    @Override
+    public int compareTo(FinalSchedule other) {
+        if (this.timeAvailable < other.timeAvailable) {
+            return -1;
+        } else if (this.timeAvailable > other.timeAvailable) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

@@ -11,17 +11,19 @@ public class PreppedFeeding {
     private int maxWindow;
     private String description;
     private int prepTime;
+    private int duration;
 
     /*
      * PreppedFeeding constructor. Has arguments of the following types (int, int, int, String, int).
      * Constructs the attributes of preppedfeeding object.
      */
-    public PreppedFeeding(int uniqueID, int startHour, int maxWindow, String description, int prepTime) {
+    public PreppedFeeding(int uniqueID, int startHour, int maxWindow, String description, int prepTime, int duration) {
         this.startHour = startHour;
         this.maxWindow = maxWindow;
         this.UNIQUEID = uniqueID;
         this.description = description;
         this.prepTime = prepTime;
+        this.duration = duration;
     }
 
 
@@ -32,6 +34,7 @@ public class PreppedFeeding {
     public int getUniqueID() { return this.UNIQUEID; }
     public int getStartHour() { return this.startHour; }
     public int getMaxWindow() { return this.maxWindow; }
-    public int getPerpTime() { return this.prepTime; }
+    public int getPrepTime() { return this.prepTime; }
+    public int getDuration() { return this.duration; }
     public String getDescription() { return this.description; }
 }

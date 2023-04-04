@@ -8,15 +8,15 @@ public class IsScheduled {
         this.UNIQUEID = uniqueID;
     }
 
-    public void setIsSched(boolean val) {
-        this.isSched = val;
+    public void setIsScheduled() {
+        this.isSched = true;
     }
 
     public int getUniqueID() {
         return this.UNIQUEID;
     }
 
-    public boolean getIsSched() {
+    public boolean getIsScheduled() {
         return this.isSched;
     }
 }
