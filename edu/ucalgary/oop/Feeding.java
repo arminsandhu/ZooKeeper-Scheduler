@@ -6,7 +6,7 @@ public class Feeding {
      * the feeding tasks for a given database. This is the 3rd lowest priority task.
      */
     
-    private final int TASKID;
+    private final int UNIQUEID;
     private int startHour;
     private int maxWindow;
     private String description;
@@ -15,10 +15,10 @@ public class Feeding {
      * Feeding class constructor. Takes in arguments of types (int, int, int, String) and assigns the values
      * to the priavte variables TASKID, startHour, maxWindow and description.
      */
-    public Feeding(int taskID, int startHour, int maxWindow, String description) {
+    public Feeding(int uniqueID, int startHour, int maxWindow, String description) {
         this.startHour = startHour;
         this.maxWindow = maxWindow;
-        this.TASKID = taskID;
+        this.UNIQUEID = uniqueID;
         this.description = description;
     }
 
@@ -26,7 +26,7 @@ public class Feeding {
      * Getters for the variables of a Feeding object. None have arguments,
      * first 3 are return type int, getDescription() is of return type String.
      */
-    public int getTaskID() { return this.TASKID; }
+    public int getUniqueID() { return this.UNIQUEID; }
     public int getStartHour() { return this.startHour; }
     public int getMaxWindow() { return this.maxWindow; }
     public String getDescription() { return this.description; }
