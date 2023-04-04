@@ -20,7 +20,7 @@ public class Cleaning {
     /*
      * Getters. No arguments, getTaskID() returns int and getDescription() returns String.
      */
-    public int getTaskID() { return this.UNIQUEID; }
+    public int getUniqueID() { return this.UNIQUEID; }
     public String getDescription() { return this.description; }
     
 }

@@ -7,6 +7,7 @@ public class CreateArrayList extends ScheduleBuilder {
     private ArrayList<PreppedFeeding> preppedFeedingTasks;
     private ArrayList<Cleaning> cleaningTasks;
     private ScheduleBuilder sched;
+    private ArrayList<IsScheduled> isScheduledTasks;
 
     /*
      * CreateArrayList constructor. Instantiates the ArrayLists for feeding tasks,
@@ -17,6 +18,7 @@ public class CreateArrayList extends ScheduleBuilder {
         this.feedingTasks = new ArrayList<Feeding>();
         this.cleaningTasks = new ArrayList<Cleaning>();
         this.preppedFeedingTasks = new ArrayList<PreppedFeeding>();
+        this.isScheduledTasks = new ArrayList<IsScheduled>();
         this.sched = sched;
         fillArrays();
     }
@@ -40,50 +42,105 @@ public class CreateArrayList extends ScheduleBuilder {
             String species = animal.getAnimalSpecies();
             //System.out.println(species);
             if (species.equals("beaver")) {
-                feedingTasks.add(new Feeding(i, AnimalSpecies.BEAVER.getStartHour(), 
-                    AnimalSpecies.BEAVER.getMaxWindow(), AnimalSpecies.BEAVER.getFeedingDescription()));
-                i+=1;
                 cleaningTasks.add(new Cleaning(i, AnimalSpecies.BEAVER.getCleaningDescription()));
-                i += 1;
+                buildIsScheduled(i);
+                i+=1;
+
+                if (!isKit(animal)) {
+                    feedingTasks.add(new Feeding(i, AnimalSpecies.BEAVER.getStartHour(), 
+                        AnimalSpecies.BEAVER.getMaxWindow(), AnimalSpecies.BEAVER.getFeedingDescription()));
+                    buildIsScheduled(i);
+                    i+=1;
+                }
             }
 
             if (species.equals("porcupine")) {
-                feedingTasks.add(new Feeding(i, AnimalSpecies.PORCUPINE.getStartHour(), 
-                    AnimalSpecies.PORCUPINE.getMaxWindow(), AnimalSpecies.PORCUPINE.getFeedingDescription()));
+            
+                cleaningTasks.add(new Cleaning(i, AnimalSpecies.PORCUPINE.getCleaningDescription()));
+                buildIsScheduled(i);
                 i+=1;
-                cleaningTasks.add(new Cleaning(i +=1, AnimalSpecies.PORCUPINE.getCleaningDescription()));
-                i+=1;
+
+                if (!isKit(animal)) {
+                    feedingTasks.add(new Feeding(i, AnimalSpecies.PORCUPINE.getStartHour(), 
+                        AnimalSpecies.PORCUPINE.getMaxWindow(), AnimalSpecies.PORCUPINE.getFeedingDescription()));
+                    buildIsScheduled(i);
+                    i+=1;
+                }
             }
 
             if (species.equals("fox")) {
-                preppedFeedingTasks.add(new PreppedFeeding(i, AnimalSpecies.FOX.getStartHour(), 
-                    AnimalSpecies.FOX.getMaxWindow(), AnimalSpecies.FOX.getFeedingDescription(), 
-                    AnimalSpecies.FOX.getFoodPrepTime()));
+                
+                cleaningTasks.add(new Cleaning(i, AnimalSpecies.FOX.getCleaningDescription()));
+                buildIsScheduled(i);
                 i+=1;
-                cleaningTasks.add(new Cleaning(i +=1, AnimalSpecies.FOX.getCleaningDescription()));
-                i+=1;
+
+                if (!isKit(animal)) {
+                    preppedFeedingTasks.add(new PreppedFeeding(i, AnimalSpecies.FOX.getStartHour(), 
+                        AnimalSpecies.FOX.getMaxWindow(), AnimalSpecies.FOX.getFeedingDescription(), 
+                        AnimalSpecies.FOX.getFoodPrepTime()));
+                    buildIsScheduled(i);
+                    i+=1;   
+                }
             }
-    
+        
             if (species.equals("coyote")) {
-                preppedFeedingTasks.add(new PreppedFeeding(i, AnimalSpecies.COYOTE.getStartHour(), 
-                    AnimalSpecies.COYOTE.getMaxWindow(), AnimalSpecies.COYOTE.getFeedingDescription(), 
-                    AnimalSpecies.COYOTE.getFoodPrepTime()));
-                i+=1;
-                cleaningTasks.add(new Cleaning(i +=1, AnimalSpecies.COYOTE.getCleaningDescription()));
-                i+=1;
+                
+                cleaningTasks.add(new Cleaning(i, AnimalSpecies.COYOTE.getCleaningDescription()));
+                buildIsScheduled(i);
+                i+=1; 
+                
+                if (!isKit(animal)) {
+                    preppedFeedingTasks.add(new PreppedFeeding(i, AnimalSpecies.COYOTE.getStartHour(), 
+                        AnimalSpecies.COYOTE.getMaxWindow(), AnimalSpecies.COYOTE.getFeedingDescription(), 
+                        AnimalSpecies.COYOTE.getFoodPrepTime()));
+                    buildIsScheduled(i);
+                    i+=1;
+                }   
             }
 
             if (species.equals("raccoon")) {
-                feedingTasks.add(new Feeding(i, AnimalSpecies.RACCOON.getStartHour(), 
-                    AnimalSpecies.RACCOON.getMaxWindow(), AnimalSpecies.RACCOON.getFeedingDescription()));
+                
+                cleaningTasks.add(new Cleaning(i, AnimalSpecies.RACCOON.getCleaningDescription()));
+                buildIsScheduled(i);
                 i+=1;
-                cleaningTasks.add(new Cleaning(i +=1, AnimalSpecies.RACCOON.getCleaningDescription()));
-                i+=1;
+                
+                if (!isKit(animal)) {
+                    feedingTasks.add(new Feeding(i, AnimalSpecies.RACCOON.getStartHour(), 
+                        AnimalSpecies.RACCOON.getMaxWindow(), AnimalSpecies.RACCOON.getFeedingDescription()));
+                    buildIsScheduled(i);
+                    i+=1; 
+                }
+            }   
+        }
+    }
+
+    public void addScheduledTreaments(int[] i) {
+        for (int j = i.length - 1; j >= 0; j--) {
+            isScheduledTasks.add(0, new IsScheduled(i[j])); // add element at index 0
+        }
+    }    
+
+    public void buildIsScheduled(int i) {
+        isScheduledTasks.add(new IsScheduled(i));
+    }
+
+    public boolean isKit(Animal animal) {
+        int animalID = animal.getAnimalId();
+        ArrayList<Treatment> treatments = this.sched.getTreatmentsArray();
+
+        for (Treatment t : treatments) {
+            if (t.getAnimalID() == animalID) {
+                int treatmentID = t.getTaskID();
+                if (treatmentID == 1) {
+                    return true;
+                }
             }
         }
+        return false;
     }
 
     public ArrayList<Feeding> getFeedingTasks() { return this.feedingTasks; }
     public ArrayList<PreppedFeeding> getPreppedFeedingTasks() { return this.preppedFeedingTasks; }
     public ArrayList<Cleaning> getCleaningTasks() { return this.cleaningTasks; }
+    public ArrayList<IsScheduled> getIsScheduledTasks() { return this.isScheduledTasks; }
 }

@@ -17,6 +17,8 @@ public class ScheduleBuilder {
     private ArrayList<Task> tasksArray;
     private HashMap<Integer, TreeSet<FinalSchedule>> finalSchedule = new HashMap<Integer, TreeSet<FinalSchedule>>();
     private int iterator = 0;
+    private static int[] iterationsList;
+
     private int timeRemaining = 60;
     private int timeCompleted = 0;
     private TreeSet<FinalSchedule> finalTree = new TreeSet<>();
@@ -61,7 +63,8 @@ public class ScheduleBuilder {
     }
 
     public void setTreatmentsArray() {
-        treatmentsArray = new ArrayList<Treatment>();       
+        treatmentsArray = new ArrayList<Treatment>(); 
+        int i = 0;
         try {                    
             Statement myStmt = dbConnection.createStatement();
             results = myStmt.executeQuery("SELECT * FROM treatments");
@@ -71,6 +74,7 @@ public class ScheduleBuilder {
                 treatmentsArray.add(new Treatment(this.iterator, results.getInt("AnimalID"), 
                     results.getInt("TaskID"), results.getInt("StartHour")));
                 this.iterator++;
+                i++;
             }
             
             myStmt.close();
@@ -121,7 +125,6 @@ public class ScheduleBuilder {
     public HashMap<Integer, TreeSet<FinalSchedule>> getFinalSchedule() {
         return this.finalSchedule;
     }
-
     public TreeSet<FinalSchedule> getFinalTree() {
         return this.finalTree;
     }
@@ -129,6 +132,15 @@ public class ScheduleBuilder {
     public void resetFinalTree() {
         this.finalTree.clear();
     }
+
+    public void setIterationsList(ScheduleBuilder schedule) {
+        int p;
+        iterationsList = new int[treatmentsArray.size()];
+        for (p = 0; p< schedule.treatmentsArray.size(); p++) {
+            iterationsList[p] = p;
+        }
+    }
+
 
 
     public void checkTreatments(int hour, ScheduleBuilder schedule) {
@@ -183,6 +195,8 @@ public class ScheduleBuilder {
             }
         }
     }
+
+
 
 
     public void checkPreppedFeeding(int hour, CreateArrayList instance) {
@@ -335,7 +349,19 @@ public class ScheduleBuilder {
 
         // This is here only to test printing the 
         //System.out.println(schedule.getAnimalsArray());
+        // This is here only to test printing the 
+        //System.out.println(schedule.getAnimalsArray());
         CreateArrayList instance = new CreateArrayList(schedule);
+        instance.addScheduledTreaments(iterationsList);
+
+        // THE BELOW CODE IS TO PRINT THE UNQIUE IDS OF EVERY TASK.
+        // ArrayList<IsScheduled> scheduledTasks = instance.getIsScheduledTasks();
+        // HashSet<Integer> uniqueIds = new HashSet<>();
+        // for (IsScheduled task : scheduledTasks) {
+        //     int taskId = task.getUniqueID();
+        //     System.out.println(taskId);
+        //     uniqueIds.add(taskId);
+        // }
         //System.out.println(instance.getFeedingTasks().get(0).getDescription());
         //System.out.println(instance.getPreppedFeedingTasks());
         //System.out.println(instance.getCleaningTasks());
@@ -352,8 +378,5 @@ public class ScheduleBuilder {
 
             }
         }
-
-
-
     }
 }
