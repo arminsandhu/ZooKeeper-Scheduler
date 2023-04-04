@@ -1,5 +1,6 @@
 package edu.ucalgary.oop;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
@@ -77,6 +78,16 @@ public class ScheduleBuilder {
         }
 
         System.out.println(schedule.getFinalSchedule());
+
+        // ella and armin added to print txt file
+        try {
+            TextFileOutput txtOutput = new TextFileOutput(schedule);
+        } catch (IOException e) {
+            System.out.println("There was an error.");
+            e.printStackTrace();
+        }
+        // ella and armin added to print txt file
+
     }
 
                 
