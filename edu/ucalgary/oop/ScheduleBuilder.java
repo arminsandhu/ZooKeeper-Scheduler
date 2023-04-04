@@ -63,21 +63,31 @@ public class ScheduleBuilder {
         //System.out.println(instance.getFeedingTasks().get(0).getDescription());
         //System.out.println(instance.getPreppedFeedingTasks());
         //System.out.println(instance.getCleaningTasks());
-
-       
+        
+        // int count = 0;
         for (int hour = 0; hour < 24; hour++) {
-            while (schedule.getTimeRemaining() > 0) {
+            // System.out.println(hour);
+            // System.out.println(schedule.getTimeRemaining());
+
+            if (schedule.getTimeRemaining() > 0) {
                 schedule.checkTreatments(hour, schedule, instance);
                 schedule.checkPreppedFeeding(hour, instance);
                 schedule.checkFeeding(hour, instance);
                 schedule.checkCleaning(hour, instance);
-                schedule.getFinalSchedule().put(hour, schedule.getFinalTree());
+                TreeSet<FinalSchedule> reverseOrder = new TreeSet<>(Collections.reverseOrder());
+                reverseOrder.addAll(schedule.getFinalTree());
+                schedule.setFinalTree(reverseOrder);
+                schedule.setFinalSchedule(hour, schedule.getFinalTree());
+                // for (FinalSchedule s : schedule.getFinalTree()) {
+                //     System.out.println(s.getDescription() + "   -   " + s.getUniqueId());
+                //     count++;
+                // }
+                schedule.setTimeRemaining(60);
                 schedule.resetFinalTree();
                 
-            }
+            }  
         }
 
-        System.out.println(schedule.getFinalSchedule());
 
         // ella and armin added to print txt file
         try {
@@ -87,6 +97,11 @@ public class ScheduleBuilder {
             e.printStackTrace();
         }
         // ella and armin added to print txt file
+
+
+        
+        // System.out.println(schedule.getFinalSchedule());
+        // System.out.println(count);
 
     }
 
@@ -197,7 +212,15 @@ public class ScheduleBuilder {
     }
 
     public void resetFinalTree() {
-        this.finalTree.clear();
+        this.finalTree = new TreeSet<>();
+    }
+
+    public void setFinalTree(TreeSet<FinalSchedule> finalTree) {
+        this.finalTree = finalTree;
+    }
+
+    public void setFinalSchedule(int hour, TreeSet<FinalSchedule> finalTree) {
+        this.finalSchedule.put(hour, finalTree);
     }
 
     public void setIterationsList(ScheduleBuilder schedule) {
@@ -231,7 +254,7 @@ public class ScheduleBuilder {
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
-                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), "", 4, timeCompleted, timeRemaining);
+                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
                                         finalTree.add(finalTask);
                                         item.setIsScheduled();
                                     }
@@ -240,29 +263,17 @@ public class ScheduleBuilder {
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
-                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), "", 4, timeCompleted, timeRemaining);
+                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
                                         finalTree.add(finalTask);
                                         item.setIsScheduled();
                                         break;
                                     }
                                     // Idk like I think we add task to schedule and set specified task to false right?
                                 }
-                                if (timeRemaining == 0) {
-                                    break;
-                                }
                             }
                         }
                     }
-                    if (timeRemaining == 0) {
-                        break;
-                    }
                 }
-                if (timeRemaining == 0) {
-                    break;
-                }
-            }
-            if (timeRemaining == 0) {
-                break;
             }
         }
     }
@@ -324,7 +335,7 @@ public class ScheduleBuilder {
                                 timeCompleted += feeding.getDuration();
                                 setTimeRemaining(timeRemaining);
                                 setTimeCompleted(timeCompleted);
-                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), "", 4, timeCompleted, timeRemaining);
+                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), feeding.getDescription(), 4, timeCompleted, timeRemaining);
                                 finalTree.add(finalTask);
                                 item.setIsScheduled();
                             }
@@ -333,7 +344,7 @@ public class ScheduleBuilder {
                                 timeCompleted += feeding.getDuration();
                                 setTimeRemaining(timeRemaining);
                                 setTimeCompleted(timeCompleted);
-                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), "", 4, timeCompleted, timeRemaining);
+                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), feeding.getDescription(), 4, timeCompleted, timeRemaining);
                                 finalTree.add(finalTask);
                                 item.setIsScheduled();
                                 break;
@@ -361,7 +372,7 @@ public class ScheduleBuilder {
                             timeCompleted += clean.getDuration();
                             setTimeRemaining(timeRemaining);
                             setTimeCompleted(timeCompleted);
-                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), "", 4, timeCompleted, timeRemaining);
+                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), clean.getDescription(), 4, timeCompleted, timeRemaining);
                             finalTree.add(finalTask);
                             item.setIsScheduled();
                         }
@@ -370,7 +381,7 @@ public class ScheduleBuilder {
                             timeCompleted += clean.getDuration();
                             setTimeRemaining(timeRemaining);
                             setTimeCompleted(timeCompleted);
-                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), "", 4, timeCompleted, timeRemaining);
+                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), clean.getDescription(), 4, timeCompleted, timeRemaining);
                             finalTree.add(finalTask);
                             item.setIsScheduled();
                             break;
