@@ -29,7 +29,7 @@ public class PreppedFeeding {
      * Getters for the attributes of a PreppedFeeding object. None have arguments,
      * first 4 are return type int, getDescription() is of return type String.
      */
-    public int getTaskID() { return this.UNIQUEID; }
+    public int getUniqueID() { return this.UNIQUEID; }
     public int getStartHour() { return this.startHour; }
     public int getMaxWindow() { return this.maxWindow; }
     public int getPerpTime() { return this.prepTime; }

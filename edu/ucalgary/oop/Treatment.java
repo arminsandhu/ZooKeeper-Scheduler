@@ -38,6 +38,4 @@ public class Treatment {
     public int getUniqueID() {
         return this.UNIQUEID;
     }
-
-
 }
