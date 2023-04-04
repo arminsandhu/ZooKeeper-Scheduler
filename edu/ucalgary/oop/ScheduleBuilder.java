@@ -1,7 +1,7 @@
 package edu.ucalgary.oop;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class ScheduleBuilder {
@@ -15,6 +15,7 @@ public class ScheduleBuilder {
     private ArrayList<Animal> animalsArray; // should we change it back to object?
     private ArrayList<Treatment> treatmentsArray;
     private ArrayList<Task> tasksArray;
+    private HashMap<Integer, TreeSet<FinalSchedule>> finalSchedule = new HashMap<Integer, TreeSet<FinalSchedule>>();
     private int iterator = 0;
     private int timeRemaining = 60;
     private int timeCompleted = 0;
@@ -115,6 +116,11 @@ public class ScheduleBuilder {
     public int getIterator() {
         return this.iterator;
     }
+    
+    public HashMap<Integer, TreeSet<FinalSchedule>> getFinalSchedule() {
+        return this.finalSchedule;
+    }
+
 
     public void checkTreatments(int hour, ScheduleBuilder schedule) {
         int timeRemaining = getTimeRemaining();
