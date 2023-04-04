@@ -18,6 +18,8 @@ public class ScheduleBuilder {
 
                 
     public ScheduleBuilder(){ // added this empty constructor; may not need it
+
+        
     }
 
     public void createConnection(){
@@ -31,15 +33,17 @@ public class ScheduleBuilder {
     }
 
     public void setAnimalsArray() {
-        animalsArray = new ArrayList<Animal>();
+        this.animalsArray = new ArrayList<Animal>();
         try {                    
             Statement myStmt = dbConnection.createStatement();
             results = myStmt.executeQuery("SELECT * FROM animals");
-            
             while (results.next()){          
                 // uncomment out the bottom to test if it works on your computer
-            //    System.out.println("Print results: " + results.getInt("AnimalID") + ", " + results.getString("AnimalNickname") + ", " + results.getString("AnimalSpecies"));
-                animalsArray.add(new Animal(results.getInt("AnimalID"), results.getString("AnimalNickname"), results.getString("AnimalSpecies")));
+                //System.out.println("Print results: " + results.getInt("AnimalID") + ", " + results.getString("AnimalNickname") + ", " + results.getString("AnimalSpecies"));
+                int animalID = results.getInt("AnimalID");
+                String animalNickname = results.getString("AnimalNickname");
+                String animalSpecies = results.getString("AnimalSpecies");
+                animalsArray.add(new Animal(animalID, animalNickname, animalSpecies));
             }
             
             myStmt.close();
@@ -124,10 +128,11 @@ public class ScheduleBuilder {
         schedule.setTreatmentsArray();
 
         // This is here only to test printing the 
-        CreateArrayList instance = new CreateArrayList();
-        System.out.println(instance.getFeedingTasks());
-        System.out.println(instance.getPreppedFeedingTasks());
-        System.out.println(instance.getCleaningTasks());
+        //System.out.println(schedule.getAnimalsArray());
+        CreateArrayList instance = new CreateArrayList(schedule);
+        //System.out.println(instance.getFeedingTasks().get(0).getDescription());
+        //System.out.println(instance.getPreppedFeedingTasks());
+        //System.out.println(instance.getCleaningTasks());
 
         // int timeRemaining = 60;
 

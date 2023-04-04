@@ -6,19 +6,19 @@ public class CreateArrayList extends ScheduleBuilder {
     private ArrayList<Feeding> feedingTasks;
     private ArrayList<PreppedFeeding> preppedFeedingTasks;
     private ArrayList<Cleaning> cleaningTasks;
-    private ArrayList<Animal> animals = getAnimalsArray();
+    private ScheduleBuilder sched;
 
     /*
      * CreateArrayList constructor. Instantiates the ArrayLists for feeding tasks,
      * prepped feeding tasks and cleaning tasks. Calls the fillArrays method within the
      * class to populate each array by adding tasks. No arguments.
      */
-    public CreateArrayList() {
+    public CreateArrayList(ScheduleBuilder sched) {
         this.feedingTasks = new ArrayList<Feeding>();
         this.cleaningTasks = new ArrayList<Cleaning>();
         this.preppedFeedingTasks = new ArrayList<PreppedFeeding>();
+        this.sched = sched;
         fillArrays();
-        
     }
 
     /*
@@ -28,10 +28,18 @@ public class CreateArrayList extends ScheduleBuilder {
      * No returns and no arguments.   
     */
     public void fillArrays() {
+        //ScheduleBuilder sched = new ScheduleBuilder();
+        //ArrayList<Animal> animals = new ArrayList<Animal>();
+        ArrayList<Animal> animals = this.sched.getAnimalsArray();
+        //System.out.println(animals);
         int i = 0;
+        
         for (Animal animal : animals) {
+            //System.out.println(animal.getAnimalId());
+            //System.out.println(animal.getAnimalSpecies());
             String species = animal.getAnimalSpecies();
-            if (species == "beaver") {
+            //System.out.println(species);
+            if (species.equals("beaver")) {
                 feedingTasks.add(new Feeding(i, AnimalSpecies.BEAVER.getStartHour(), 
                     AnimalSpecies.BEAVER.getMaxWindow(), AnimalSpecies.BEAVER.getFeedingDescription()));
                 i+=1;
@@ -39,7 +47,7 @@ public class CreateArrayList extends ScheduleBuilder {
                 i += 1;
             }
 
-            else if (species == "porcupine") {
+            if (species.equals("porcupine")) {
                 feedingTasks.add(new Feeding(i, AnimalSpecies.PORCUPINE.getStartHour(), 
                     AnimalSpecies.PORCUPINE.getMaxWindow(), AnimalSpecies.PORCUPINE.getFeedingDescription()));
                 i+=1;
@@ -47,7 +55,7 @@ public class CreateArrayList extends ScheduleBuilder {
                 i+=1;
             }
 
-            else if (species == "fox") {
+            if (species.equals("fox")) {
                 preppedFeedingTasks.add(new PreppedFeeding(i, AnimalSpecies.FOX.getStartHour(), 
                     AnimalSpecies.FOX.getMaxWindow(), AnimalSpecies.FOX.getFeedingDescription(), 
                     AnimalSpecies.FOX.getFoodPrepTime()));
@@ -56,7 +64,7 @@ public class CreateArrayList extends ScheduleBuilder {
                 i+=1;
             }
     
-            else if (species == "coyote") {
+            if (species.equals("coyote")) {
                 preppedFeedingTasks.add(new PreppedFeeding(i, AnimalSpecies.COYOTE.getStartHour(), 
                     AnimalSpecies.COYOTE.getMaxWindow(), AnimalSpecies.COYOTE.getFeedingDescription(), 
                     AnimalSpecies.COYOTE.getFoodPrepTime()));
@@ -65,7 +73,7 @@ public class CreateArrayList extends ScheduleBuilder {
                 i+=1;
             }
 
-            else if (species == "raccoon") {
+            if (species.equals("raccoon")) {
                 feedingTasks.add(new Feeding(i, AnimalSpecies.RACCOON.getStartHour(), 
                     AnimalSpecies.RACCOON.getMaxWindow(), AnimalSpecies.RACCOON.getFeedingDescription()));
                 i+=1;
