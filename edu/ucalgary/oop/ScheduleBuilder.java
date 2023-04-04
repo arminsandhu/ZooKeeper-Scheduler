@@ -15,6 +15,7 @@ public class ScheduleBuilder {
     private ArrayList<Animal> animalsArray; // should we change it back to object?
     private ArrayList<Treatment> treatmentsArray;
     private ArrayList<Task> tasksArray;
+    private int iterator = 0;
 
                 
     public ScheduleBuilder(){ // added this empty constructor; may not need it
@@ -63,7 +64,9 @@ public class ScheduleBuilder {
             
             // this may be not work
             while (results.next()){                
-               treatmentsArray.add(new Treatment(results.getInt("AnimalID"), results.getInt("TaskID"), results.getInt("StartHour")));
+                treatmentsArray.add(new Treatment(this.iterator, results.getInt("AnimalID"), 
+                    results.getInt("TaskID"), results.getInt("StartHour")));
+                this.iterator++;
             }
             
             myStmt.close();
@@ -105,6 +108,10 @@ public class ScheduleBuilder {
 
     public ArrayList<Task> getTasksArray() {
         return this.tasksArray;
+    }
+
+    public int getIterator() {
+        return this.iterator;
     }
 
 

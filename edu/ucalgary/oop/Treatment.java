@@ -9,14 +9,13 @@ public class Treatment {
     private final int ANIMALID;
     private final int TASKID;
     private int startHour;
-    
-    private ArrayList<Task> treatmentTasks; // addded on saturday, need to change
-    
+    private final int UNIQUEID;
 
-    public Treatment(int id, int taskID, int hour) {
+    public Treatment(int uniqueID, int id, int taskID, int hour) {
         this.ANIMALID = id;
         this.TASKID = taskID;
         this.startHour = hour;
+        this.UNIQUEID = uniqueID;
     }
 
     public int getAnimalID() {
@@ -34,6 +33,10 @@ public class Treatment {
     
     public void setStartHour(int hour) {
         this.startHour = hour;
+    }
+
+    public int getUniqueID() {
+        return this.UNIQUEID;
     }
 
 

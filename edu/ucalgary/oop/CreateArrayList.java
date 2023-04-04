@@ -32,7 +32,7 @@ public class CreateArrayList extends ScheduleBuilder {
         //ArrayList<Animal> animals = new ArrayList<Animal>();
         ArrayList<Animal> animals = this.sched.getAnimalsArray();
         //System.out.println(animals);
-        int i = 0;
+        int i = this.sched.getIterator();
         
         for (Animal animal : animals) {
             //System.out.println(animal.getAnimalId());
