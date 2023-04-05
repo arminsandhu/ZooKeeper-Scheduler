@@ -27,8 +27,9 @@ public class ScheduleTest {
         assertTrue("Method createConnection() did not throw an SQLExcetion when the database name was not EWR.", passed);
     }
 
+    // I dont think we need to test the two SQL setters because they have no input.
     @Test
-    public void testAddScheduledTreatments() {
+    public void testSetIterationsList() {
         int[] i = { 1, 3 };
         cal.addScheduledTreaments(i);
         assertEquals(2, cal.getIsScheduledTasks().size());
