@@ -92,6 +92,7 @@ public class ScheduleBuilder {
                 //     count++;
                 // }
                 schedule.setTimeRemaining(60);
+                schedule.setTimeCompleted(0);
                 schedule.resetFinalTree();
                 
             }  
@@ -245,6 +246,7 @@ public class ScheduleBuilder {
     public void checkTreatments(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
+        int count = 0;
         for (Treatment treatment : schedule.getTreatmentsArray()) {
             if (treatment.getStartHour() <= hour) {
                 for (IsScheduled item : instance.getIsScheduledTasks()) { //tasksArray is an array list of all task objects
@@ -253,9 +255,37 @@ public class ScheduleBuilder {
                             for (Task task : tasksArray) {
                                 if (task.getTaskId() == treatment.getTaskID()) {
                                     if (timeRemaining == 0) {
-                                        break;
+                                        if (count <= 1) {
+                                            for (IsScheduled i : instance.getIsScheduledTasks()) {
+                                                if (i.getIsScheduled() == false) {
+                                                    if (i.getUniqueID() == treatment.getUniqueID()) {
+                                                        if (treatment.getStartHour() <= hour) {
+                                                            count++;
+                                                            schedule.setTimeRemaining(60);
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            break;
+                                        }
                                     }
                                     if (timeRemaining >= 0 && timeRemaining < task.getDuration()) {
+                                        if (count <= 1) {
+                                            for (IsScheduled i : instance.getIsScheduledTasks()) {
+                                                if (i.getIsScheduled() == false) {
+                                                    if (i.getUniqueID() == treatment.getUniqueID()) {
+                                                        if (treatment.getStartHour() <= hour) {
+                                                            count++;
+                                                            schedule.setTimeRemaining(timeRemaining + 60);
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                         continue;
                                     }
                                     else if (timeRemaining > task.getDuration()) {
@@ -277,7 +307,6 @@ public class ScheduleBuilder {
                                         item.setIsScheduled();
                                         break;
                                     }
-                                    // Idk like I think we add task to schedule and set specified task to false right?
                                 }
                             }
                         }
