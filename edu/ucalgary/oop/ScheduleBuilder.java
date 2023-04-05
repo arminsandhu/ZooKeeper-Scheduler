@@ -3,6 +3,9 @@ package edu.ucalgary.oop;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+
+import com.mysql.cj.xdevapi.DbDoc;
+
 import java.awt.EventQueue;
 
 
@@ -58,7 +61,8 @@ public class ScheduleBuilder {
         //System.out.println(schedule.getAnimalsArray());
         CreateArrayList instance = new CreateArrayList(schedule);
         instance.addScheduledTreaments(iterationsList);
-        
+        //HERE IS THE LINE TO CALL THE CHANGEDB THING!!!!!!!!!!!!!!!!!!
+        ChangingDB changeDB = new ChangingDB(schedule.getConnection());
 
         // THE BELOW CODE IS TO PRINT THE UNQIUE IDS OF EVERY TASK.
         // ArrayList<IsScheduled> scheduledTasks = instance.getIsScheduledTasks();
@@ -252,7 +256,9 @@ public class ScheduleBuilder {
         }
     }
 
-
+    public Connection getConnection() {
+        return this.dbConnection;
+    }
 
     public void checkTreatments(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
