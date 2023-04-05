@@ -85,6 +85,8 @@ public class TextFileOutput extends ScheduleBuilder{
                     String taskDescription = uniqueTask.getDescription();
                     String animalName = String.valueOf(uniqueTask.getUniqueId());
                     
+                    
+
                     //if last equals current
 
                     String toPrint = "* " + taskDescription + " (" + animalName + ")";
