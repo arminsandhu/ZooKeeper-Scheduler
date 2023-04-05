@@ -1,7 +1,7 @@
 package edu.ucalgary.oop;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.FlowLayout;
@@ -46,7 +46,7 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
     
     public void actionPerformed(ActionEvent event){
         // after they click to start the program this is hit
-        JOptionPane.showMessageDialog(this, "Calling backup volunteer ..."); //take this out and add methods
+        super.dispose(); //take this out and add methods
         
     }
     
@@ -72,12 +72,12 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
     
     
     
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
         
-        EventQueue.invokeLater(() -> {
-            new BackupVolunteerGUI().setVisible(true);        
-        });
+    //     EventQueue.invokeLater(() -> {
+    //         new BackupVolunteerGUI().setVisible(true);        
+    //     });
 
-    }
+    // }
         
 }

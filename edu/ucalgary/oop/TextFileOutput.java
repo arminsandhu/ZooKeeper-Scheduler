@@ -55,24 +55,42 @@ public class TextFileOutput extends ScheduleBuilder{
             
             printWriter.println();
 
-            int row = 0;
+            //int row = 0;
             for (HashMap.Entry<Integer, TreeSet<FinalSchedule>> entry : hash.entrySet()) {
                 
                 Integer hour = entry.getKey();
                 TreeSet<FinalSchedule> tasks = entry.getValue();
 
-                printWriter.println(hour + ":00");
+                
+
+                int totalTime = 0;
+                for (FinalSchedule uniqueTask : tasks) {
+                  totalTime += uniqueTask.getTimeSpent();
+                  // System.out.println("task ID" + String.valueOf(uniqueTask.getUniqueId()));
+                  // System.out.println(uniqueTask.getTimeSpent());
+                }
+                
+                //System.out.println(totalTime);
+
+                if (totalTime > 60) {
+                  printWriter.println(hour + ":00" + " [+ backup volunteer]");
+                }
+
+                else {
+                  printWriter.println(hour + ":00");
+                }
 
                 for (FinalSchedule uniqueTask : tasks) {
                     //for real data, gain access to all these using getter hopefully
                     String taskDescription = uniqueTask.getDescription();
                     String animalName = String.valueOf(uniqueTask.getUniqueId());
-
                     
+                    //if last equals current
+
                     String toPrint = "* " + taskDescription + " (" + animalName + ")";
                     printWriter.println(toPrint);
-
-                    row+=1;
+                    
+                    //row+=1;
                 }
                 
                 printWriter.println();

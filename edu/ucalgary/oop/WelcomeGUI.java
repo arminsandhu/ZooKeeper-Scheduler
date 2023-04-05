@@ -10,29 +10,30 @@ public class WelcomeGUI extends JFrame implements ActionListener {
 
     private JLabel message;
     private JLabel explanation;
+    private JPanel headerPanel = new JPanel();
+    private JPanel clientPanel = new JPanel();
+    private JPanel submitPanel = new JPanel();
+    private JButton submitInfo = new JButton("Click here to start the program");
+
 
     public WelcomeGUI(){
         super("Welcome to the Scheduling Program"); //tab title
         setupGUI();
         setSize(500,300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         
     }
     public void setupGUI() {
         message = new JLabel("Welcome the the Zoo Scheduling Program.");
         explanation = new JLabel("<html>This program will take in an sql database containing the requirements for a given days task.<br></br> The program will create an optimized and efficient hourly schedule.</html>");
 
-        JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout());
-
-        JPanel clientPanel = new JPanel();
         clientPanel.setLayout(new FlowLayout());
 
-        JButton submitInfo = new JButton("Click here to start the program");
         submitInfo.addActionListener(this);
-
-        JPanel submitPanel = new JPanel();
+        
         submitPanel.setLayout(new FlowLayout());
+
 
         headerPanel.add(message);
         clientPanel.add(explanation);
@@ -46,38 +47,16 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     
     public void actionPerformed(ActionEvent event){
         // after they click to start the program this is hit
-        JOptionPane.showMessageDialog(this, "Starting program ..."); //take this out and add methods
-        
+        super.dispose(); //take this out and add methods     
     }
     
-    // public void mouseClicked(MouseEvent event){
-                
-    // }
     
-    // public void mouseEntered(MouseEvent event){
+    // public static void main(String[] args) {
         
-    // }
+    //     EventQueue.invokeLater(() -> {
+    //         new WelcomeGUI().setVisible(true);        
+    //     });
 
-    // public void mouseExited(MouseEvent event){
-        
     // }
-
-    // public void mousePressed(MouseEvent event){
-        
-    // }
-
-    // public void mouseReleased(MouseEvent event){
-        
-    // }
-    
-    
-    
-    public static void main(String[] args) {
-        
-        EventQueue.invokeLater(() -> {
-            new WelcomeGUI().setVisible(true);        
-        });
-
-    }
         
 }
