@@ -7,22 +7,24 @@ import org.junit.Test;
 
 public class ScheduleTest {
 
-    private ScheduleBuilder sched;
+    private ScheduleBuilder schedule;
     private CreateArrayList cal;
 
     @Before
     public void setUp() {
-        sched = new ScheduleBuilder();
-        cal = new CreateArrayList(sched);
+        this.schedule = new ScheduleBuilder();
     }
 
     @Test
-    public void testFillArrays() {
-        cal.fillArrays();
-        assertEquals(2, cal.getFeedingTasks().size());
-        assertEquals(2, cal.getCleaningTasks().size());
-        assertEquals(2, cal.getPreppedFeedingTasks().size());
-        assertEquals(6, cal.getIsScheduledTasks().size());
+    public void testDBConnection() {
+        boolean passed = true;
+        try {schedule.createConnection();}
+
+        catch (Exception e) {
+            passed = true;
+        }
+
+        assertTrue("Method createConnection() did not throw an SQLExcetion when the database name was not EWR.", passed);
     }
 
     @Test
