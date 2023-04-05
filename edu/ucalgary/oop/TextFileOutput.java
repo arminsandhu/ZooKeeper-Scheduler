@@ -65,7 +65,7 @@ public class TextFileOutput extends ScheduleBuilder{
 
                 int totalTime = 0;
                 for (FinalSchedule uniqueTask : tasks) {
-                  totalTime += uniqueTask.getTimeSpent();
+                  totalTime = uniqueTask.getTimeSpent();
                   // System.out.println("task ID" + String.valueOf(uniqueTask.getUniqueId()));
                   // System.out.println(uniqueTask.getTimeSpent());
                 }
