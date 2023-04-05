@@ -28,9 +28,9 @@ public class ScheduleBuilder {
     public static void main(String[] args) {
 
         //print gui welcome message
-        EventQueue.invokeLater(() -> {
-             new WelcomeGUI().setVisible(true);        
-            });
+        // EventQueue.invokeLater(() -> {
+        //      new WelcomeGUI().setVisible(true);        
+        //     });
 
         // testing backup volunteer
         // EventQueue.invokeLater(() -> {
@@ -108,7 +108,12 @@ public class ScheduleBuilder {
         }
         // ella and armin added to print txt file
 
-
+        //ella added to make gui table
+        EventQueue.invokeLater(() -> {
+            TableGUI tableGUI = new TableGUI(schedule);
+            tableGUI.setVisible(true);        
+            });
+        //ella added to make gui table
         
         // System.out.println(schedule.getFinalSchedule());
         // System.out.println(count);
