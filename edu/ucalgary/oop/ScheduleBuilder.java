@@ -3,6 +3,7 @@ package edu.ucalgary.oop;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+import java.awt.EventQueue;
 
 
 public class ScheduleBuilder {
@@ -27,6 +28,14 @@ public class ScheduleBuilder {
     public static void main(String[] args) {
 
         //print gui welcome message
+        EventQueue.invokeLater(() -> {
+             new WelcomeGUI().setVisible(true);        
+            });
+
+        // testing backup volunteer
+        // EventQueue.invokeLater(() -> {
+        //     new BackupVolunteerGUI().setVisible(true);        
+        //     });
 
         //make schedule object of class ScheduleBuilder 
         ScheduleBuilder schedule = new ScheduleBuilder();
