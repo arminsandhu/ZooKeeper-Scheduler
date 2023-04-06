@@ -1,9 +1,9 @@
 package edu.ucalgary.oop;
 
 public class Animal {
-    private int ANIMALID;
-    private String ANIMALNICKNAME;
-    private String ANIMALSPECIES;
+    private final int ANIMALID;
+    private final String ANIMALNICKNAME;
+    private final String ANIMALSPECIES;
 
     public Animal(int animalId, String animalNickname, String animalSpecies) {
         this.ANIMALID = animalId;
