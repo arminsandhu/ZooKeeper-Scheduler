@@ -17,7 +17,8 @@ public class TableGUI extends JFrame implements ActionListener {
     private JLabel closingMessage;
     
     private String[] columnNames = {"Hour", "Task description", "Qty", "Time spent", "Time available"};
-    private Object[][] data = new Object[100][100];
+    private Object[][] data = new Object[100][5];
+    private Object[][] noNullData;
     private HashMap<Integer, TreeSet<FinalSchedule>> hash;
 
 
@@ -34,7 +35,6 @@ public class TableGUI extends JFrame implements ActionListener {
     public void setupGUI() {
         message = new JLabel("Zoo Schedule");
         closingMessage = new JLabel("Thank you for using the Zoo Scheduling Program.");
-        //explanation = new JLabel("<html>This program will take in an sql database containing the requirements for a given days task.<br></br> The program will create an optimized and efficient hourly schedule.</html>");
         
         int row = 0;
         for (HashMap.Entry<Integer, TreeSet<FinalSchedule>> entry : hash.entrySet()) {
@@ -44,9 +44,9 @@ public class TableGUI extends JFrame implements ActionListener {
 
 
             for (FinalSchedule uniqueTask : tasks) {
-                //for real data, gain access to all these using getter hopefully
                 String taskDescription = uniqueTask.getDescription();
-                int quantity = 0;
+                Object quantity = 0;
+                
                 int timeSpent = uniqueTask.getTimeSpent();
                 int timeAvailable = uniqueTask.getTimeAvailable();
                 Object[] rowValues = {hour, taskDescription, quantity, timeSpent, timeAvailable};
@@ -54,21 +54,23 @@ public class TableGUI extends JFrame implements ActionListener {
                  
                 for (int r = 0; r < data.length; r++) {
 
-                    // if (r != 0 && data[r][0] != data[r - 1][0]) {
-                    //     quantity = 0;
-                    // }
 
-                    if (data[r][0] != null && rowValues[0] != null && data[row][2] != null && (Integer) data[row][2] + 1 != 0) {
-
-                        // if (r != 0 && data[r][1] != data[r - 1][1]) {
-                        //     quantity = 0;
-                        // }
+                    if (data[r][0] != null && rowValues[0] != null && data[row][2] != null) {
 
                         if (data[r][1] == rowValues[1] && data[r][0] == rowValues[0]) {
-                            quantity = (Integer) data[row][2] + 1;
-                            rowValues[2] = quantity;
+                            
+                            if (data[r][1].toString().contains("Feed ") || data[r][1].toString().contains("Cleaning") ) {
+                                quantity = (Integer) data[row][2] + 1;
+                                rowValues[2] = quantity;
+                                
 
-                            data[row] = rowValues;
+                            }
+
+                            else {
+                                rowValues[2] = 1;
+                                
+                            }
+
                         }
                         
                         else {
@@ -77,79 +79,66 @@ public class TableGUI extends JFrame implements ActionListener {
                     }
 
                     else {
+                        
                         data[row] = rowValues;
                     }
                 }
-                
-                // data[row] = rowValues;
-                
-                             
+                                                             
                 row+=1;
             }
                 
         }
 
-        //
+        Object checkForZero = 0;
+        Object checkForOne = 1;
 
-        // Object[][] reversedData = new Object[data.length][5];
-        // int ro = 0;
-        // for (int w = data.length - 1; w >= 0; w--) {
-        //     for (int g = 0; g < data[w].length - 1; g++ ) {
-        //         if (reversedData[ro][g] == null) {
-        //             break;
-        //         }
+        for (int ro = 0; ro < data.length; ro++) {
+            if (data[ro][0] != null) {
+                if (data[ro][2] == checkForZero || data[ro][2] == checkForOne) {
+                    data[ro][2] = "-";
+                }
+            }
+        }
 
-        //         reversedData[ro][g] = data[w][g];
-        //     }
-        //     ro++;
-        // }
 
-        //now get rid of duplicates at data[row][1] 
         
-            // for (int dataRow = 1; dataRow < data.length; dataRow++) {
-            //     for (int pastRow = 0; pastRow < dataRow; pastRow++) {
-            //         if (data[dataRow] != null && data[pastRow] != null && data[dataRow][1] != null && data[pastRow][1] != null) {
-            //             if (data[dataRow][1] == data[pastRow][1] && data[dataRow][0] == data[pastRow][0]) {
-            //                 System.arraycopy(data, dataRow + 1, data, dataRow, data.length - dataRow - 1);
-            //                 data[data.length - 1] = null; // or new int[0];
-            //                 dataRow--; // adjust the index to avoid skipping the next row
-            //                 break; // stop checking past rows since the match is found
-                            
-            //             }
+        for (int dataRow = 1; dataRow < data.length; dataRow++) {
+            for (int pastRow = dataRow - 1; pastRow < dataRow; pastRow++) {
+                if (data[dataRow] != null && data[pastRow] != null && data[dataRow][1] != null && data[pastRow][1] != null) {    
+                    
+                    if (data[dataRow][1] == data[pastRow][1] && data[dataRow][0] == data[pastRow][0]) {
+                        System.arraycopy(data, dataRow, data, pastRow, data.length - dataRow - 1);
+                        data[data.length - 1] = null;
+                        dataRow--;
+                        break;
                         
-            //         }
-            //     }
-            // }
+                    }
+                    
+                }
+            }
+        }
 
-            // for (int dataRow = 1; dataRow < reversedData.length; dataRow++) {
-            //     for (int pastRow = 0; pastRow < dataRow; pastRow++) {
-            //         if (reversedData[dataRow] != null && reversedData[pastRow] != null && reversedData[dataRow][1] != null && reversedData[pastRow][1] != null) {
-            //             if (data[dataRow][1] == reversedData[pastRow][1] && reversedData[dataRow][0] == reversedData[pastRow][0]) {
-            //                 System.arraycopy(reversedData, dataRow + 1, reversedData, dataRow, reversedData.length - dataRow - 1);
-            //                 reversedData[reversedData.length - 1] = null; // or new int[0];
-            //                 dataRow--; // adjust the index to avoid skipping the next row
-            //                 break; // stop checking past rows since the match is found
-                            
-            //             }
-                        
-            //         }
-            //     }
-            // }
 
-        //reverse it back
-        // int rw = 0;
-        // for (int w = reversedData.length - 1; w >= 0; w--) {
-        //     for (int g = 0; g < reversedData[w].length - 1; g++ ) {
-        //         if (data[rw][g] == null) {
-        //             break;
-        //         }
 
-        //         data[rw][g] = reversedData[w][g];
-        //     }
-        //     rw++;
-        // }
-            
-        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+        int rowCount = 0;
+        for (int r = 0; r < data.length; r++) {
+            if (data[r] != null) {
+                if (data[r][0] != null)
+                rowCount++;
+            }
+        }
+        System.out.println(rowCount);
+
+        noNullData = new Object[rowCount][5];
+
+        
+        for (int rw = 0; rw < rowCount; rw++) {
+            System.arraycopy(data, rw, noNullData, rw, 1);
+        }
+
+
+
+        DefaultTableModel model = new DefaultTableModel(noNullData, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
