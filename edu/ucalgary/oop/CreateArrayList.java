@@ -9,7 +9,7 @@ public class CreateArrayList extends ScheduleBuilder {
     private ScheduleBuilder sched;
     private ArrayList<IsScheduled> isScheduledTasks;
 
-    /*
+    /**
      * CreateArrayList constructor. Instantiates the ArrayLists for feeding tasks,
      * prepped feeding tasks and cleaning tasks. Calls the fillArrays method within the
      * class to populate each array by adding tasks.
@@ -124,9 +124,9 @@ public class CreateArrayList extends ScheduleBuilder {
     }
 
 
-     /*
+    /**
      * NEED TO FINISH
-     * @param i - 
+     * @param i - The integer list of unique IDs. 
     */
     public void addScheduledTreaments(int[] i) {
         for (int j = i.length - 1; j >= 0; j--) {
@@ -135,7 +135,7 @@ public class CreateArrayList extends ScheduleBuilder {
     }    
 
 
-     /*
+    /**
      * Building the is IsScheduled array which serves to tell which of the required tasks in the day have
      * been scheduled or not
      * @param i - The unique ID of the given task
@@ -145,7 +145,7 @@ public class CreateArrayList extends ScheduleBuilder {
     }
 
 
-    /*
+    /**
      * Checks if an animal is a kit or not
      * If the animal is a kit, then treat its feeding as a medical treatment
      * @param animal - on object of class Animal
@@ -166,7 +166,10 @@ public class CreateArrayList extends ScheduleBuilder {
     }
 
 
-    // getters
+    /*
+     * Getters. Return the type ArrayList<Class Object>, where Class Object corresponds to the 
+     * type of task list. No arguments.
+     */
     public ArrayList<Feeding> getFeedingTasks() { return this.feedingTasks; }
     public ArrayList<PreppedFeeding> getPreppedFeedingTasks() { return this.preppedFeedingTasks; }
     public ArrayList<Cleaning> getCleaningTasks() { return this.cleaningTasks; }
