@@ -12,6 +12,10 @@ public class IsScheduled {
         this.isSched = true;
     }
 
+    public void setFalse() {
+        this.isSched = false;
+    }
+
     public int getUniqueID() {
         return this.UNIQUEID;
     }

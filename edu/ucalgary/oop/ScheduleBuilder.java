@@ -25,6 +25,7 @@ public class ScheduleBuilder {
     private static int[] iterationsList;
     private int timeRemaining = 60;
     private int timeCompleted = 0;
+    private int count = 0;
     private TreeSet<FinalSchedule> finalTree = new TreeSet<>();
 
     public static void main(String[] args) {
@@ -97,6 +98,9 @@ public class ScheduleBuilder {
                 // }
                 schedule.setTimeRemaining(60);
                 schedule.setTimeCompleted(0);
+                for (FinalSchedule g : schedule.getFinalTree()) {
+                    System.out.println(g.getUniqueId());
+                }
                 schedule.resetFinalTree();
                 
             }  
@@ -260,10 +264,22 @@ public class ScheduleBuilder {
         return this.dbConnection;
     }
 
+    public int getCount() {
+        return this.count;
+    }
+
+    public void setCount() {
+        this.count = 1;
+    }
+
+    public void resetCount() {
+        this.count = 0;
+    }
+
     public void checkTreatments(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
-        int timeRemaining = getTimeRemaining();
-        int timeCompleted = getTimeCompleted();
-        int count = 0;
+        int timeRemaining = schedule.getTimeRemaining();
+        int timeCompleted = schedule.getTimeCompleted();
+        int count = schedule.getCount();
         
         for (Treatment treatment : schedule.getTreatmentsArray()) {
             if (treatment.getStartHour() <= hour) {
@@ -278,9 +294,9 @@ public class ScheduleBuilder {
                                                 if (i.getIsScheduled() == false) {
                                                     if (i.getUniqueID() == treatment.getUniqueID()) {
                                                         if (treatment.getStartHour() <= hour) {
-                                                            count++;
+                                                            schedule.setCount();
                                                             schedule.setTimeRemaining(60);
-                                                            checkTreatments(hour, schedule, instance);
+                                                            schedule.checkTreatments(hour, schedule, instance);
                                                             break;
                                                         }
                                                     }
@@ -297,9 +313,20 @@ public class ScheduleBuilder {
                                                 if (i.getIsScheduled() == false) {
                                                     if (i.getUniqueID() == treatment.getUniqueID()) {
                                                         if (treatment.getStartHour() <= hour) {
-                                                            count++;
+                                                            schedule.setCount();
                                                             schedule.setTimeRemaining(timeRemaining + 60);
-                                                            checkTreatments(hour, schedule, instance);
+                                                            for (IsScheduled in : instance.getIsScheduledTasks()) {
+                                                                for (Treatment treat : schedule.getTreatmentsArray()) {
+                                                                    if (treat.getStartHour() <= hour) {
+                                                                        for (FinalSchedule f : schedule.getFinalTree()) {
+                                                                            if (treat.getUniqueID() == f.getUniqueId() && in.getUniqueID() == f.getUniqueId()) {
+                                                                                in.setFalse();
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            schedule.checkTreatments(hour, schedule, instance);
                                                             break;
                                                         }
                                                     }
@@ -313,17 +340,18 @@ public class ScheduleBuilder {
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
+                                        
+                                        
                                         FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
                                         finalTree.add(finalTask);
                                         item.setIsScheduled();
                                     }
                                     else if (timeRemaining == task.getDuration()) {
-                                        // System.out.println(getTimeCompleted());
-                                        // System.out.println(getTimeRemaining());
                                         timeRemaining -= task.getDuration();
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
+                                        
                                         
                                         FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
                                         finalTree.add(finalTask);
@@ -337,6 +365,7 @@ public class ScheduleBuilder {
                 }
             }
         }
+        schedule.resetCount();
     }
 
 
@@ -345,6 +374,8 @@ public class ScheduleBuilder {
     public void checkPreppedFeeding(int hour, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
+        int countFox = 0;
+        int countCoyote = 0;
         for (PreppedFeeding prep : instance.getPreppedFeedingTasks()) {
             if (prep.getStartHour() <= hour) {
                 for (IsScheduled item : instance.getIsScheduledTasks()) { //tasksArray is an array list of all task objects
@@ -354,8 +385,26 @@ public class ScheduleBuilder {
                                 continue;
                             }
                             else if (timeRemaining > prep.getDuration()) {
-                                timeRemaining -= prep.getDuration();
-                                timeCompleted += prep.getDuration();
+                                if (prep.getDescription() == "Feed foxes" && countFox != 1) {
+                                    timeRemaining -= prep.getDuration();
+                                    timeRemaining -= prep.getPrepTime();
+                                    timeCompleted += prep.getDuration();
+                                    timeCompleted += prep.getPrepTime();
+                                    countFox = 1;
+                                }
+
+                                else if (prep.getDescription() == "Feed coyotes" && countCoyote != 1) {
+                                    timeRemaining -= prep.getDuration();
+                                    timeRemaining -= prep.getPrepTime();
+                                    timeCompleted += prep.getDuration();
+                                    timeCompleted += prep.getPrepTime();
+                                    countCoyote = 1;
+                                }
+                                else {
+                                    timeRemaining -= prep.getDuration();
+                                    timeCompleted += prep.getDuration();
+                                }
+                                
                                 setTimeRemaining(timeRemaining);
                                 setTimeCompleted(timeCompleted);
                                 FinalSchedule finalTask = new FinalSchedule(prep.getUniqueID(), prep.getDescription(), 4, timeCompleted, timeRemaining);
@@ -363,6 +412,7 @@ public class ScheduleBuilder {
                                 item.setIsScheduled();
                             }
                             else if (timeRemaining == prep.getDuration()) {
+                                
                                 timeRemaining -= prep.getDuration();
                                 timeCompleted += prep.getDuration();
                                 setTimeRemaining(timeRemaining);
@@ -392,6 +442,7 @@ public class ScheduleBuilder {
                                 continue;
                             }
                             else if (timeRemaining > feeding.getDuration()) {
+                                
                                 timeRemaining -= feeding.getDuration();
                                 timeCompleted += feeding.getDuration();
                                 setTimeRemaining(timeRemaining);
@@ -401,6 +452,7 @@ public class ScheduleBuilder {
                                 item.setIsScheduled();
                             }
                             else if (timeRemaining == feeding.getDuration()) {
+                                
                                 timeRemaining -= feeding.getDuration();
                                 timeCompleted += feeding.getDuration();
                                 setTimeRemaining(timeRemaining);
@@ -429,6 +481,7 @@ public class ScheduleBuilder {
                             continue;
                         }
                         else if (timeRemaining > clean.getDuration()) {
+                            
                             timeRemaining -= clean.getDuration();
                             timeCompleted += clean.getDuration();
                             setTimeRemaining(timeRemaining);
@@ -438,6 +491,7 @@ public class ScheduleBuilder {
                             item.setIsScheduled();
                         }
                         else if (timeRemaining == clean.getDuration()) {
+                            
                             timeRemaining -= clean.getDuration();
                             timeCompleted += clean.getDuration();
                             setTimeRemaining(timeRemaining);
