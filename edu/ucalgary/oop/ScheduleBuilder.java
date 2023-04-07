@@ -1,13 +1,12 @@
 package edu.ucalgary.oop;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
-import com.mysql.cj.xdevapi.DbDoc;
+// import com.mysql.cj.xdevapi.DbDoc;
 
-import java.awt.EventQueue;
-
+// import java.awt.EventQueue;
 
 public class ScheduleBuilder {
     /*
@@ -28,118 +27,120 @@ public class ScheduleBuilder {
     private int count = 0;
     private TreeSet<FinalSchedule> finalTree = new TreeSet<>();
 
-    public static void main(String[] args) {
 
-        //print gui welcome message
-        // EventQueue.invokeLater(() -> {
-        //      new WelcomeGUI().setVisible(true);        
-        //     });
+    // public void reset() {
 
-        // testing backup volunteer
-        // EventQueue.invokeLater(() -> {
-        //     new BackupVolunteerGUI().setVisible(true);        
-        //     });
+    // }
+    // public static void main(String[] args) {
 
-        //make schedule object of class ScheduleBuilder 
-        ScheduleBuilder schedule = new ScheduleBuilder();
- 
-        //call method createConnection()
-        schedule.createConnection(); // may need to throw exception here
+    //     //print gui welcome message
+    //     // EventQueue.invokeLater(() -> {
+    //     //      new WelcomeGUI().setVisible(true);        
+    //     //     });
 
-        //call method to popoulate animalsArray
-        schedule.setAnimalsArray();
+    //     // testing backup volunteer
+    //     // EventQueue.invokeLater(() -> {
+    //     //     new BackupVolunteerGUI().setVisible(true);        
+    //     //     });
 
-        //call method to populate tasksArray
-        schedule.setTasksArray();
-
-        //call method to populate treatmentsArray
-        schedule.setTreatmentsArray();
-
-        schedule.setIterationsList(schedule);
-        // This is here only to test printing the 
-        //System.out.println(schedule.getAnimalsArray());
-        // This is here only to test printing the 
-        //System.out.println(schedule.getAnimalsArray());
-        CreateArrayList instance = new CreateArrayList(schedule);
-        instance.addScheduledTreaments(iterationsList);
-        //HERE IS THE LINE TO CALL THE CHANGEDB THING!!!!!!!!!!!!!!!!!!
-        //ChangingDB changeDB = new ChangingDB(schedule.getConnection());
-
-        // THE BELOW CODE IS TO PRINT THE UNQIUE IDS OF EVERY TASK.
-        // ArrayList<IsScheduled> scheduledTasks = instance.getIsScheduledTasks();
-        // HashSet<Integer> uniqueIds = new HashSet<>();
-        // for (IsScheduled task : scheduledTasks) {
-        //     int taskId = task.getUniqueID();
-        //     System.out.println(taskId);
-        //     uniqueIds.add(taskId);
-        // }
-        //System.out.println(instance.getFeedingTasks().get(0).getDescription());
-        //System.out.println(instance.getPreppedFeedingTasks());
-        //System.out.println(instance.getCleaningTasks());
-        //schedule.treatmentsArray.add(new Treatment(60, 7, 9, 13));
-        //instance.getIsScheduledTasks().add(new IsScheduled(60));
-        int count = 0;
-        for (int hour = 0; hour < 24; hour++) {
-            // System.out.println(hour);
-            // System.out.println(schedule.getTimeRemaining());
-
-            if (schedule.getTimeRemaining() > 0) {
-                schedule.checkTreatments(hour, schedule, instance);
-                schedule.checkPreppedFeeding(hour, instance);
-                schedule.checkFeeding(hour, instance);
-                schedule.checkCleaning(hour, instance);
-                TreeSet<FinalSchedule> reverseOrder = new TreeSet<>(Collections.reverseOrder());
-                reverseOrder.addAll(schedule.getFinalTree());
-                schedule.setFinalTree(reverseOrder);
-                schedule.setFinalSchedule(hour, schedule.getFinalTree());
-                // for (FinalSchedule s : schedule.getFinalTree()) {
-                //     System.out.println(s.getDescription() + "   -   " + s.getUniqueId());
-                //     count++;
-                // }
-                schedule.setTimeRemaining(60);
-                schedule.setTimeCompleted(0);
-                for (FinalSchedule g : schedule.getFinalTree()) {
-                    System.out.println(g.getUniqueId());
-                }
-                schedule.resetFinalTree();
-                
-            }  
-        }
-        // for (IsScheduled i : instance.getIsScheduledTasks()) {
-        //     System.out.println(i.getIsScheduled());
-        //     System.out.println(i.getUniqueID());
-        // }
-        // System.out.println(schedule.getFinalSchedule());
-
-        // ella and armin added to print txt file
-        try {
-            TextFileOutput txtOutput = new TextFileOutput(schedule);
-        } catch (IOException e) {
-            System.out.println("There was an error.");
-            e.printStackTrace();
-        }
-        // ella and armin added to print txt file
-
-        //ella added to make gui table
-        EventQueue.invokeLater(() -> {
-            TableGUI tableGUI = new TableGUI(schedule);
-            tableGUI.setVisible(true);        
-            });
-        //ella added to make gui table
+    //     //make schedule object of class ScheduleBuilder 
         
-        // System.out.println(schedule.getFinalSchedule());
-        // System.out.println(count);
+    //     ScheduleBuilder schedule = new ScheduleBuilder();
+ 
 
-    }
+    //     //call method createConnection()
+    //     //schedule.createConnection(); // may need to throw exception here
+
+    //     //call method to popoulate animalsArray
+    //     schedule.setAnimalsArray();
+
+    //     //call method to populate tasksArray
+    //     schedule.setTasksArray();
+
+    //     //call method to populate treatmentsArray
+    //     schedule.setTreatmentsArray();
+
+    //     schedule.setIterationsList(schedule);
+    //     // This is here only to test printing the 
+    //     //System.out.println(schedule.getAnimalsArray());
+    //     // This is here only to test printing the 
+    //     //System.out.println(schedule.getAnimalsArray());
+    //     CreateArrayList instance = new CreateArrayList(schedule);
+    //     instance.addScheduledTreaments(iterationsList);
+    //     //HERE IS THE LINE TO CALL THE CHANGEDB THING!!!!!!!!!!!!!!!!!!
+    //     //ChangingDB changeDB = new ChangingDB(schedule.getConnection());
+
+    //     // THE BELOW CODE IS TO PRINT THE UNQIUE IDS OF EVERY TASK.
+    //     // ArrayList<IsScheduled> scheduledTasks = instance.getIsScheduledTasks();
+    //     // HashSet<Integer> uniqueIds = new HashSet<>();
+    //     // for (IsScheduled task : scheduledTasks) {
+    //     //     int taskId = task.getUniqueID();
+    //     //     System.out.println(taskId);
+    //     //     uniqueIds.add(taskId);
+    //     // }
+    //     //System.out.println(instance.getFeedingTasks().get(0).getDescription());
+    //     //System.out.println(instance.getPreppedFeedingTasks());
+    //     //System.out.println(instance.getCleaningTasks());
+    //     //schedule.treatmentsArray.add(new Treatment(60, 7, 9, 13));
+    //     //instance.getIsScheduledTasks().add(new IsScheduled(60));
+    //     int count = 0;
+    //     for (int hour = 0; hour < 24; hour++) {
+    //         // System.out.println(hour);
+    //         // System.out.println(schedule.getTimeRemaining());
+
+    //         if (schedule.getTimeRemaining() > 0) {
+    //             schedule.checkTreatments(hour, schedule, instance);
+    //             schedule.checkPreppedFeeding(hour, instance);
+    //             schedule.checkFeeding(hour, instance);
+    //             schedule.checkCleaning(hour, instance);
+    //             TreeSet<FinalSchedule> reverseOrder = new TreeSet<>(Collections.reverseOrder());
+    //             reverseOrder.addAll(schedule.getFinalTree());
+    //             schedule.setFinalTree(reverseOrder);
+    //             schedule.setFinalSchedule(hour, schedule.getFinalTree());
+    //             // for (FinalSchedule s : schedule.getFinalTree()) {
+    //             //     System.out.println(s.getDescription() + "   -   " + s.getUniqueId());
+    //             //     count++;
+    //             // }
+    //             schedule.setTimeRemaining(60);
+    //             schedule.setTimeCompleted(0);
+    //             schedule.resetFinalTree();
+
+                
+    //         }  
+    //     }
+    //     // for (IsScheduled i : instance.getIsScheduledTasks()) {
+    //     //     System.out.println(i.getIsScheduled());
+    //     //     System.out.println(i.getUniqueID());
+    //     // }
+    //     // System.out.println(schedule.getFinalSchedule());
+
+    //     // ella and armin added to print txt file
+    //     try {
+    //         TextFileOutput txtOutput = new TextFileOutput(schedule);
+    //     } catch (IOException e) {
+    //         System.out.println("There was an error.");
+    //         e.printStackTrace();
+    //     }
+    //     // ella and armin added to print txt file
+
+    //     //ella added to make gui table
+    //     EventQueue.invokeLater(() -> {
+    //         TableGUI tableGUI = new TableGUI(schedule);
+    //         tableGUI.setVisible(true);        
+    //         });
+    //     //ella added to make gui table
+        
+    //     // System.out.println(schedule.getFinalSchedule());
+    //     // System.out.println(count);
+
+    // }
 
                 
     public ScheduleBuilder(){ // added this empty constructor; may not need it
-
-        
+        createConnection(); 
     }
 
-    public void createConnection(){
-                
+    public void createConnection(){    
         try{
             // connects to database EWR with user 'oop', password 'password'
             dbConnection = DriverManager.getConnection("jdbc:mysql://localhost/EWR", "oop", "password");
@@ -193,8 +194,6 @@ public class ScheduleBuilder {
         
         //pull data same form as sql table
         //use queries
-
-        
     }
 
     public void setTasksArray() {
@@ -211,8 +210,6 @@ public class ScheduleBuilder {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        
         //pull data same form as sql table
         //use queries
     }
@@ -367,8 +364,6 @@ public class ScheduleBuilder {
         }
         schedule.resetCount();
     }
-
-
 
 
     public void checkPreppedFeeding(int hour, CreateArrayList instance) {
