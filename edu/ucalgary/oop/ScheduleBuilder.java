@@ -62,7 +62,7 @@ public class ScheduleBuilder {
         CreateArrayList instance = new CreateArrayList(schedule);
         instance.addScheduledTreaments(iterationsList);
         //HERE IS THE LINE TO CALL THE CHANGEDB THING!!!!!!!!!!!!!!!!!!
-        ChangingDB changeDB = new ChangingDB(schedule.getConnection());
+        //ChangingDB changeDB = new ChangingDB(schedule.getConnection());
 
         // THE BELOW CODE IS TO PRINT THE UNQIUE IDS OF EVERY TASK.
         // ArrayList<IsScheduled> scheduledTasks = instance.getIsScheduledTasks();
@@ -101,11 +101,11 @@ public class ScheduleBuilder {
                 
             }  
         }
-        for (IsScheduled i : instance.getIsScheduledTasks()) {
-            System.out.println(i.getIsScheduled());
-            System.out.println(i.getUniqueID());
-        }
-        System.out.println(schedule.getFinalSchedule());
+        // for (IsScheduled i : instance.getIsScheduledTasks()) {
+        //     System.out.println(i.getIsScheduled());
+        //     System.out.println(i.getUniqueID());
+        // }
+        // System.out.println(schedule.getFinalSchedule());
 
         // ella and armin added to print txt file
         try {
@@ -318,8 +318,8 @@ public class ScheduleBuilder {
                                         item.setIsScheduled();
                                     }
                                     else if (timeRemaining == task.getDuration()) {
-                                        System.out.println(getTimeCompleted());
-                                        System.out.println(getTimeRemaining());
+                                        // System.out.println(getTimeCompleted());
+                                        // System.out.println(getTimeRemaining());
                                         timeRemaining -= task.getDuration();
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
