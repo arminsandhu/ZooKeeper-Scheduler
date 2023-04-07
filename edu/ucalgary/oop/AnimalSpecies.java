@@ -2,10 +2,14 @@ package edu.ucalgary.oop;
 
 public enum AnimalSpecies {
     /*
-     * this will hold all the info about each species look at the photo i(ella) took
+     * AnimalSpecies enumeration. Contains data regarding animal
+     * cleaning time, feeding time, food prep time, task start hour and max window.
      */
     COYOTE, FOX, PORCUPINE, RACCOON, BEAVER;
 
+    /*
+     * Getter getCleaningTime() returns the default integer 5 for all animals.
+     */
     public int getCleaningTime() {
         switch(this) {
             default:
@@ -13,6 +17,9 @@ public enum AnimalSpecies {
         }
     }
 
+    /*
+     * Getter getFeedingTime() returns the default integer 5 for all animals.
+     */
     public int getFeedingTime() {
         switch(this) {
             default:
@@ -20,6 +27,10 @@ public enum AnimalSpecies {
         }
     }
 
+    /*
+     * Getter getFoodPrepTime() returns the prep time as an integer for foxes and 
+     * coyotes. The default return is 0 for all other animals.
+     */
     public int getFoodPrepTime() {
         switch(this) {
             case FOX:
@@ -33,6 +44,10 @@ public enum AnimalSpecies {
         }
     }
 
+    /*
+     * Getter getStartHour() returns the corresponding start hour for animal
+     * feeding times as an integer.
+     */
     public int getStartHour() {
         switch(this) {
             case FOX:
@@ -54,12 +69,22 @@ public enum AnimalSpecies {
                 return 0;
         }
     }
+
+    /*
+     * Getter getMaxWindow() returns the max window for feeding tasks. This is 
+     * 3 for all animals.
+     */
     public int getMaxWindow() {
         switch(this) {
             default:
                 return 3;
         }
     }
+
+    /*
+     * Getter getCleaningDescription() returns the String description for cleaning tasks
+     * for each animal.
+     */
     public String getCleaningDescription() {
         switch(this) {
             case FOX:
@@ -81,6 +106,12 @@ public enum AnimalSpecies {
                 return null;
         }
     }
+
+
+    /*
+     * Getter getFeedingDescription() returns the String description for feeding tasks
+     * for each animal.
+     */
     public String getFeedingDescription() {
         switch(this) {
             case FOX:

@@ -7,10 +7,19 @@ import java.awt.event.*;
 import java.awt.FlowLayout;
 
 public class BackupVolunteerGUI extends JFrame implements ActionListener {
+    /*
+     * BackupVolunteerGUI is a class the creates the GUI prompt for the user to confirm
+     * the backup volunteer. It extends JFrame and implements the ActionListener interface.
+     * Has two class variables of type JLabel, message and explanation.
+     */
 
     private JLabel message;
     private JLabel explanation;
 
+    /*
+     * BackupVolunteerGUI constructor. Takes no arguments. Uses JFrame super to create a JFrame
+     * window. Does basic JFrame setup.
+     */
     public BackupVolunteerGUI(){
         super("Backup Volunteer"); //tab title
         setupGUI();
@@ -18,6 +27,11 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         
     }
+
+    /*
+     * Void method setupGUI() takes no arguments. Creates a message and explanation for the GUI user prompt
+     * Does all the setup for the GUI window and alls those to the window.
+     */
     public void setupGUI() {
         message = new JLabel("Backup Volunteer Request");
         explanation = new JLabel("<html>The current task list for HOUR connot be completed by a single worker.<br></br>Please confirm a backup volunteer may be called.</html>");

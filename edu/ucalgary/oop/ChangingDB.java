@@ -3,13 +3,20 @@ import javax.swing.*;
 import java.sql.*;
    
 public class ChangingDB extends JFrame {
-    
+    /*
+     * ChangingDB class extends JFrame. This class creates a query to update the database
+     * when the treatment tasks within an hour exceed 120 minutes. All class variables are private.
+     */
     private JComboBox<Integer> hourComboBox;
     private int inputHour;
     private Connection dbConnection; 
     private int treatmentID;
     private Main myClass;
 
+    /*
+     * Constructor ChangingDB takes arguments in the types (Connection, int, Main) and uses the
+     * JFrame super to construct the GUI window. Sets local private class variables. 
+     */
     public ChangingDB(Connection dbConnection, int treatmentID, Main myClass) {
         super("Hour Selection");
         this.dbConnection = dbConnection;
@@ -48,6 +55,11 @@ public class ChangingDB extends JFrame {
         setVisible(true);
     }
 
+    /*
+     * Void method updateDB takes an integer argument. This method creates a query
+     * to update the database. It updates the starthour of a treatment that does not
+     * fit in the current hour to have a new starthour.
+     */
     public void updateDB(int inputHour) {
         try {
             // Update a row in the database
@@ -62,13 +74,13 @@ public class ChangingDB extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (dbConnection != null) {
-                    dbConnection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            // try {
+            //     if (dbConnection != null) {
+            //         dbConnection.close();
+            //     }
+            // } catch (SQLException e) {
+            //     e.printStackTrace();
+            // }
         }
     }
 }
