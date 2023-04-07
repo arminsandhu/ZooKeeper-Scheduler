@@ -12,7 +12,8 @@ public class CreateArrayList extends ScheduleBuilder {
     /*
      * CreateArrayList constructor. Instantiates the ArrayLists for feeding tasks,
      * prepped feeding tasks and cleaning tasks. Calls the fillArrays method within the
-     * class to populate each array by adding tasks. No arguments.
+     * class to populate each array by adding tasks.
+     * @param sched - object of class ScheduleBuilder
      */
     public CreateArrayList(ScheduleBuilder sched) {
         this.feedingTasks = new ArrayList<Feeding>();
@@ -26,7 +27,7 @@ public class CreateArrayList extends ScheduleBuilder {
     /*
      * fillArrays method. This method is called only within this class to populate
      * the different ArrayLists that contain different objects. It iterates through each animal in the animals
-     * ArrayList<Animal> from the ScheduleBuilder class, and populates the neccessary arraylists by species.
+     * ArrayList<Animal> from the ScheduleBuilder class, and populates the neccessary arraylists by its respective species.
      * No returns and no arguments.   
     */
     public void fillArrays() {
@@ -122,16 +123,33 @@ public class CreateArrayList extends ScheduleBuilder {
         }
     }
 
+
+     /*
+     * NEED TO FINISH
+     * @param i - 
+    */
     public void addScheduledTreaments(int[] i) {
         for (int j = i.length - 1; j >= 0; j--) {
             isScheduledTasks.add(0, new IsScheduled(i[j])); // add element at index 0
         }
     }    
 
+
+     /*
+     * Building the is IsScheduled array which serves to tell which of the required tasks in the day have
+     * been scheduled or not
+     * @param i - The unique ID of the given task
+    */
     public void buildIsScheduled(int i) {
         isScheduledTasks.add(new IsScheduled(i));
     }
 
+
+    /*
+     * Checks if an animal is a kit or not
+     * If the animal is a kit, then treat its feeding as a medical treatment
+     * @param animal - on object of class Animal
+    */
     public boolean isKit(Animal animal) {
         int animalID = animal.getAnimalId();
         ArrayList<Treatment> treatments = this.sched.getTreatmentsArray();
@@ -147,6 +165,8 @@ public class CreateArrayList extends ScheduleBuilder {
         return false;
     }
 
+
+    // getters
     public ArrayList<Feeding> getFeedingTasks() { return this.feedingTasks; }
     public ArrayList<PreppedFeeding> getPreppedFeedingTasks() { return this.preppedFeedingTasks; }
     public ArrayList<Cleaning> getCleaningTasks() { return this.cleaningTasks; }
