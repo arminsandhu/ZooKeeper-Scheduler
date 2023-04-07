@@ -1,7 +1,6 @@
 package edu.ucalgary.oop;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.FlowLayout;

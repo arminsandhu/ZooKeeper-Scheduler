@@ -1,23 +1,23 @@
 package edu.ucalgary.oop;
 import javax.swing.*;
-import java.io.IOException;
 import java.sql.*;
-import java.util.*;
-import java.awt.EventQueue;
    
-
 public class ChangingDB extends JFrame {
     
     private JComboBox<Integer> hourComboBox;
     private int inputHour;
     private Connection dbConnection; 
+    private int treatmentID;
+    private Main myClass;
 
-    public ChangingDB(Connection dbConnection) {
+    public ChangingDB(Connection dbConnection, int treatmentID, Main myClass) {
         super("Hour Selection");
         this.dbConnection = dbConnection;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 200);
         setLocationRelativeTo(null);
+        this.treatmentID = treatmentID;
+        this.myClass = myClass;
         
         hourComboBox = new JComboBox<>(new Integer[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
                                                       13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23});
@@ -54,10 +54,11 @@ public class ChangingDB extends JFrame {
             String updateQuery = "UPDATE TREATMENTS SET StartHour = ? WHERE TreatmentID = ?";
             PreparedStatement preparedStatement = dbConnection.prepareStatement(updateQuery);
             preparedStatement.setInt(1, inputHour);
-            preparedStatement.setInt(2, 1);
+            preparedStatement.setInt(2, treatmentID);
             preparedStatement.executeUpdate();
             
             System.out.println("Row updated successfully");
+            myClass.reset();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
