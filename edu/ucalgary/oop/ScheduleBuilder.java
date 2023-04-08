@@ -137,7 +137,6 @@ public class ScheduleBuilder {
 
                 
     public ScheduleBuilder(){ // added this empty constructor; may not need it
-        createConnection(); 
     }
 
     public void createConnection(){    
@@ -243,6 +242,13 @@ public class ScheduleBuilder {
 
     public void setFinalTree(TreeSet<FinalSchedule> finalTree) {
         this.finalTree = finalTree;
+    }
+
+
+    // had to make this setter for testing
+    // should we keep it?
+    public void setTreatmentsArray(ArrayList<Treatment> treatmentsArray) {
+        this.treatmentsArray = treatmentsArray;
     }
 
     public void setFinalSchedule(int hour, TreeSet<FinalSchedule> finalTree) {
