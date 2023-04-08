@@ -11,7 +11,10 @@ public class Treatment {
     private int startHour;
     private final int UNIQUEID;
 
-    // constrcutor for Treatment class
+    /*
+     * Treatment class constructor, takes in arguments (int, int, int, int), 
+     * and assigns private class variables.
+     */
     public Treatment(int uniqueID, int id, int taskID, int hour) {
         this.ANIMALID = id;
         this.TASKID = taskID;
@@ -19,27 +22,39 @@ public class Treatment {
         this.UNIQUEID = uniqueID;
     }
 
-    // get ANIMALID
+    /*
+     * Returns the integer animal ID. No args.
+     */
     public int getAnimalID() {
         return this.ANIMALID;
     }
 
-    // get TASKID
+    /*
+     * Returns the integer Task ID. No args.
+     */
     public int getTaskID() {
         return this.TASKID;
     }
 
-    // get the startHour of the task
+    /*
+     * Returns the integer start hour. No args.
+     */
     public int getStartHour() {
         return this.startHour;
     }
     
-    // set the startHour of the task
+    
+    /*
+     * Void method that sets the start hour.
+     * @param hour - the inputted value to set to start hour 
+     */
     public void setStartHour(int hour) {
         this.startHour = hour;
     }
 
-    // get the UNIQUEID of the task
+    /*
+     * Returns the integer Unique ID. No args.
+     */
     public int getUniqueID() {
         return this.UNIQUEID;
     }
