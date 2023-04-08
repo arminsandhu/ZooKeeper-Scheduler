@@ -31,29 +31,12 @@ public class ScheduleTest {
     //     assertTrue("Method createConnection() did not throw an SQLExcetion when the database name was not EWR.", passed);
     // }
 
-    // I dont think we need to test the two SQL setters because they have no input.
-    // @Test
-    // public void testSetIterationsList() {
-    //     int[] i = { 1, 3 };
-    //     cal.addScheduledTreaments(i);
-    //     assertEquals(2, cal.getIsScheduledTasks().size());
-    //     assertEquals(3, cal.getIsScheduledTasks().get(0).getUniqueID());
-    //     assertEquals(1, cal.getIsScheduledTasks().get(1).getUniqueID());
-    // }
 
     // @Test
     // public void testBuildIsScheduled() {
     //     cal.buildIsScheduled(1);
     //     assertEquals(1, cal.getIsScheduledTasks().size());
     //     assertEquals(1, cal.getIsScheduledTasks().get(0).getUniqueID());
-    // }
-
-    // @Test
-    // public void testIsKit() {
-    //     Animal adultBeaver = new Animal(1, "beaver", "adult");
-    //     assertFalse(cal.isKit(adultBeaver));
-    //     Animal beaverKit = new Animal(2, "beaver", "kit");
-    //     assertTrue(cal.isKit(beaverKit));
     // }
 
 
@@ -121,7 +104,7 @@ public class ScheduleTest {
     @Test
     /*
      * Testing the getter methods in a class Treament object
-     * Gtters should correctly return the unique ID, animal ID, task ID, start hour
+     * Getters should correctly return the unique ID, animal ID, task ID, start hour
     */
     public void testTreatmentClassGetters() {    
         Treatment treatment = new Treatment(123, 456, 890, 0);
@@ -148,6 +131,10 @@ public class ScheduleTest {
     }
 
 
+
+
+
+
     @Test
     /*
      * 1-argument constructor CreateArrayList() shouldn't throw an IllegalArgumentException 
@@ -167,5 +154,63 @@ public class ScheduleTest {
         catch (Exception e) { }
         assertFalse("1-argument constructor CreateArrayList() thre IllegalArgumentException when ScheduleBuilder object was passed in", failed);
     }
+
+
+
+
+    @Test
+    /*
+     * isKit() method in CreateArrayList should accurately return whether or not the passed 
+     * in animal object is of an animal that is a kit, or not a kit.
+     * returns true if the animal is a kit
+     * returns false is the animal is not a kit  
+    */
+    public void testIsKit() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        CreateArrayList instance = new CreateArrayList(schedule);
+        
+        Animal animal = new Animal(230, "Penny", "fox");
+        Animal animal1 = new Animal(340, "Bart", "bird");
+        
+        ArrayList<Treatment> treatmentsArray = new ArrayList<Treatment>();
+        treatmentsArray.add(new Treatment(1, 230, 1, 0));
+        treatmentsArray.add(new Treatment(2, 340, 4, 0));
+
+        schedule.setTreatmentsArray(treatmentsArray);
+
+        boolean expResult = true;
+        boolean result = instance.isKit(animal);
+        assertEquals("animal is a kit but return value says it is not", expResult, result);
+
+        boolean expResult1 = false;
+        boolean result1 = instance.isKit(animal1);
+        assertEquals("animal is not a kit but return value says it is", expResult1, result1);
+    }
+
+
+
+
+    // @Test
+    // /*
+    //  * program successfully calls a backup volunteer when priortized task in an hour exceed 60 
+    //  * minutes.
+    //  * MORE DETAIL
+    // */
+    // public void testCallBackUpVolunteer() {
+    //     // implementation
+    // }
+
+
+    // @Test
+    // /*
+    //  * program successfully prompts for user input and updates the start hour in the database when a schedule cannot be made.
+    //  * 
+    // */
+    // public void testUpdateStartHourInDatabase() {
+    //     // implementation
+    // }
+
+    
+
 }
 

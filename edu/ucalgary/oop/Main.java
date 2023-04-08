@@ -19,6 +19,7 @@ public class Main {
         setIterationsList();
         
         instance = new CreateArrayList(schedule);
+        instance.fillArrays();
         instance.addScheduledTreaments(iterationsList);
         
         // HERE IS THE LINE TO CALL THE CHANGEDB THING!!!!!!!!!!!!!!!!!!
@@ -53,6 +54,7 @@ public class Main {
         //make schedule object of class ScheduleBuilder 
         Main myClass = new Main();
         myClass.schedule = new ScheduleBuilder();
+        myClass.schedule.createConnection();
                 //call method to popoulate animalsArray
         myClass.schedule.setAnimalsArray();
                 //call method to populate tasksArray

@@ -24,7 +24,6 @@ public class CreateArrayList extends ScheduleBuilder {
             this.isScheduledTasks = new ArrayList<IsScheduled>();
             this.sched = sched;
             this.i = sched.getIterator();
-            fillArrays();
         } catch (IllegalArgumentException error) {
             error.printStackTrace();
         }
