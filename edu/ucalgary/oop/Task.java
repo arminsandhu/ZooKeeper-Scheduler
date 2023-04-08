@@ -3,8 +3,8 @@ package edu.ucalgary.oop;
 
 public class Task {
     /*
-     * Task class populates a ScheduleBuilder ArrayList of type ArrayList<Task> that contains all 
-     * the tasks for a given database. 
+     * Task class populates an ArrayList of type ArrayList<Task> that contains all 
+     * the tasks for a given database. All private class variables are final.
      */
     private final int TASKID;
     private final String DESCRIPTION;
@@ -12,7 +12,10 @@ public class Task {
     private final int MAXWINDOW;
 
 
-    // Constructor for Task class
+    /*
+     * Task class constructor, takes in arguments (int, String, int, int), 
+     * and assigns private class variables.
+     */
     public Task(int taskId, String description, int duration, int maxWindow) {
         this.TASKID = taskId;
         this.DESCRIPTION = description; 
@@ -21,22 +24,29 @@ public class Task {
     }
 
 
-    // get TASKID
+    /*
+     * Returns the integer Task ID. No args.
+     */
     public int getTaskId() {
         return this.TASKID;
     }
 
-    // get DESCRIPTION of task
+    /*
+     * Returns the String description ID. No args.
+     */
     public String getDescription() {
         return this.DESCRIPTION;
     }
 
-    // get DURATION of task
+    /*
+     * Returns the integer duration. No args.
+     */
     public int getDuration() {
         return this.DURATION;
     }
-
-    // get the MAXWINDOOW to complete the task
+    /*
+     * Returns the integer max window. No args.
+     */
     public int getMaxWindow() {
         return this.MAXWINDOW;
     }

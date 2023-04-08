@@ -148,7 +148,7 @@ public class CreateArrayList extends ScheduleBuilder {
     /**
      * Checks if an animal is a kit or not
      * If the animal is a kit, then treat its feeding as a medical treatment
-     * @param animal - on object of class Animal
+     * @param animal - an object of class Animal
     */
     public boolean isKit(Animal animal) {
         int animalID = animal.getAnimalId();

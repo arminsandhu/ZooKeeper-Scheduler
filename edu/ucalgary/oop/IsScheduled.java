@@ -11,26 +11,38 @@ public class IsScheduled {
     private final int UNIQUEID;
     private boolean isSched = false;
 
-    /**
-     * IsScheduled constructor. 
-     * 
+    /*
+     * Animal class constructor, takes in an argument (int), 
+     * and assigns a private class variable.
      */
     public IsScheduled(int uniqueID) {
         this.UNIQUEID = uniqueID;
     }
 
+    /*
+     * Void method that sets the isSched private variable to true. No args.
+     */
     public void setIsScheduled() {
         this.isSched = true;
     }
 
+    /*
+     * Void method that sets the isSched private variable to false. No args.
+     */
     public void setFalse() {
         this.isSched = false;
     }
 
+    /*
+     * Returns the integer Unique ID. No args.
+     */
     public int getUniqueID() {
         return this.UNIQUEID;
     }
 
+    /*
+     * Returns a boolean vlaue of the isSched private variable. No args.
+     */
     public boolean getIsScheduled() {
         return this.isSched;
     }
