@@ -8,40 +8,59 @@ import org.junit.Test;
 public class ScheduleTest {
 
     private ScheduleBuilder schedule;
-    private CreateArrayList cal;
 
     @Before
     public void setUp() {
         this.schedule = new ScheduleBuilder();
     }
 
+    
+
+    @Test
+    /*
+     * 3-argument constructor Animal() should throw an IllegalArgumentException 
+     * when a an invalid parameter is passed in.
+    */
+    public void testAnimalClassConstructor() {
+        boolean failed = false;
+        
+        // Testing if invalid animal ID throws an exception
+        try {
+            Animal animal = new Animal(-1, "Danny", "Dog");
+        }
+        catch (IllegalArgumentException e) {
+            failed = true;
+        }
+        catch (Exception e) { }
+        assertTrue("3-argument constructor Animal() did not throw an IllegalArgumentException when invalid animal ID was passed in", failed);
 
 
-
-    // NOTES: we dont have to test the connection
-    // @Test
-    // public void testDBConnection() {
-    //     boolean passed = true;
-    //     try {schedule.createConnection();}
-
-    //     catch (Exception e) {
-    //         passed = true;
-    //     }
-
-    //     assertTrue("Method createConnection() did not throw an SQLExcetion when the database name was not EWR.", passed);
-    // }
+        // Testing if invalid animal nickname throws an exception
+        failed = false;
+        try {
+            Animal animal = new Animal(123, null, "Dog");
+        }
+        catch (IllegalArgumentException e) {
+            failed = true;
+        }
+        catch (Exception e) { }
+        assertTrue("3-argument constructor Animal() did not throw an IllegalArgumentException when invalid animal nickname was passed in", failed);
 
 
-    // @Test
-    // public void testBuildIsScheduled() {
-    //     cal.buildIsScheduled(1);
-    //     assertEquals(1, cal.getIsScheduledTasks().size());
-    //     assertEquals(1, cal.getIsScheduledTasks().get(0).getUniqueID());
-    // }
-
-
-
-
+        // Testing if invalid animal species throws an exception
+        failed = false;
+        try {
+            Animal animal = new Animal(123, "Doug", null);
+        }
+        catch (IllegalArgumentException e) {
+            failed = true;
+        }
+        catch (Exception e) { }
+        assertTrue("3-argument constructor Animal() did not throw an IllegalArgumentException when invalid animal species was passed in", failed);
+    }
+    
+    
+    
     @Test
     /*
      * Testing the getter methods in a class Animal object
@@ -64,6 +83,41 @@ public class ScheduleTest {
         String expResult2 = "Dog";
         String result2 = animal.getAnimalSpecies();
         assertEquals("The Animal ID was incorrect: ", expResult2, result2);
+    }
+
+
+
+
+    @Test
+    /*
+     * 4-argument constructor Task() should throw an IllegalArgumentException 
+     * when a an invalid parameter is passed in.
+    */
+    public void testTaskClassConstructor() {
+        boolean failed = false;
+        
+        // Testing if invalid task ID throws an exception
+        try {
+            Task task = new Task(-5, "description", 25, 4);
+        }
+        catch (IllegalArgumentException e) {
+            failed = true;
+        }
+        catch (Exception e) { }
+        assertTrue("4-argument constructor Task() did not throw an IllegalArgumentException when invalid task ID was passed in", failed);
+
+
+        // Testing if invalid description throws an exception
+        failed = false;
+        try {
+            Task task = new Task(123, null, 25, 4);
+        }
+        catch (IllegalArgumentException e) {
+            failed = true;
+        }
+        catch (Exception e) { }
+        assertTrue("4-argument constructor Task() did not throw an IllegalArgumentException when invalid description was passed in", failed);
+
     }
 
 
@@ -96,6 +150,29 @@ public class ScheduleTest {
         int expResult3 = 4;
         int result3 = task.getMaxWindow();
         assertEquals("The max window was incorrect: ", expResult3, result3);
+    }
+
+
+    
+    @Test
+    /*
+     * 4-argument constructor Treatment() should throw an IllegalArgumentException 
+     * when a an invalid parameter is passed in.
+    */
+    public void testTreatementClassConstructor() {
+        boolean failed = false;
+        
+        // Testing if invalid unique ID (int) throws an exception
+        try {
+            Treatment treatment = new Treatment(-23, 456, 890, 0);
+        }
+        catch (IllegalArgumentException e) {
+            failed = true;
+        }
+        catch (Exception e) { }
+        assertTrue("4-argument constructor Treatment() did not throw an IllegalArgumentException when invalid unique ID was passed in", failed);
+
+
     }
 
 
@@ -311,6 +388,154 @@ public class ScheduleTest {
         }
         catch (Exception e) { }
         assertFalse("1-argument constructor CreateArrayList() thre IllegalArgumentException when ScheduleBuilder object was passed in", failed);
+    }
+
+
+
+
+
+    @Test
+    /*
+     * Testing the getter cleaning time method in AnimalSpecies class for enums COYOTE, FOX, PORCUPINE, RACCOON, BEAVER
+     * Getters should correctly return the cleaning time for each specified animal species
+    */
+    public void testGetCleaningTime() {
+        // Testing if the AnimalSpecies method getCleaningTime equals the expected cleaning time
+        assertEquals(5, AnimalSpecies.COYOTE.getCleaningTime());
+
+        assertEquals(5, AnimalSpecies.FOX.getCleaningTime());
+
+        assertEquals(5, AnimalSpecies.PORCUPINE.getCleaningTime());
+
+        assertEquals(5, AnimalSpecies.RACCOON.getCleaningTime());
+
+        assertEquals(5, AnimalSpecies.BEAVER.getCleaningTime());
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter feeding time method in AnimalSpecies class for enums COYOTE, FOX, PORCUPINE, RACCOON, BEAVER
+     * Getters should correctly return the feeding time for each specified animal species
+    */
+    public void testGetFeedingTime() {
+        // Testing if the AnimalSpecies method getFeedingTime equals the expected feeding time
+        assertEquals(5, AnimalSpecies.COYOTE.getFeedingTime());
+
+        assertEquals(5, AnimalSpecies.FOX.getFeedingTime());
+
+        assertEquals(5, AnimalSpecies.PORCUPINE.getFeedingTime());
+
+        assertEquals(5, AnimalSpecies.RACCOON.getFeedingTime());
+
+        assertEquals(5, AnimalSpecies.BEAVER.getFeedingTime());
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter foor prep time method in AnimalSpecies class for enums COYOTE, FOX, PORCUPINE, RACCOON, BEAVER
+     * Getters should correctly return the food prep time for each specified animal species
+    */
+    public void testGetFoodPrepTime() {
+        // Testing if the AnimalSpecies method getFoodPrepTime equals the expected food prep time
+        assertEquals(10, AnimalSpecies.COYOTE.getFoodPrepTime());
+
+        assertEquals(10, AnimalSpecies.FOX.getFoodPrepTime());
+
+        assertEquals(0, AnimalSpecies.PORCUPINE.getFoodPrepTime());
+
+        assertEquals(0, AnimalSpecies.RACCOON.getFoodPrepTime());
+
+        assertEquals(0, AnimalSpecies.BEAVER.getFoodPrepTime());
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter start hour method in AnimalSpecies class for enums COYOTE, FOX, PORCUPINE, RACCOON, BEAVER
+     * Getters should correctly return the start hour for each specified animal species
+    */
+    public void testGetStartHour() {
+        // Testing if the AnimalSpecies method getStartHour equals the expected start hour
+        assertEquals(19, AnimalSpecies.COYOTE.getStartHour());
+
+        assertEquals(0, AnimalSpecies.FOX.getStartHour());
+
+        assertEquals(19, AnimalSpecies.PORCUPINE.getStartHour());
+
+        assertEquals(0, AnimalSpecies.RACCOON.getStartHour());
+
+        assertEquals(8, AnimalSpecies.BEAVER.getStartHour());
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter max window method in AnimalSpecies class for enums COYOTE, FOX, PORCUPINE, RACCOON, BEAVER
+     * Getters should correctly return the max window for each specified animal species
+    */
+    public void testGetMaxWindow() {
+        // Testing if the AnimalSpecies method getMaxWindow equals the expected max window
+        assertEquals(3, AnimalSpecies.COYOTE.getMaxWindow());
+
+        assertEquals(3, AnimalSpecies.FOX.getMaxWindow());
+
+        assertEquals(3, AnimalSpecies.PORCUPINE.getMaxWindow());
+
+        assertEquals(3, AnimalSpecies.RACCOON.getMaxWindow());
+
+        assertEquals(3, AnimalSpecies.BEAVER.getMaxWindow());
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter cleaning description method in AnimalSpecies class for enums COYOTE, FOX, PORCUPINE, RACCOON, BEAVER
+     * Getters should correctly return the cleaning description for each specified animal species
+    */
+    public void testGetCleaningDescription() {
+        // Testing if the AnimalSpecies method getCleaningDescription equals the expected cleaning description
+        assertEquals("Cleaning coyote cage", AnimalSpecies.COYOTE.getCleaningDescription());
+
+        assertEquals("Cleaning fox cage", AnimalSpecies.FOX.getCleaningDescription());
+
+        assertEquals("Cleaning porcupine cage", AnimalSpecies.PORCUPINE.getCleaningDescription());
+
+        assertEquals("Cleaning raccoon cage", AnimalSpecies.RACCOON.getCleaningDescription());
+
+        assertEquals("Cleaning beaver cage", AnimalSpecies.BEAVER.getCleaningDescription());
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter feeding description  method in AnimalSpecies class for enums COYOTE, FOX, PORCUPINE, RACCOON, BEAVER
+     * Getters should correctly return the feeding description for each specified animal species
+    */
+    public void testGetFeedingDescription() {
+        // Testing if the AnimalSpecies method getFeedingDescription equals the expected feeding description
+        assertEquals("Feed coyotes", AnimalSpecies.COYOTE.getFeedingDescription());
+
+        assertEquals("Feed foxes", AnimalSpecies.FOX.getFeedingDescription());
+
+        assertEquals("Feed porcupines", AnimalSpecies.PORCUPINE.getFeedingDescription());
+
+        assertEquals("Feed raccoons", AnimalSpecies.RACCOON.getFeedingDescription());
+
+        assertEquals("Feed beavers", AnimalSpecies.BEAVER.getFeedingDescription());
     }
 
 

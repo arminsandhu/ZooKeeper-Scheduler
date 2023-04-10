@@ -15,9 +15,17 @@ public class Animal {
      * and assigns private class variables.
      */
     public Animal(int animalId, String animalNickname, String animalSpecies) {
-        this.ANIMALID = animalId;
-        this.ANIMALNICKNAME = animalNickname;
-        this.ANIMALSPECIES = animalSpecies;
+        try {
+            if (animalId < 0 || animalNickname == null || animalSpecies == null) {
+                throw new IllegalArgumentException("Invalid Animal Constructor parameters");
+            }
+            this.ANIMALID = animalId;
+            this.ANIMALNICKNAME = animalNickname;
+            this.ANIMALSPECIES = animalSpecies;
+        } catch (IllegalArgumentException error) {
+            System.err.println(error.getMessage());
+            throw error;
+        }
     }
 
     /*
