@@ -26,6 +26,7 @@ public class ScheduleBuilder {
     private int timeCompleted = 0;
     private int count = 0;
     private TreeSet<FinalSchedule> finalTree = new TreeSet<>();
+    // private String nickname;
 
 
     // public void reset() {
@@ -358,7 +359,7 @@ public class ScheduleBuilder {
         int timeRemaining = schedule.getTimeRemaining();
         int timeCompleted = schedule.getTimeCompleted();
         int count = schedule.getCount();
-        
+        String nickname = "No nickname available";
         for (Treatment treatment : schedule.getTreatmentsArray()) {
             if (treatment.getStartHour() <= hour) {
                 for (IsScheduled item : instance.getIsScheduledTasks()) { //tasksArray is an array list of all task objects
@@ -433,7 +434,12 @@ public class ScheduleBuilder {
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
-                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
+                                        for (Animal animal : schedule.getAnimalsArray()) {
+                                            if (treatment.getAnimalID() == animal.getAnimalId()) {
+                                                nickname = animal.getAnimalNickname();
+                                            }
+                                        }
+                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                                         finalTree.add(finalTask);
                                         item.setIsScheduled();
                                     }
@@ -442,7 +448,12 @@ public class ScheduleBuilder {
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
-                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
+                                        for (Animal animal : schedule.getAnimalsArray()) {
+                                            if (treatment.getAnimalID() == animal.getAnimalId()) {
+                                                nickname = animal.getAnimalNickname();
+                                            }
+                                        }
+                                        FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                                         finalTree.add(finalTask);
                                         item.setIsScheduled();
                                         break;
@@ -462,11 +473,12 @@ public class ScheduleBuilder {
      * @param hour - the inputted hour used as a key for (FINISH)
      * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
      */
-    public void checkPreppedFeeding(int hour, CreateArrayList instance) {
+    public void checkPreppedFeeding(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
         int countFox = 0;
         int countCoyote = 0;
+        String nickname = "No nickname available";
         for (PreppedFeeding prep : instance.getPreppedFeedingTasks()) {
             if (prep.getStartHour() <= hour) {
                 for (IsScheduled item : instance.getIsScheduledTasks()) { //tasksArray is an array list of all task objects
@@ -498,7 +510,12 @@ public class ScheduleBuilder {
                                 
                                 setTimeRemaining(timeRemaining);
                                 setTimeCompleted(timeCompleted);
-                                FinalSchedule finalTask = new FinalSchedule(prep.getUniqueID(), prep.getDescription(), 4, timeCompleted, timeRemaining);
+                                for (Animal animal : schedule.getAnimalsArray()) {
+                                    if (prep.getAnimalID() == animal.getAnimalId()) {
+                                        nickname = animal.getAnimalNickname();
+                                    }
+                                }
+                                FinalSchedule finalTask = new FinalSchedule(prep.getUniqueID(), prep.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                                 finalTree.add(finalTask);
                                 item.setIsScheduled();
                             }
@@ -508,7 +525,12 @@ public class ScheduleBuilder {
                                 timeCompleted += prep.getDuration();
                                 setTimeRemaining(timeRemaining);
                                 setTimeCompleted(timeCompleted);
-                                FinalSchedule finalTask = new FinalSchedule(prep.getUniqueID(), prep.getDescription(), 4, timeCompleted, timeRemaining);
+                                for (Animal animal : schedule.getAnimalsArray()) {
+                                    if (prep.getAnimalID() == animal.getAnimalId()) {
+                                        nickname = animal.getAnimalNickname();
+                                    }
+                                }
+                                FinalSchedule finalTask = new FinalSchedule(prep.getUniqueID(), prep.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                                 finalTree.add(finalTask);
                                 item.setIsScheduled();
                                 break;
@@ -526,9 +548,10 @@ public class ScheduleBuilder {
      * @param hour - the inputted hour used as a key for (FINISH)
      * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
      */
-    public void checkFeeding(int hour, CreateArrayList instance) {
+    public void checkFeeding(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
+        String nickname = "No nickname available";
         for (Feeding feeding : instance.getFeedingTasks()) {
             if (feeding.getStartHour() <= hour) {
                 for (IsScheduled item : instance.getIsScheduledTasks()) { //tasksArray is an array list of all task objects
@@ -543,7 +566,12 @@ public class ScheduleBuilder {
                                 timeCompleted += feeding.getDuration();
                                 setTimeRemaining(timeRemaining);
                                 setTimeCompleted(timeCompleted);
-                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), feeding.getDescription(), 4, timeCompleted, timeRemaining);
+                                for (Animal animal : schedule.getAnimalsArray()) {
+                                    if (feeding.getAnimalID() == animal.getAnimalId()) {
+                                        nickname = animal.getAnimalNickname();
+                                    }
+                                }
+                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), feeding.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                                 finalTree.add(finalTask);
                                 item.setIsScheduled();
                             }
@@ -553,7 +581,12 @@ public class ScheduleBuilder {
                                 timeCompleted += feeding.getDuration();
                                 setTimeRemaining(timeRemaining);
                                 setTimeCompleted(timeCompleted);
-                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), feeding.getDescription(), 4, timeCompleted, timeRemaining);
+                                for (Animal animal : schedule.getAnimalsArray()) {
+                                    if (feeding.getAnimalID() == animal.getAnimalId()) {
+                                        nickname = animal.getAnimalNickname();
+                                    }
+                                }
+                                FinalSchedule finalTask = new FinalSchedule(feeding.getUniqueID(), feeding.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                                 finalTree.add(finalTask);
                                 item.setIsScheduled();
                                 break;
@@ -571,9 +604,10 @@ public class ScheduleBuilder {
      * @param hour - the inputted hour used as a key for (FINISH)
      * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
      */
-    public void checkCleaning(int hour, CreateArrayList instance) {
+    public void checkCleaning(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
+        String nickname = "No nickname available";
         for (Cleaning clean : instance.getCleaningTasks()) {
             for (IsScheduled item : instance.getIsScheduledTasks()) { //tasksArray is an array list of all task objects (for ex, we would have unique ids 1-30 for treatment, and then 31-? would be the rest of the tasks such as prepped feeding, feeding and cleaning)
                 if (item.getIsScheduled() == false) {
@@ -587,7 +621,12 @@ public class ScheduleBuilder {
                             timeCompleted += clean.getDuration();
                             setTimeRemaining(timeRemaining);
                             setTimeCompleted(timeCompleted);
-                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), clean.getDescription(), 4, timeCompleted, timeRemaining);
+                            for (Animal animal : schedule.getAnimalsArray()) {
+                                if (clean.getAnimalID() == animal.getAnimalId()) {
+                                    nickname = animal.getAnimalNickname();
+                                }
+                            }
+                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), clean.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                             finalTree.add(finalTask);
                             item.setIsScheduled();
                         }
@@ -597,7 +636,12 @@ public class ScheduleBuilder {
                             timeCompleted += clean.getDuration();
                             setTimeRemaining(timeRemaining);
                             setTimeCompleted(timeCompleted);
-                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), clean.getDescription(), 4, timeCompleted, timeRemaining);
+                            for (Animal animal : schedule.getAnimalsArray()) {
+                                if (clean.getAnimalID() == animal.getAnimalId()) {
+                                    nickname = animal.getAnimalNickname();
+                                }
+                            }
+                            FinalSchedule finalTask = new FinalSchedule(clean.getUniqueID(), clean.getDescription(), 4, timeCompleted, timeRemaining, nickname);
                             finalTree.add(finalTask);
                             item.setIsScheduled();
                             break;
@@ -637,4 +681,22 @@ public class ScheduleBuilder {
     public int getTimeCompleted() {
         return this.timeCompleted;
     }
+
+
+    // /**
+    //  * Void method that sets the nickname of the animal for a specific task.
+    //  * @param nickname - the inputted string to set as the nickname
+    //  */
+    // public void setNickname(String nickname) {
+    //     this.nickname = nickname;
+    // }
+
+    // /*
+    //  * Returns the nickname of an animal.
+    //  */
+    // public String getNickname() {
+    //     return this.nickname;
+    // }
+
+
 }

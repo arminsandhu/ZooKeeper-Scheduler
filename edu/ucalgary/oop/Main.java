@@ -33,9 +33,9 @@ public class Main {
 
             if (schedule.getTimeRemaining() > 0) {
                 schedule.checkTreatments(hour, schedule, instance);
-                schedule.checkPreppedFeeding(hour, instance);
-                schedule.checkFeeding(hour, instance);
-                schedule.checkCleaning(hour, instance);
+                schedule.checkPreppedFeeding(hour, schedule, instance);
+                schedule.checkFeeding(hour, schedule, instance);
+                schedule.checkCleaning(hour, schedule, instance);
                 TreeSet<FinalSchedule> reverseOrder = new TreeSet<>(Collections.reverseOrder());
                 reverseOrder.addAll(schedule.getFinalTree());
                 schedule.setFinalTree(reverseOrder);

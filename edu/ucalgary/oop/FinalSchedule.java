@@ -9,6 +9,7 @@ public class FinalSchedule implements Comparable<FinalSchedule> {
     private int quantity;
     private int timeSpent;
     private int timeAvailable;
+    private String nickname;
 
     /**
      * Constructor for the FinalSchedule class.
@@ -18,12 +19,13 @@ public class FinalSchedule implements Comparable<FinalSchedule> {
      * @param timeSpent The time spent on the schedule.
      * @param timeAvailable The time available for the schedule.
      */
-    public FinalSchedule(int unique, String description, int quantity, int timeSpent, int timeAvailable) {
+    public FinalSchedule(int unique, String description, int quantity, int timeSpent, int timeAvailable, String nickname) {
         this.UNIQUEID = unique;
         this.description = description;
         this.quantity = quantity;
         this.timeSpent = timeSpent;
         this.timeAvailable = timeAvailable;
+        this.nickname = nickname;
     }
     
     /*
@@ -35,6 +37,7 @@ public class FinalSchedule implements Comparable<FinalSchedule> {
     public int getQuantity() { return this.quantity; }
     public int getTimeSpent() { return this.timeSpent; }
     public int getTimeAvailable() { return this.timeAvailable; }
+    public String getNickname() { return this.nickname; }
 
     /**
      * Compares two FinalSchedule objects based on their timeAvailable variable.

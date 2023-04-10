@@ -16,7 +16,7 @@ public class TextFileOutput extends ScheduleBuilder{
     public TextFileOutput(ScheduleBuilder schedule) throws IOException{  
 
       this.hash = schedule.getFinalSchedule();
-      // System.out.println(hash);
+
       createFile();
         try {
             writeToFile();
@@ -48,11 +48,7 @@ public class TextFileOutput extends ScheduleBuilder{
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            
-            // buildTreeSets();
-            // buildHash();
-            //System.out.println(hash);
-            
+
             printWriter.println();
 
             //int row = 0;
@@ -66,11 +62,10 @@ public class TextFileOutput extends ScheduleBuilder{
                 int totalTime = 0;
                 for (FinalSchedule uniqueTask : tasks) {
                   totalTime = uniqueTask.getTimeSpent();
-                  // System.out.println("task ID" + String.valueOf(uniqueTask.getUniqueId()));
-                  // System.out.println(uniqueTask.getTimeSpent());
+                  
                 }
                 
-                //System.out.println(totalTime);
+            
 
                 if (totalTime > 60) {
                   printWriter.println(hour + ":00" + " [+ backup volunteer]");
