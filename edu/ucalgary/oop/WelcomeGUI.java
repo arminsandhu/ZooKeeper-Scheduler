@@ -48,14 +48,5 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         // after they click to start the program this is hit
         super.dispose(); //take this out and add methods     
     }
-    
-    
-    // public static void main(String[] args) {
-        
-    //     EventQueue.invokeLater(() -> {
-    //         new WelcomeGUI().setVisible(true);        
-    //     });
-
-    // }
-        
+            
 }

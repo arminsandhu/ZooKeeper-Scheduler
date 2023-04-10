@@ -60,8 +60,15 @@ public class TableGUI extends JFrame implements ActionListener {
                         if (data[r][1] == rowValues[1] && data[r][0] == rowValues[0]) {
                             
                             if (data[r][1].toString().contains("Feed ") || data[r][1].toString().contains("Cleaning") ) {
-                                quantity = (Integer) data[row][2] + 1;
-                                rowValues[2] = quantity;
+                                if (data[r][1] != data[r - 1][1]) {
+                                    quantity = 1;
+                                    rowValues[2] = quantity;
+                                }
+                                
+                                else {
+                                    quantity = (Integer) data[row][2] + 1;
+                                    rowValues[2] = quantity;
+                                }
                                 
 
                             }
@@ -127,7 +134,7 @@ public class TableGUI extends JFrame implements ActionListener {
                 rowCount++;
             }
         }
-        System.out.println(rowCount);
+
 
         noNullData = new Object[rowCount][5];
 
