@@ -16,10 +16,19 @@ public class Treatment {
      * and assigns private class variables.
      */
     public Treatment(int uniqueID, int id, int taskID, int hour) {
-        this.ANIMALID = id;
-        this.TASKID = taskID;
-        this.startHour = hour;
-        this.UNIQUEID = uniqueID;
+        try {
+            if (uniqueID < 0 || id < 0 || taskID < 0 || hour < 0) {
+                throw new IllegalArgumentException("Invalid animal parameters");
+            }
+            this.ANIMALID = id;
+            this.TASKID = taskID;
+            this.startHour = hour;
+            this.UNIQUEID = uniqueID;
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            throw e;
+        }
+
     }
 
     /*

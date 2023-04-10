@@ -17,10 +17,18 @@ public class Task {
      * and assigns private class variables.
      */
     public Task(int taskId, String description, int duration, int maxWindow) {
-        this.TASKID = taskId;
-        this.DESCRIPTION = description; 
-        this.DURATION = duration;
-        this.MAXWINDOW = maxWindow;
+        try {
+            if (taskId < 0 || description == null || duration < 0 || maxWindow < 0) {
+                throw new IllegalArgumentException("Invalid Task Constructor parameters");
+            }
+            this.TASKID = taskId;
+            this.DESCRIPTION = description; 
+            this.DURATION = duration;
+            this.MAXWINDOW = maxWindow;
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            throw e;
+        }
     }
 
 
