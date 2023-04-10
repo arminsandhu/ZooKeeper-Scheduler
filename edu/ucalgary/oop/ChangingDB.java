@@ -42,6 +42,7 @@ public class ChangingDB extends JFrame {
             this.inputHour = (int) hourComboBox.getSelectedItem();
             JOptionPane.showMessageDialog(this, "You selected hour " + this.inputHour);
             dispose();
+            updateDB(inputHour);
         });
         
         // Create a panel to hold the confirm button

@@ -12,6 +12,9 @@ public class Main {
     private CreateArrayList instance;
     private static int[] iterationsList;
 
+    public Main() {
+
+    }
     public boolean reset() {
 
         //call method to populate treatmentsArray

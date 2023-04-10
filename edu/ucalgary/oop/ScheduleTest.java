@@ -380,7 +380,80 @@ public class ScheduleTest {
     //     // implementation
     // }
 
-    
+    /**
+     * Tests the constructor and getters of the FinalSchedule class by creating a new instance of the class
+     * and asserting that the values returned by the getters match the values passed to the constructor.
+     */
+    @Test
+    public void testFinalScheduleConstructorAndGetters() {
+        int unique = 1;
+        String description = "Final exam";
+        int quantity = 1;
+        int timeSpent = 0;
+        int timeAvailable = 120;
+        String nickname = "Exam";
+        FinalSchedule schedule = new FinalSchedule(unique, description, quantity, timeSpent, timeAvailable, nickname);
+        assertEquals(unique, schedule.getUniqueId());
+        assertEquals(description, schedule.getDescription());
+        assertEquals(quantity, schedule.getQuantity());
+        assertEquals(timeSpent, schedule.getTimeSpent());
+        assertEquals(timeAvailable, schedule.getTimeAvailable());
+        assertEquals(nickname, schedule.getNickname());
+    }
+
+    /**
+     * Tests the compareTo method of the FinalSchedule class by creating two instances of the class with different
+     * timeAvailable values and asserting that the comparison result is less than 0.
+     */
+    @Test
+    public void testFinalScheduleCompareToLessThan() {
+        FinalSchedule schedule1 = new FinalSchedule(1, "Final exam 1", 1, 0, 60, "Exam 1");
+        FinalSchedule schedule2 = new FinalSchedule(2, "Final exam 2", 1, 0, 120, "Exam 2");
+        assertTrue(schedule1.compareTo(schedule2) < 0);
+    }
+
+    /**
+     * Tests the compareTo method of the FinalSchedule class by creating two instances of the class with different
+     * timeAvailable values and asserting that the comparison result is greater than 0.
+     */
+    @Test
+    public void testFinalScheduleCompareToGreaterThan() {
+        FinalSchedule schedule1 = new FinalSchedule(1, "Final exam 1", 1, 0, 120, "Exam 1");
+        FinalSchedule schedule2 = new FinalSchedule(2, "Final exam 2", 1, 0, 60, "Exam 2");
+        assertTrue(schedule1.compareTo(schedule2) > 0);
+    }
+
+    /**
+     * Tests the compareTo method of the FinalSchedule class by creating two instances of the class with different
+     * timeAvailable values and asserting that the comparison result is equal.
+     */
+    @Test
+    public void testFinalScheduleCompareToEquals() {
+        FinalSchedule schedule1 = new FinalSchedule(1, "Final exam 1", 1, 0, 60, "Exam 1");
+        FinalSchedule schedule2 = new FinalSchedule(2, "Final exam 2", 1, 0, 60, "Exam 2");
+        assertTrue(schedule1.compareTo(schedule2) == 0);
+    }
+
+
+    @Test
+    public void testCreateFile() {
+        ScheduleBuilder scheduleBuilder = new ScheduleBuilder();
+        Animal animal1 = new Animal(1, "Growly", "Lion");
+        Animal animal2 = new Animal(2, "Meows", "Tiger");
+        Animal animal3 = new Animal(3, "Gnaws", "Bear");
+        scheduleBuilder.addTask(animal1, "Clean enclosure", 2);
+        scheduleBuilder.addTask(animal2, "Feed", 1);
+        scheduleBuilder.addTask(animal3, "Play with", 3);
+        scheduleBuilder.addTask(animal2, "Clean enclosure", 2);
+        scheduleBuilder.addTask(animal1, "Feed", 1);
+        scheduleBuilder.addTask(animal3, "Clean enclosure", 2);
+        scheduleBuilder.addTask(animal1, "Play with", 3);
+
+        // Set up a TextFileOutput object for testing
+        TextFileOutput textFileOutput = new TextFileOutput(scheduleBuilder);
+        // Ensure that the output file was created
+        assertTrue(textFileOutput.getFile().exists());
+    }
 
 }
 
