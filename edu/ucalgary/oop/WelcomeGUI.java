@@ -3,6 +3,7 @@ package edu.ucalgary.oop;
 import java.awt.BorderLayout;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.concurrent.CountDownLatch;
 import java.awt.FlowLayout;
 
 public class WelcomeGUI extends JFrame implements ActionListener {
@@ -13,10 +14,11 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     private JPanel clientPanel = new JPanel();
     private JPanel submitPanel = new JPanel();
     private JButton submitInfo = new JButton("Click here to start the program");
+    private CountDownLatch latch;
 
-
-    public WelcomeGUI(){
+    public WelcomeGUI(CountDownLatch latch){
         super("Welcome to the Scheduling Program"); //tab title
+        this.latch = latch;
         setupGUI();
         setSize(500,300);
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
@@ -45,17 +47,10 @@ public class WelcomeGUI extends JFrame implements ActionListener {
    
     
     public void actionPerformed(ActionEvent event){
-        // after they click to start the program this is hit
-        super.dispose(); //take this out and add methods     
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to start the program?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(result == JOptionPane.YES_OPTION) {
+            super.dispose(); //take this out and add methods  
+            latch.countDown();   
+        }
     }
-    
-    
-    // public static void main(String[] args) {
-        
-    //     EventQueue.invokeLater(() -> {
-    //         new WelcomeGUI().setVisible(true);        
-    //     });
-
-    // }
-        
 }

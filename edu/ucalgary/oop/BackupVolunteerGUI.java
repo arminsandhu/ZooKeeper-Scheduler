@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.concurrent.CountDownLatch;
 import java.awt.FlowLayout;
 
 public class BackupVolunteerGUI extends JFrame implements ActionListener {
@@ -15,16 +16,18 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
 
     private JLabel message;
     private JLabel explanation;
+    private CountDownLatch latch;
 
     /*
      * BackupVolunteerGUI constructor. Takes no arguments. Uses JFrame super to create a JFrame
      * window. Does basic JFrame setup.
      */
-    public BackupVolunteerGUI(){
+    public BackupVolunteerGUI(CountDownLatch latch){
         super("Backup Volunteer"); //tab title
         setupGUI();
         setSize(500,300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        this.latch = latch;       
         
     }
 
@@ -59,8 +62,11 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
    
     
     public void actionPerformed(ActionEvent event){
-        // after they click to start the program this is hit
-        super.dispose(); //take this out and add methods
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to start the program?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(result == JOptionPane.YES_OPTION) {
+            super.dispose(); //take this out and add methods  
+            latch.countDown();   
+        }
         
     }
     
