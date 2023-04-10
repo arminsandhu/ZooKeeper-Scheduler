@@ -78,7 +78,7 @@ public class TextFileOutput extends ScheduleBuilder{
                 for (FinalSchedule uniqueTask : tasks) {
                     //for real data, gain access to all these using getter hopefully
                     String taskDescription = uniqueTask.getDescription();
-                    String animalName = String.valueOf(uniqueTask.getUniqueId());
+                    String animalName = String.valueOf(uniqueTask.getNickname());
                     
                     
 

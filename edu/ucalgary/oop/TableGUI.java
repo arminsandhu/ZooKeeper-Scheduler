@@ -45,8 +45,8 @@ public class TableGUI extends JFrame implements ActionListener {
 
             for (FinalSchedule uniqueTask : tasks) {
                 String taskDescription = uniqueTask.getDescription();
-                // String animalName = uniqueTask.getNickname();
-                String animalName = "Mason";
+                String animalName = uniqueTask.getNickname();
+                // String animalName = "Mason";
                 Object quantity = 0;
                 int timeSpent = uniqueTask.getTimeSpent();
                 int timeAvailable = uniqueTask.getTimeAvailable();
@@ -56,6 +56,10 @@ public class TableGUI extends JFrame implements ActionListener {
                  
                 for (int r = 0; r < data.length; r++) {
                     if (data[r][0] != null && rowValues[0] != null && data[row][2] != null) {
+
+
+
+                        
                         if (data[r][1] == rowValues[1] && data[r][0] == rowValues[0]) {   
                             if (data[r][1].toString().contains("Feed ") || data[r][1].toString().contains("Cleaning") ) {
                                 
@@ -63,12 +67,16 @@ public class TableGUI extends JFrame implements ActionListener {
                                 if (data[r][1] != data[r - 1][1]) {
                                     quantity = 1;
                                     rowValues[3] = quantity;
+                                    // animalName = uniqueTask.getNickname();
+                                    rowValues[2] = "-";
                                 }  
                                 else {
                                     quantity = (Integer) data[row][3] + 1;
                                     rowValues[3] = quantity;
-                                    
-                                    
+                                    // if (row != 0) {
+                                    //     animalName = (String) data[row - 1][2] + ", " + (String) data[row][2];
+                                    rowValues[2] = "-";
+                                    // }  
                                 }
 
                                 // // updating names
@@ -79,7 +87,7 @@ public class TableGUI extends JFrame implements ActionListener {
                                 // if  (data[row] != null && data[row - 1] != null) {
                                 //     if (data[row][2] != null && data[row - 1][2] != null) {
                                 //         // animalName = (String) data[row - 1][2] + ", " + (String) data[row][2];
-                                //         animalName = (String) data[row - 1][2] + ", " + "Armin";
+                                //         animalName = (String) data[row - 1][2] + ", " + (String) data[row][2];
                                 //         rowValues[2] = animalName;
                                 //     }   
                                 // }
@@ -112,7 +120,9 @@ public class TableGUI extends JFrame implements ActionListener {
         for (int ro = 0; ro < data.length; ro++) {
             if (data[ro][0] != null) {
                 if (data[ro][3] == checkForZero || data[ro][3] == checkForOne) {
-                    data[ro][3] = "-";
+                    if (!data[ro][1].toString().contains("Feed ") && !data[ro][1].toString().contains("Cleaning") ) {
+                        data[ro][3] = "-";
+                    }
                 }
             }
         }
