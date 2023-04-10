@@ -187,6 +187,18 @@ public class ScheduleTest {
         assertEquals("animal is not a kit but return value says it is", expResult1, result1);
     }
 
+    // @Test
+    // public void testScheduleBuilderGetters() {
+    //     ScheduleBuilder schedule = new ScheduleBuilder();
+    //     CreateArrayList instance = new CreateArrayList(schedule);
+    //     int[] iterationsList;
+
+    //     instance.setAnimalsArray();
+    //     instance.setTasksArray();
+    //     instance.set;
+    //     instance.setAnimalsArray();
+    // }
+
 
 
 
