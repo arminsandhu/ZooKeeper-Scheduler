@@ -373,7 +373,20 @@ public class ScheduleBuilder {
                                                     if (i.getUniqueID() == treatment.getUniqueID()) {
                                                         if (treatment.getStartHour() <= hour) {
                                                             schedule.setCount();
-                                                            schedule.setTimeRemaining(60);
+                                                            schedule.setTimeRemaining(120);
+                                                            schedule.setTimeCompleted(0);
+                                                            for (IsScheduled in : instance.getIsScheduledTasks()) {
+                                                                for (Treatment treat : schedule.getTreatmentsArray()) {
+                                                                    if (treat.getStartHour() <= hour) {
+                                                                        for (FinalSchedule f : schedule.getFinalTree()) {
+                                                                            if (treat.getUniqueID() == f.getUniqueId() && in.getUniqueID() == f.getUniqueId()) {
+                                                                                in.setFalse();
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            schedule.resetFinalTree();
                                                             schedule.checkTreatments(hour, schedule, instance);
                                                             break;
                                                         }
@@ -392,7 +405,8 @@ public class ScheduleBuilder {
                                                     if (i.getUniqueID() == treatment.getUniqueID()) {
                                                         if (treatment.getStartHour() <= hour) {
                                                             schedule.setCount();
-                                                            schedule.setTimeRemaining(timeRemaining + 60);
+                                                            schedule.setTimeRemaining(120);
+                                                            schedule.setTimeCompleted(0);
                                                             for (IsScheduled in : instance.getIsScheduledTasks()) {
                                                                 for (Treatment treat : schedule.getTreatmentsArray()) {
                                                                     if (treat.getStartHour() <= hour) {
@@ -404,6 +418,7 @@ public class ScheduleBuilder {
                                                                     }
                                                                 }
                                                             }
+                                                            schedule.resetFinalTree();
                                                             schedule.checkTreatments(hour, schedule, instance);
                                                             break;
                                                         }
@@ -418,8 +433,6 @@ public class ScheduleBuilder {
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
-                                        
-                                        
                                         FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
                                         finalTree.add(finalTask);
                                         item.setIsScheduled();
@@ -429,8 +442,6 @@ public class ScheduleBuilder {
                                         timeCompleted += task.getDuration();
                                         setTimeRemaining(timeRemaining);
                                         setTimeCompleted(timeCompleted);
-                                        
-                                        
                                         FinalSchedule finalTask = new FinalSchedule(treatment.getUniqueID(), task.getDescription(), 4, timeCompleted, timeRemaining);
                                         finalTree.add(finalTask);
                                         item.setIsScheduled();
