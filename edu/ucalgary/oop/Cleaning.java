@@ -8,15 +8,17 @@ public class Cleaning {
     private final int UNIQUEID;
     private String description;
     private int duration;
+    private final int ANIMALID;
 
     /*
      * Cleaning object constructor. Recieves arguments of type (int, String) and sets the 
      * private variables TASKID and description.
      */
-    public Cleaning(int uniqueID, String description, int duration) {
+    public Cleaning(int uniqueID, String description, int duration, int animalID) {
         this.UNIQUEID = uniqueID;
         this.description = description;
         this.duration = duration;
+        this.ANIMALID = animalID;
     }
 
     /*
@@ -25,5 +27,6 @@ public class Cleaning {
     public int getUniqueID() { return this.UNIQUEID; }
     public String getDescription() { return this.description; }
     public int getDuration() { return this.duration; }
+    public int getAnimalID() { return this.ANIMALID; }
     
 }

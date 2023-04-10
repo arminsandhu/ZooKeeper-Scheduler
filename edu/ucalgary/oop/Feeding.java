@@ -11,17 +11,19 @@ public class Feeding {
     private int maxWindow;
     private String description;
     private int duration;
+    private final int ANIMALID;
 
     /*
      * Feeding class constructor. Takes in arguments of types (int, int, int, String) and assigns the values
      * to the priavte variables TASKID, startHour, maxWindow and description.
      */
-    public Feeding(int uniqueID, int startHour, int maxWindow, String description, int duration) {
+    public Feeding(int uniqueID, int startHour, int maxWindow, String description, int duration, int animalID) {
         this.startHour = startHour;
         this.maxWindow = maxWindow;
         this.UNIQUEID = uniqueID;
         this.description = description;
         this.duration = duration;
+        this.ANIMALID = animalID;
     }
 
     /*
@@ -33,4 +35,5 @@ public class Feeding {
     public int getMaxWindow() { return this.maxWindow; }
     public int getDuration() { return this.duration; }
     public String getDescription() { return this.description; }
+    public int getAnimalID() { return this.ANIMALID; }
 }
