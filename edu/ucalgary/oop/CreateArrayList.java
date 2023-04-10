@@ -72,14 +72,14 @@ public class CreateArrayList extends ScheduleBuilder {
 
     public void populatePreppedFeedingAnimalTasks (Animal animal, AnimalSpecies species) {
         cleaningTasks.add(new Cleaning(i, species.getCleaningDescription(), 
-            species.getCleaningTime()));
+            species.getCleaningTime(), animal.getAnimalId()));
         buildIsScheduled(i);
         i+=1; 
         
         if (!isKit(animal)) {
             preppedFeedingTasks.add(new PreppedFeeding(i, species.getStartHour(), 
                 species.getMaxWindow(), species.getFeedingDescription(), 
-                species.getFoodPrepTime(), species.getFeedingTime()));
+                species.getFoodPrepTime(), species.getFeedingTime(), animal.getAnimalId()));
             buildIsScheduled(i);
             i+=1;
         } 
@@ -87,14 +87,14 @@ public class CreateArrayList extends ScheduleBuilder {
 
     public void populateAnimalTasks (Animal animal, AnimalSpecies species) {               
         cleaningTasks.add(new Cleaning(i, species.getCleaningDescription(), 
-            species.getCleaningTime()));
+            species.getCleaningTime(), animal.getAnimalId()));
         buildIsScheduled(i);
         i+=1;
         
         if (!isKit(animal)) {
             feedingTasks.add(new Feeding(i, species.getStartHour(), 
                 species.getMaxWindow(), species.getFeedingDescription(), 
-                species.getFeedingTime()));
+                species.getFeedingTime(), animal.getAnimalId()));
             buildIsScheduled(i);
             i+=1; 
         }

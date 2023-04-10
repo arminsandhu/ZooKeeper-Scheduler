@@ -12,18 +12,20 @@ public class PreppedFeeding {
     private String description;
     private int prepTime;
     private int duration;
+    private final int ANIMALID;
 
     /*
      * PreppedFeeding constructor. Has arguments of the following types (int, int, int, String, int).
      * Constructs the attributes of preppedfeeding object.
      */
-    public PreppedFeeding(int uniqueID, int startHour, int maxWindow, String description, int prepTime, int duration) {
+    public PreppedFeeding(int uniqueID, int startHour, int maxWindow, String description, int prepTime, int duration, int animalID) {
         this.startHour = startHour;
         this.maxWindow = maxWindow;
         this.UNIQUEID = uniqueID;
         this.description = description;
         this.prepTime = prepTime;
         this.duration = duration;
+        this.ANIMALID = animalID; 
     }
 
 
@@ -37,4 +39,5 @@ public class PreppedFeeding {
     public int getPrepTime() { return this.prepTime; }
     public int getDuration() { return this.duration; }
     public String getDescription() { return this.description; }
+    public int getAnimalID() { return this.ANIMALID; }
 }
