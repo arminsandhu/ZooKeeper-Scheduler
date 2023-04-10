@@ -16,7 +16,7 @@ public class TableGUI extends JFrame implements ActionListener {
     private JLabel message;
     private JLabel closingMessage;
     
-    private String[] columnNames = {"Hour", "Task description", "Qty", "Time spent", "Time available"};
+    private String[] columnNames = {"Hour", "Task description", "Animal Name", "Qty", "Time spent", "Time available"};
     private Object[][] data = new Object[100][5];
     private Object[][] noNullData;
     private HashMap<Integer, TreeSet<FinalSchedule>> hash;
@@ -45,82 +45,98 @@ public class TableGUI extends JFrame implements ActionListener {
 
             for (FinalSchedule uniqueTask : tasks) {
                 String taskDescription = uniqueTask.getDescription();
+                // String animalName = uniqueTask.getNickname();
+                String animalName = "Mason";
                 Object quantity = 0;
-                
                 int timeSpent = uniqueTask.getTimeSpent();
                 int timeAvailable = uniqueTask.getTimeAvailable();
-                Object[] rowValues = {hour, taskDescription, quantity, timeSpent, timeAvailable};
+                Object[] rowValues = {hour, taskDescription, animalName, quantity, timeSpent, timeAvailable};
+                // Object[] rowValues = {hour, taskDescription, quantity, timeSpent, timeAvailable};
 
                  
                 for (int r = 0; r < data.length; r++) {
-
-
                     if (data[r][0] != null && rowValues[0] != null && data[row][2] != null) {
-
-                        if (data[r][1] == rowValues[1] && data[r][0] == rowValues[0]) {
-                            
+                        if (data[r][1] == rowValues[1] && data[r][0] == rowValues[0]) {   
                             if (data[r][1].toString().contains("Feed ") || data[r][1].toString().contains("Cleaning") ) {
+                                
+                                // updating quantities
                                 if (data[r][1] != data[r - 1][1]) {
                                     quantity = 1;
-                                    rowValues[2] = quantity;
-                                }
-                                
+                                    rowValues[3] = quantity;
+                                }  
                                 else {
-                                    quantity = (Integer) data[row][2] + 1;
-                                    rowValues[2] = quantity;
+                                    quantity = (Integer) data[row][3] + 1;
+                                    rowValues[3] = quantity;
+                                    
+                                    
                                 }
+
+                                // // updating names
+                                // if (data[r][1] != data[r - 1][1]) {
+                                //     rowValues[2] = animalName;
+                                // }
+
+                                // if  (data[row] != null && data[row - 1] != null) {
+                                //     if (data[row][2] != null && data[row - 1][2] != null) {
+                                //         // animalName = (String) data[row - 1][2] + ", " + (String) data[row][2];
+                                //         animalName = (String) data[row - 1][2] + ", " + "Armin";
+                                //         rowValues[2] = animalName;
+                                //     }   
+                                // }
                                 
 
                             }
-
                             else {
-                                rowValues[2] = 1;
-                                
+                                rowValues[3] = 1;
+                                      
                             }
-
                         }
-                        
                         else {
                             continue;
                         }
                     }
-
                     else {
                         
                         data[row] = rowValues;
                     }
-                }
-                                                             
+                }                                             
                 row+=1;
-            }
-                
+            }       
         }
 
+
+        // replaces any task that is only perfromed once with a -
         Object checkForZero = 0;
         Object checkForOne = 1;
 
         for (int ro = 0; ro < data.length; ro++) {
             if (data[ro][0] != null) {
-                if (data[ro][2] == checkForZero || data[ro][2] == checkForOne) {
-                    data[ro][2] = "-";
+                if (data[ro][3] == checkForZero || data[ro][3] == checkForOne) {
+                    data[ro][3] = "-";
                 }
             }
         }
 
 
-        
+        // if duplicate
         for (int dataRow = 1; dataRow < data.length; dataRow++) {
             for (int pastRow = dataRow - 1; pastRow < dataRow; pastRow++) {
-                if (data[dataRow] != null && data[pastRow] != null && data[dataRow][1] != null && data[pastRow][1] != null) {    
-                    
-                    if (data[dataRow][1] == data[pastRow][1] && data[dataRow][0] == data[pastRow][0]) {
-                        System.arraycopy(data, dataRow, data, pastRow, data.length - dataRow - 1);
-                        data[data.length - 1] = null;
-                        dataRow--;
-                        break;
-                        
+                if (data[dataRow] != null && data[dataRow] != null) {
+                    if (data[dataRow][1] != null && data[dataRow][1] != null) {
+                        if (data[dataRow][1].toString().contains("Feed ") || data[dataRow][1].toString().contains("Cleaning") ) {
+                            if (data[dataRow] != null && data[pastRow] != null && data[dataRow][1] != null && data[pastRow][1] != null) {    
+                            
+                                if (data[dataRow][1] == data[pastRow][1] && data[dataRow][0] == data[pastRow][0]) {
+                                    System.arraycopy(data, dataRow, data, pastRow, data.length - dataRow - 1);
+                                    data[data.length - 1] = null;
+                                    dataRow--;
+                                    break;
+                                    
+                                }
+                                
+                            }
+                        }
                     }
-                    
                 }
             }
         }

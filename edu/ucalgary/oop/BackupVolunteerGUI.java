@@ -64,28 +64,6 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
         
     }
     
-    // public void mouseClicked(MouseEvent event){
-                
-    // }
-    
-    // public void mouseEntered(MouseEvent event){
-        
-    // }
-
-    // public void mouseExited(MouseEvent event){
-        
-    // }
-
-    // public void mousePressed(MouseEvent event){
-        
-    // }
-
-    // public void mouseReleased(MouseEvent event){
-        
-    // }
-    
-    
-    
     // public static void main(String[] args) {
         
     //     EventQueue.invokeLater(() -> {
