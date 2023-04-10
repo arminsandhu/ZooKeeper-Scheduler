@@ -136,10 +136,10 @@ public class ScheduleTest {
     @Test
     /*
      * Testing the getter methods in a class Cleaning object
-     * Getters should correctly return the unique ID, description, duration
+     * Getters should correctly return the unique ID, description, duration, animal ID
     */
     public void testCleaningClassGetters() {    
-        Cleaning cleaning = new Cleaning(987, "this is the description", 20);
+        Cleaning cleaning = new Cleaning(987, "this is the description", 20, 456);
         
         // Testing the getter for unique ID
         int expResult = 987;
@@ -155,6 +155,12 @@ public class ScheduleTest {
         int expResult2 = 20;
         int result2 = cleaning.getDuration();
         assertEquals("The duration was incorrect: ", expResult2, result2);
+
+
+        // Testing the getter for the animal ID
+        int expResult3 = 456;
+        int result3 = cleaning.getAnimalID();
+        assertEquals("The duration was incorrect: ", expResult3, result3);
     }
 
 
@@ -163,10 +169,10 @@ public class ScheduleTest {
     @Test
     /*
      * Testing the getter methods in a class Feeding object
-     * Getters should correctly return the unique ID, start hour, max window, description, duration
+     * Getters should correctly return the unique ID, start hour, max window, description, duration, animal ID
     */
     public void testFeedingClassGetters() {    
-        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35);
+        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35, 234);
         
         // Testing the getter for unique ID
         int expResult = 456;
@@ -193,6 +199,12 @@ public class ScheduleTest {
         int expResult4 = 35;
         int result4 = feeding.getDuration();
         assertEquals("The duration was incorrect: ", expResult4, result4);
+
+
+        // Testing the getter for the animal ID
+        int expResult5 = 234;
+        int result5 = feeding.getAnimalID();
+        assertEquals("The animalID was incorrect: ", expResult5, result5);
     }
 
 
@@ -202,10 +214,10 @@ public class ScheduleTest {
     @Test
     /*
      * Testing the getter methods in a class PreppedFeeding object
-     * Getters should correctly return the unique ID, start hour, max window, description, prep time, duration
+     * Getters should correctly return the unique ID, start hour, max window, description, prep time, duration, animal ID
     */
     public void testPreppedFeedingClassGetters() {    
-        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30);
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
         
         // Testing the getter for unique ID
         int expResult = 789;
@@ -238,6 +250,12 @@ public class ScheduleTest {
         int expResult5 = 30;
         int result5 = preppedFeeding.getDuration();
         assertEquals("The duration was incorrect: ", expResult5, result5);
+
+
+        // Testing the getter for animal ID
+        int expResult6 = 678;
+        int result6 = preppedFeeding.getAnimalID();
+        assertEquals("The animal ID was incorrect: ", expResult6, result6);
     }
 
 
