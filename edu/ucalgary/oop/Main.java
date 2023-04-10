@@ -4,6 +4,7 @@ import java.io.IOException;
 //import java.sql.*;
 import java.util.*;
 import java.awt.EventQueue;
+import java.util.concurrent.CountDownLatch;
 
 
 public class Main {
@@ -11,7 +12,7 @@ public class Main {
     private CreateArrayList instance;
     private static int[] iterationsList;
 
-    public void reset() {
+    public boolean reset() {
 
         //call method to populate treatmentsArray
         schedule.setTreatmentsArray();
@@ -48,9 +49,22 @@ public class Main {
                 schedule.resetFinalTree();
             }  
         }
+        return true;
     }
 
     public static void main(String[] args) {
+        //print gui welcome message
+        CountDownLatch latch = new CountDownLatch(1);
+        WelcomeGUI gui = new WelcomeGUI(latch);
+        gui.setVisible(true);
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // code after the latch has been released will continue to run
+        System.out.println("Button has been pressed.");
+
         //make schedule object of class ScheduleBuilder 
         Main myClass = new Main();
         myClass.schedule = new ScheduleBuilder();
@@ -61,8 +75,35 @@ public class Main {
         myClass.schedule.setTasksArray();
         //call method createConnection()
         //schedule.createConnection(); // may need to throw exception here
-        myClass.reset();
+        boolean output = myClass.reset();
 
+        if (output) {
+        myClass.createOutput(myClass); }
+        // // ella and armin added to print txt file
+        // try {
+        //     new TextFileOutput(myClass.schedule);
+        // } catch (IOException e) {
+        //     System.out.println("There was an error.");
+        //     e.printStackTrace();
+        // }
+        // // ella and armin added to print txt file
+
+        // //ella added to make gui table
+        // EventQueue.invokeLater(() -> {
+        //     TableGUI tableGUI = new TableGUI(myClass.schedule);
+        //     tableGUI.setVisible(true);        
+        // });
+        // //ella added to make gui table
+    }
+    public void setIterationsList() {
+        int p;
+        iterationsList = new int[schedule.getTreatmentsArray().size()];
+        for (p = 0; p< schedule.getTreatmentsArray().size(); p++) {
+            iterationsList[p] = p;
+        }
+    }
+
+    public void createOutput(Main myClass) {
         // ella and armin added to print txt file
         try {
             new TextFileOutput(myClass.schedule);
@@ -71,19 +112,12 @@ public class Main {
             e.printStackTrace();
         }
         // ella and armin added to print txt file
-
+        
         //ella added to make gui table
         EventQueue.invokeLater(() -> {
             TableGUI tableGUI = new TableGUI(myClass.schedule);
             tableGUI.setVisible(true);        
         });
         //ella added to make gui table
-    }
-    public void setIterationsList() {
-        int p;
-        iterationsList = new int[schedule.getTreatmentsArray().size()];
-        for (p = 0; p< schedule.getTreatmentsArray().size(); p++) {
-            iterationsList[p] = p;
-        }
     }
 }
