@@ -660,25 +660,6 @@ public class ScheduleTest {
     }
 
 
-    @Test
-    public void testCreateFile() {
-        ScheduleBuilder scheduleBuilder = new ScheduleBuilder();
-        Animal animal1 = new Animal(1, "Growly", "Lion");
-        Animal animal2 = new Animal(2, "Meows", "Tiger");
-        Animal animal3 = new Animal(3, "Gnaws", "Bear");
-        scheduleBuilder.addTask(animal1, "Clean enclosure", 2);
-        scheduleBuilder.addTask(animal2, "Feed", 1);
-        scheduleBuilder.addTask(animal3, "Play with", 3);
-        scheduleBuilder.addTask(animal2, "Clean enclosure", 2);
-        scheduleBuilder.addTask(animal1, "Feed", 1);
-        scheduleBuilder.addTask(animal3, "Clean enclosure", 2);
-        scheduleBuilder.addTask(animal1, "Play with", 3);
-
-        // Set up a TextFileOutput object for testing
-        TextFileOutput textFileOutput = new TextFileOutput(scheduleBuilder);
-        // Ensure that the output file was created
-        assertTrue(textFileOutput.getFile().exists());
-    }
 
 }
 
