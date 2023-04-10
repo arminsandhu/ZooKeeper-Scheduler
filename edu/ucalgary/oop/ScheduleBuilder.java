@@ -11,7 +11,7 @@ import java.util.*;
 public class ScheduleBuilder {
     /*
      * 
-     * 
+     * Logic???
      * 
      */
     private Connection dbConnection;
@@ -139,6 +139,10 @@ public class ScheduleBuilder {
     public ScheduleBuilder(){ // added this empty constructor; may not need it
     }
 
+
+    /*
+     * Void method that creates the connection to the database. No args.
+     */
     public void createConnection(){    
         try{
             // connects to database EWR with user 'oop', password 'password'
@@ -148,6 +152,10 @@ public class ScheduleBuilder {
         }
     }
 
+
+    /*
+     * Void method that sets the animals array using the database. No args.
+     */
     public void setAnimalsArray() {
         this.animalsArray = new ArrayList<Animal>();
         try {                    
@@ -171,6 +179,10 @@ public class ScheduleBuilder {
         //use queries
     }
 
+
+    /*
+     * Void method that sets the treatments array using the database. No args.
+     */
     public void setTreatmentsArray() {
         treatmentsArray = new ArrayList<Treatment>(); 
         int i = 0;
@@ -195,6 +207,10 @@ public class ScheduleBuilder {
         //use queries
     }
 
+
+    /*
+     * Void method that sets the task array using the database. No args.
+     */
     public void setTasksArray() {
         tasksArray = new ArrayList<Task>();
         try {                    
@@ -213,33 +229,62 @@ public class ScheduleBuilder {
         //use queries
     }
 
+
+    /*
+     * Returns the ArrayList<Animal> animals array. No args.
+     */
     public ArrayList<Animal> getAnimalsArray() {
         return this.animalsArray;
     }
 
+    /*
+     * Returns the ArrayList<Treatment> treatment array. No args.
+     */
     public ArrayList<Treatment> getTreatmentsArray() {
         return this.treatmentsArray;
     }
 
+    /*
+     * Returns the ArrayList<Task> task array. No args.
+     */
     public ArrayList<Task> getTasksArray() {
         return this.tasksArray;
     }
 
+
+    /*
+     * Returns the integer iterator. No args.
+     */
     public int getIterator() {
         return this.iterator;
     }
+
     
+    /*
+     * Returns the HashMap<Integer, TreeSet<FinalSchedule>> final schedule. No args.
+     */
     public HashMap<Integer, TreeSet<FinalSchedule>> getFinalSchedule() {
         return this.finalSchedule;
     }
+
+    /*
+     * Returns the TreeSet<FinalSchedule> finalTree. No args.
+     */
     public TreeSet<FinalSchedule> getFinalTree() {
         return this.finalTree;
     }
 
+    /*
+     * Void method that resets finalTree to a new TreeSet. No args.
+     */
     public void resetFinalTree() {
         this.finalTree = new TreeSet<>();
     }
 
+    /**
+     * Void method that sets finalTree
+     * @param finalTree - the inputted TreeSet<FinalSchedule> to set to finalTree
+     */
     public void setFinalTree(TreeSet<FinalSchedule> finalTree) {
         this.finalTree = finalTree;
     }
@@ -247,14 +292,26 @@ public class ScheduleBuilder {
 
     // had to make this setter for testing
     // should we keep it?
+    /**
+     * Void method that sets the treatments array
+     * @param treatmentsArray - the inputted ArrayList<Treatment> to set to treatmentsArray
+     */
     public void setTreatmentsArray(ArrayList<Treatment> treatmentsArray) {
         this.treatmentsArray = treatmentsArray;
     }
 
-    public void setFinalSchedule(int hour, TreeSet<FinalSchedule> finalTree) {
+    /**
+     * Void method that adds an (integer hour, TreeSet<FinalSchedule> finalTree) pair to the final schedule
+     * @param finalTree - the inputted TreeSet<FinalSchedule> to put into finalSchedule
+     */
+    public void setFinalSchedule(int hour,TreeSet<FinalSchedule> finalTree) {
         this.finalSchedule.put(hour, finalTree);
     }
 
+    /**
+     * Void method that sets the iterations list.
+     * @param schedule - the inputted ScheduleBuilder object to get access to treatmentsArray
+     */
     public void setIterationsList(ScheduleBuilder schedule) {
         int p;
         iterationsList = new int[treatmentsArray.size()];
@@ -263,22 +320,40 @@ public class ScheduleBuilder {
         }
     }
 
+    /*
+     * Returns the database connection. No args.
+     */
     public Connection getConnection() {
         return this.dbConnection;
     }
 
+    /*
+     * Returns the integer count. No args.
+     */
     public int getCount() {
         return this.count;
     }
 
+    /*
+     * Void method that sets the count to 1.
+     */
     public void setCount() {
         this.count = 1;
     }
 
+    /*
+     * Void method that resets the count to 0.
+     */
     public void resetCount() {
         this.count = 0;
     }
 
+    /**
+     * Void method that adds applicable treatments tasks to the finalTree
+     * @param hour - the inputted hour used as a key for (FINISH)
+     * @param schedule - the inputted ScheduleBuilder object to get access to methods (SPECIFY I THINK)
+     * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
+     */
     public void checkTreatments(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
         int timeRemaining = schedule.getTimeRemaining();
         int timeCompleted = schedule.getTimeCompleted();
@@ -371,7 +446,11 @@ public class ScheduleBuilder {
         schedule.resetCount();
     }
 
-
+    /**
+     * Void method that adds applicable prepped feeding tasks to the finalTree
+     * @param hour - the inputted hour used as a key for (FINISH)
+     * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
+     */
     public void checkPreppedFeeding(int hour, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
@@ -431,6 +510,11 @@ public class ScheduleBuilder {
     }
 
 
+    /**
+     * Void method that adds applicable feeding tasks to the finalTree
+     * @param hour - the inputted hour used as a key for (FINISH)
+     * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
+     */
     public void checkFeeding(int hour, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
@@ -471,6 +555,11 @@ public class ScheduleBuilder {
     }
 
 
+    /**
+     * Void method that adds applicable cleaning tasks to the finalTree
+     * @param hour - the inputted hour used as a key for (FINISH)
+     * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
+     */
     public void checkCleaning(int hour, CreateArrayList instance) {
         int timeRemaining = getTimeRemaining();
         int timeCompleted = getTimeCompleted();
@@ -508,18 +597,32 @@ public class ScheduleBuilder {
         }
     }
 
+    /**
+     * Void method that sets the time remaining in an hour depending on the tasks completed.
+     * @param timeRemaining - the inputted integer to set as the time remaining 
+     */
     public void setTimeRemaining(int timeRemaining) {
         this.timeRemaining = timeRemaining;
     }
 
+    /**
+     * Void method that sets the time completed in an hour depending on the tasks completed.
+     * @param timeCompleted - the inputted integer to set as the time completed
+     */
     public void setTimeCompleted(int timeCompleted) {
         this.timeCompleted = timeCompleted;
     }
 
+    /*
+     * Returns the integer time remaining in an hour.
+     */
     public int getTimeRemaining() {
         return this.timeRemaining;
     }
 
+    /*
+     * Returns the integer time completed in an hour.
+     */
     public int getTimeCompleted() {
         return this.timeCompleted;
     }
