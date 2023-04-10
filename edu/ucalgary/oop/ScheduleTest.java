@@ -133,6 +133,146 @@ public class ScheduleTest {
 
 
 
+    @Test
+    /*
+     * Testing the getter methods in a class Cleaning object
+     * Getters should correctly return the unique ID, description, duration
+    */
+    public void testCleaningClassGetters() {    
+        Cleaning cleaning = new Cleaning(987, "this is the description", 20);
+        
+        // Testing the getter for unique ID
+        int expResult = 987;
+        int result = cleaning.getUniqueID();
+        assertEquals("The Unique ID was incorrect: ", expResult, result);
+
+        // Testing the getter for the description
+        String expResult1 = "this is the description";
+        String result1 = cleaning.getDescription();
+        assertEquals("The description was incorrect: ", expResult1, result1);
+
+        // Testing the getter for the duration
+        int expResult2 = 20;
+        int result2 = cleaning.getDuration();
+        assertEquals("The duration was incorrect: ", expResult2, result2);
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter methods in a class Feeding object
+     * Getters should correctly return the unique ID, start hour, max window, description, duration
+    */
+    public void testFeedingClassGetters() {    
+        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35);
+        
+        // Testing the getter for unique ID
+        int expResult = 456;
+        int result = feeding.getUniqueID();
+        assertEquals("The Unique ID was incorrect: ", expResult, result);
+
+        // Testing the getter for the start hour
+        int expResult1 = 4;
+        int result1 = feeding.getStartHour();
+        assertEquals("The start hour was incorrect: ", expResult1, result1);
+
+        // Testing the getter for the max window
+        int expResult2 = 2;
+        int result2 = feeding.getMaxWindow();
+        assertEquals("The max window was incorrect: ", expResult2, result2);
+
+        // Testing the getter for the description
+        String expResult3 = "this is the description";
+        String result3 = feeding.getDescription();
+        assertEquals("The description was incorrect: ", expResult3, result3);
+
+
+        // Testing the getter for the duration
+        int expResult4 = 35;
+        int result4 = feeding.getDuration();
+        assertEquals("The duration was incorrect: ", expResult4, result4);
+    }
+
+
+
+
+
+    @Test
+    /*
+     * Testing the getter methods in a class PreppedFeeding object
+     * Getters should correctly return the unique ID, start hour, max window, description, prep time, duration
+    */
+    public void testPreppedFeedingClassGetters() {    
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30);
+        
+        // Testing the getter for unique ID
+        int expResult = 789;
+        int result = preppedFeeding.getUniqueID();
+        assertEquals("The Unique ID was incorrect: ", expResult, result);
+
+        // Testing the getter for the start hour
+        int expResult1 = 11;
+        int result1 = preppedFeeding.getStartHour();
+        assertEquals("The start hour was incorrect: ", expResult1, result1);
+
+        // Testing the getter for the max window
+        int expResult2 = 2;
+        int result2 = preppedFeeding.getMaxWindow();
+        assertEquals("The max window was incorrect: ", expResult2, result2);
+
+        // Testing the getter for the description
+        String expResult3 = "this is another description";
+        String result3 = preppedFeeding.getDescription();
+        assertEquals("The description was incorrect: ", expResult3, result3);
+
+
+        // Testing the getter for the prep time
+        int expResult4 = 15;
+        int result4 = preppedFeeding.getPrepTime();
+        assertEquals("The prep time was incorrect: ", expResult4, result4);
+
+
+        // Testing the getter for the duration
+        int expResult5 = 30;
+        int result5 = preppedFeeding.getDuration();
+        assertEquals("The duration was incorrect: ", expResult5, result5);
+    }
+
+
+    
+    
+    @Test
+    /*
+     * Testing the getter/setter methods in a class IsScheduled object
+     * Getters should correctly return the unique ID, and boolean is scheduled field
+     * Setter should correctly set isSched to boolean true
+    */
+    public void testIsScheduledClass() {    
+        IsScheduled isScheduled = new IsScheduled(135);
+        
+        // Testing the getter for unique ID
+        int expResult = 135;
+        int result = isScheduled.getUniqueID();
+        assertEquals("The Unique ID was incorrect: ", expResult, result);
+
+        // Testing the getter for isSched
+        boolean expResult1 = false;
+        boolean result1 = isScheduled.getIsScheduled();
+        assertEquals("The boolean isSched was incorrect: ", expResult1, result1);
+
+        // Testing the setter for the isSched, should set isSched to true
+        // set isSched to true
+        isScheduled.setIsScheduled();
+        boolean expResult2 = true;
+        
+        // get value of isSched in isScheduled (which should now be true)
+        boolean result2 = isScheduled.getIsScheduled();
+        assertEquals("The boolean isSched was incorrect: ", expResult2, result2);
+    }
+
+
 
 
     @Test
