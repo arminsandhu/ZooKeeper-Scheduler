@@ -390,6 +390,12 @@ public class ScheduleTest {
 
 
     @Test
+    /*
+     * Testing PopulatePreppedFeedingAnimalTasks() method in CreateArrayList class.
+     * Ensuring that the method populates the cleaning tasks for each animal
+     * Ensuring that the method populates the right amount of tasks in each array for that object
+     * 
+     */
     public void testPopulatePreppedFeedingAnimalTasks() {
         ScheduleBuilder sched = new ScheduleBuilder();
         CreateArrayList createArrayList = new CreateArrayList(sched);
@@ -405,9 +411,13 @@ public class ScheduleTest {
 
         createArrayList.populatePreppedFeedingAnimalTasks(animal, species);
 
+        // Testing to see if a preppped feeding task object is made when the method is called
         assertFalse(createArrayList.getPreppedFeedingTasks().isEmpty());
+        
+        // Testing to see if a cleaning task object is made when the method is called
         assertFalse(createArrayList.getCleaningTasks().isEmpty());
 
+        // Testing to see if the right amount of tasks (1) are created for passed in animal object
         assertEquals(1, createArrayList.getPreppedFeedingTasks().size());
         assertEquals(1, createArrayList.getCleaningTasks().size());
     }
@@ -416,6 +426,11 @@ public class ScheduleTest {
 
     
     @Test
+    /*
+     * Testing PopulateAnimalTasks() method in CreateArrayList class.
+     * Ensuring that the method populates the cleaning tasks for each animal
+     * Ensuring that the method populates the right amount of tasks in each array for that object
+     */
     public void testPopulateAnimalTasks() {
         ScheduleBuilder sched = new ScheduleBuilder();
         CreateArrayList createArrayList = new CreateArrayList(sched);
@@ -425,15 +440,20 @@ public class ScheduleTest {
         AnimalSpecies species = AnimalSpecies.BEAVER;
 
         ArrayList<Treatment> treatmentsArray = new ArrayList<Treatment>();
+        // not a kit
         treatmentsArray.add(new Treatment(1, 230, 2, 0));
 
         sched.setTreatmentsArray(treatmentsArray);
 
         createArrayList.populateAnimalTasks(animal, species);
 
+        // Testing to see if a feeding task object is made when the method is called and animal is not a kit
         assertFalse(createArrayList.getFeedingTasks().isEmpty());
+       
+        // Testing to see if a cleaning task object is made when the method is called
         assertFalse(createArrayList.getCleaningTasks().isEmpty());
 
+        // Testing to see if the right amount of tasks (1) are created for passed in animal object
         assertEquals(1, createArrayList.getFeedingTasks().size());
         assertEquals(1, createArrayList.getCleaningTasks().size());
     }
@@ -441,6 +461,10 @@ public class ScheduleTest {
 
 
     @Test
+    /*
+     * Testing the buildIsScheduled() method in CreateArrayList class.
+     * This method should populate the IsScheduledTasks array list.
+     */
     public void testBuildIsScheduled() {
        
         ScheduleBuilder sched = new ScheduleBuilder();
@@ -449,7 +473,10 @@ public class ScheduleTest {
         createArrayList.buildIsScheduled(1);
         createArrayList.buildIsScheduled(2);
 
+        // Tests to make sure tasks are adding into IsScheduledTasks
         assertFalse(createArrayList.getIsScheduledTasks().isEmpty());
+        
+        // Tests to see if the right amount of tasks are inserted into IsScheduledTasks
         assertEquals(2, createArrayList.getIsScheduledTasks().size());
     }
 
@@ -750,10 +777,21 @@ public class ScheduleTest {
 
 
     @Test
-    public void testConstructor() {
+    /*
+     * 
+     */
+    public void testTableGUIConstructor() {
+      
+      // Create a new ScheduleBuilder instance
       ScheduleBuilder schedule = new ScheduleBuilder();
+      
+      // Create a new TableGUI instance, passing the schedule as a parameter
       TableGUI tableGUI = new TableGUI(schedule);
+      
+      // Assert that the tableGUI object is not null
       assertNotNull(tableGUI);
+      
+      // Assert that the title of the tableGUI object is "Completed Schedule"
       assertEquals("Completed Schedule", tableGUI.getTitle());
     }
 
