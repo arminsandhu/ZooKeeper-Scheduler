@@ -16,6 +16,7 @@ package edu.ucalgary.oop;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.util.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -81,10 +82,10 @@ public class ScheduleTest {
     
     @Test
     /*
-     * Testing the getter methods in a class Animal object
-     * Gtters should correctly return the animal ID, animal nickname, animal species
+     * Testing the getAnimalID getter method in a class Animal object
+     * Getter should correctly return the animal ID
     */
-    public void testAnimalClassGetters() {    
+    public void testAnimalClassAnimalIDGetter() {    
         Animal animal = new Animal(123, "Danny", "Dog");
         
         // Testing the getter for Animal ID
@@ -92,10 +93,31 @@ public class ScheduleTest {
         int result = animal.getAnimalId();
         assertEquals("The Animal ID was incorrect: ", expResult, result);
 
-        // Testing the getter for the Animal nickname
-        String expResult1 = "Danny";
-        String result1 = animal.getAnimalNickname();
-        assertEquals("The Animal ID was incorrect: ", expResult1, result1);
+       
+    }
+
+    @Test
+    /*
+     * Testing the getAnimalNickname getter method in a class Animal object
+     * Getter should correctly return the animal nickname
+    */
+    public void testAnimalClassAnimalNicknameGetter() {    
+        Animal animal = new Animal(123, "Danny", "Dog");
+
+        // Testing the getter for the Animal species
+        String expResult2 = "Dog";
+        String result2 = animal.getAnimalSpecies();
+        assertEquals("The Animal ID was incorrect: ", expResult2, result2);
+    }
+
+
+    @Test
+    /*
+     * Testing the getAnimalSpecies getter method in a class Animal object
+     * Getter should correctly return the animal species
+    */
+    public void testAnimalClassAnimalSpeciesGetter() {    
+        Animal animal = new Animal(123, "Danny", "Dog");
 
         // Testing the getter for the Animal species
         String expResult2 = "Dog";
@@ -139,31 +161,59 @@ public class ScheduleTest {
     }
 
 
-
-
     @Test
     /*
-     * Testing the getter methods in a class task object
-     * Gtters should correctly return the task ID, description, duration, max window
+     * Testing the getTaskId getter method in a class task object
+     * Getter should correctly return the task ID
     */
-    public void testTaskClassGetters() {    
+    public void testTaskClassTaskIdGetter() {    
         Task task = new Task(123, "description", 25, 4);
         
         // Testing the getter for Task ID
         int expResult = 123;
         int result = task.getTaskId();
         assertEquals("The Task ID was incorrect: ", expResult, result);
+    }
 
+
+    @Test
+    /*
+     * Testing the getDescription getter method in a class task object
+     * Getter should correctly return the task description
+    */
+    public void testTaskClassTaskDescriptionGetter() {    
+        Task task = new Task(123, "description", 25, 4);
+        
         // Testing the getter for the description
         String expResult1 = "description";
         String result1 = task.getDescription();
         assertEquals("The description was incorrect: ", expResult1, result1);
+    }
 
+
+    @Test
+    /*
+     * Testing the getDuration getter method in a class task object
+     * Getter should correctly return the task duration
+    */
+    public void testTaskClassTaskDurationGetter() {    
+        Task task = new Task(123, "description", 25, 4);
+        
         // Testing the getter for the duration
         int expResult2 = 25;
         int result2 = task.getDuration();
         assertEquals("The duration was incorrect: ", expResult2, result2);
+    }
 
+
+    @Test
+    /*
+     * Testing the getMaxWindow getter method in a class task object
+     * Getter should correctly return the tasks max window
+    */
+    public void testTaskClassTaskMaxWindowGetter() {    
+        Task task = new Task(123, "description", 25, 4);
+        
         // Testing the getter for the max window
         int expResult3 = 4;
         int result3 = task.getMaxWindow();
@@ -194,18 +244,31 @@ public class ScheduleTest {
     }
 
 
+
     @Test
     /*
-     * Testing the getter methods in a class Treament object
-     * Getters should correctly return the unique ID, animal ID, task ID, start hour
+     * Testing the getUniqueID getter method in a class Treament object
+     * Getter should correctly return the unique ID
     */
-    public void testTreatmentClassGetters() {    
+    public void testTreatmentClassUniqueIDGetter() {    
         Treatment treatment = new Treatment(123, 456, 890, 0);
         
         // Testing the getter for unique ID
         int expResult = 123;
         int result = treatment.getUniqueID();
         assertEquals("The Unique ID was incorrect: ", expResult, result);
+
+    }
+
+
+
+    @Test
+    /*
+     * Testing the getAnimalID getter method in a class Treament object
+     * Getter should correctly return the animal ID
+    */
+    public void testTreatmentClassAnimalIDGetter() {    
+        Treatment treatment = new Treatment(123, 456, 890, 0);
 
         // Testing the getter for the Animal ID
         int expResult1 = 456;
@@ -223,12 +286,48 @@ public class ScheduleTest {
         assertEquals("The Start Hour was incorrect: ", expResult3, result3);
     }
 
+
     @Test
     /*
-     * Testing the getter methods in a class Cleaning object
-     * Getters should correctly return the unique ID, description, duration, animal ID
+     * Testing the getTaskID getter method in a class Treament object
+     * Getter should correctly return the task ID
     */
-    public void testCleaningClassGetters() {    
+    public void testTreatmentClassTaskIDGetter() {    
+        Treatment treatment = new Treatment(123, 456, 890, 0);
+
+        // Testing the getter for the Task ID
+        int expResult2 = 890;
+        int result2 = treatment.getTaskID();
+        assertEquals("The Task ID was incorrect: ", expResult2, result2);
+
+        // Testing the getter for the start hour
+        int expResult3 = 0;
+        int result3 = treatment.getStartHour();
+        assertEquals("The Start Hour was incorrect: ", expResult3, result3);
+    }
+
+
+    @Test
+    /*
+     * Testing the getStartHour getter method in a class Treament object
+     * Getter should correctly return the task ID
+    */
+    public void testTreatmentClassStartHourGetter() {    
+        Treatment treatment = new Treatment(123, 456, 890, 0);
+
+        // Testing the getter for the start hour
+        int expResult3 = 0;
+        int result3 = treatment.getStartHour();
+        assertEquals("The Start Hour was incorrect: ", expResult3, result3);
+    }
+
+
+    @Test
+    /*
+     * Testing the getUniqueID getter method in a class Cleaning object
+     * Getter should correctly return the unique ID
+    */
+    public void testCleaningClassUniqueIDGetter() {    
         Cleaning cleaning = new Cleaning(987, "this is the description", 20, 456);
         
         // Testing the getter for unique ID
@@ -236,6 +335,17 @@ public class ScheduleTest {
         int result = cleaning.getUniqueID();
         assertEquals("The Unique ID was incorrect: ", expResult, result);
 
+    }
+
+
+    @Test
+    /*
+     * Testing the getDescription getter method in a class Cleaning object
+     * Getter should correctly return the description
+    */
+    public void testCleaningClassDescriptionGetter() {    
+        Cleaning cleaning = new Cleaning(987, "this is the description", 20, 456);
+        
         // Testing the getter for the description
         String expResult1 = "this is the description";
         String result1 = cleaning.getDescription();
@@ -254,14 +364,47 @@ public class ScheduleTest {
     }
 
 
+    @Test
+    /*
+     * Testing the getDuration getter method in a class Cleaning object
+     * Getter should correctly return the duration
+    */
+    public void testCleaningClassDurationGetter() {    
+        Cleaning cleaning = new Cleaning(987, "this is the description", 20, 456);
+        
+        // Testing the getter for the duration
+        int expResult2 = 20;
+        int result2 = cleaning.getDuration();
+        assertEquals("The duration was incorrect: ", expResult2, result2);
+
+        // Testing the getter for the animal ID
+        int expResult3 = 456;
+        int result3 = cleaning.getAnimalID();
+        assertEquals("The duration was incorrect: ", expResult3, result3);
+    }
 
 
     @Test
     /*
-     * Testing the getter methods in a class Feeding object
-     * Getters should correctly return the unique ID, start hour, max window, description, duration, animal ID
+     * Testing the getAnimalID getter method in a class Cleaning object
+     * Getter should correctly return the animal ID
     */
-    public void testFeedingClassGetters() {    
+    public void testCleaningClassAnimalIDGetter() {    
+        Cleaning cleaning = new Cleaning(987, "this is the description", 20, 456);
+        
+        // Testing the getter for the animal ID
+        int expResult3 = 456;
+        int result3 = cleaning.getAnimalID();
+        assertEquals("The duration was incorrect: ", expResult3, result3);
+    }
+
+
+    @Test
+    /*
+     * Testing the getUniqueID getter method in a class Feeding object
+     * Getter should correctly return the unique ID
+    */
+    public void testFeedingClassUniqueIDGetter() {    
         Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35, 234);
         
         // Testing the getter for unique ID
@@ -269,27 +412,77 @@ public class ScheduleTest {
         int result = feeding.getUniqueID();
         assertEquals("The Unique ID was incorrect: ", expResult, result);
 
+    }
+
+
+
+    @Test
+    /*
+     * Testing the getStartHour getter method in a class Feeding object
+     * Getter should correctly return the start hour
+    */
+    public void testFeedingClassStartHourGetter() {    
+        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35, 234);
+
         // Testing the getter for the start hour
         int expResult1 = 4;
         int result1 = feeding.getStartHour();
         assertEquals("The start hour was incorrect: ", expResult1, result1);
+    }
+
+
+    @Test
+    /*
+     * Testing the getMaxWindow getter method in a class Feeding object
+     * Getter should correctly return the max window
+    */
+    public void testFeedingClassMaxWindowGetter() {    
+        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35, 234);
 
         // Testing the getter for the max window
         int expResult2 = 2;
         int result2 = feeding.getMaxWindow();
         assertEquals("The max window was incorrect: ", expResult2, result2);
+    }
+
+
+    @Test
+    /*
+     * Testing the getDescription getter method in a class Feeding object
+     * Getter should correctly return the description
+    */
+    public void testFeedingClassDescriptionGetter() {    
+        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35, 234);
 
         // Testing the getter for the description
         String expResult3 = "this is the description";
         String result3 = feeding.getDescription();
         assertEquals("The description was incorrect: ", expResult3, result3);
+    }
 
+
+    @Test
+    /*
+     * Testing the getDuration getter method in a class Feeding object
+     * Getter should correctly return the duration
+    */
+    public void testFeedingClassDurationGetter() {    
+        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35, 234);
 
         // Testing the getter for the duration
         int expResult4 = 35;
         int result4 = feeding.getDuration();
         assertEquals("The duration was incorrect: ", expResult4, result4);
+    }
 
+
+    @Test
+    /*
+     * Testing the getAnimalID getter method in a class Feeding object
+     * Getter should correctly return the animal ID
+    */
+    public void testFeedingClassAnimalIDGetter() {    
+        Feeding feeding = new Feeding(456, 4, 2, "this is the description", 35, 234);
 
         // Testing the getter for the animal ID
         int expResult5 = 234;
@@ -300,76 +493,155 @@ public class ScheduleTest {
 
 
 
-
     @Test
     /*
-     * Testing the getter methods in a class PreppedFeeding object
-     * Getters should correctly return the unique ID, start hour, max window, description, prep time, duration, animal ID
+     * Testing the getUniqueID getter method in a class PreppedFeeding object
+     * Getter should correctly return the unique ID
     */
-    public void testPreppedFeedingClassGetters() {    
+    public void testPreppedFeedingClassUniqueIDGetters() {    
         PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
         
         // Testing the getter for unique ID
         int expResult = 789;
         int result = preppedFeeding.getUniqueID();
         assertEquals("The Unique ID was incorrect: ", expResult, result);
+    }
+
+
+    @Test
+    /*
+     * Testing the getStartHour getter method in a class PreppedFeeding object
+     * Getter should correctly return the start hour
+    */
+    public void testPreppedFeedingClassStartHourGetters() {    
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
 
         // Testing the getter for the start hour
         int expResult1 = 11;
         int result1 = preppedFeeding.getStartHour();
         assertEquals("The start hour was incorrect: ", expResult1, result1);
+    }
+
+
+    @Test
+    /*
+     * Testing the getMaxWindow getter method in a class PreppedFeeding object
+     * Getter should correctly return the max window
+    */
+    public void testPreppedFeedingClassMaxWindowGetters() {    
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
 
         // Testing the getter for the max window
         int expResult2 = 2;
         int result2 = preppedFeeding.getMaxWindow();
         assertEquals("The max window was incorrect: ", expResult2, result2);
+    }
+
+
+    @Test
+    /*
+     * Testing the getDescription getter method in a class PreppedFeeding object
+     * Getter should correctly return the description
+    */
+    public void testPreppedFeedingClassDescriptionGetters() {    
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
 
         // Testing the getter for the description
         String expResult3 = "this is another description";
         String result3 = preppedFeeding.getDescription();
         assertEquals("The description was incorrect: ", expResult3, result3);
 
+    }
+
+
+
+    @Test
+    /*
+     * Testing the getPrepTime getter method in a class PreppedFeeding object
+     * Getter should correctly return the prep time
+    */
+    public void testPreppedFeedingClassPrepTimeGetters() {    
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
 
         // Testing the getter for the prep time
         int expResult4 = 15;
         int result4 = preppedFeeding.getPrepTime();
         assertEquals("The prep time was incorrect: ", expResult4, result4);
 
+    }
+
+
+    @Test
+    /*
+     * Testing the getDuration getter method in a class PreppedFeeding object
+     * Getter should correctly return the duration
+    */
+    public void testPreppedFeedingClassDurationGetters() {    
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
 
         // Testing the getter for the duration
         int expResult5 = 30;
         int result5 = preppedFeeding.getDuration();
         assertEquals("The duration was incorrect: ", expResult5, result5);
 
+    }
+
+
+    @Test
+    /*
+     * Testing the getAnimalID getter method in a class PreppedFeeding object
+     * Getter should correctly return the animal ID
+    */
+    public void testPreppedFeedingClassAnimalIDGetters() {    
+        PreppedFeeding preppedFeeding = new PreppedFeeding(789, 11, 2, "this is another description", 15, 30, 678);
 
         // Testing the getter for animal ID
         int expResult6 = 678;
         int result6 = preppedFeeding.getAnimalID();
         assertEquals("The animal ID was incorrect: ", expResult6, result6);
+
     }
 
 
-    
-    
+
     @Test
     /*
-     * Testing the getter/setter methods in a class IsScheduled object
-     * Getters should correctly return the unique ID, and boolean is scheduled field
-     * Setter should correctly set isSched to boolean true
+     * Testing the getUniqueID getter method in a class IsScheduled object
+     * Getter should correctly return the unique ID
     */
-    public void testIsScheduledClass() {    
+    public void testIsScheduledClassUniqueIDGetter() {    
         IsScheduled isScheduled = new IsScheduled(135);
         
         // Testing the getter for unique ID
         int expResult = 135;
         int result = isScheduled.getUniqueID();
         assertEquals("The Unique ID was incorrect: ", expResult, result);
+    }
 
+
+    @Test
+    /*
+     * Testing the getIsScheduled getter method in a class IsScheduled object
+     * Getter should correctly return the truth value for if a given task is scheduled
+    */
+    public void testIsScheduledClassIsScheduledGetter() {    
+        IsScheduled isScheduled = new IsScheduled(135);
+        
         // Testing the getter for isSched
         boolean expResult1 = false;
         boolean result1 = isScheduled.getIsScheduled();
         assertEquals("The boolean isSched was incorrect: ", expResult1, result1);
+    }
 
+
+    @Test
+    /*
+     * Testing the setIsScheduled setter method in a class IsScheduled object
+     * Setter should correctly assign the truth value for if a given task is scheduled
+    */
+    public void testIsScheduledClassIsScheduledSetter() {    
+        IsScheduled isScheduled = new IsScheduled(135);
+        
         // Testing the setter for the isSched, should set isSched to true
         // set isSched to true
         isScheduled.setIsScheduled();
@@ -378,10 +650,8 @@ public class ScheduleTest {
         // get value of isSched in isScheduled (which should now be true)
         boolean result2 = isScheduled.getIsScheduled();
         assertEquals("The boolean isSched was incorrect: ", expResult2, result2);
+
     }
-
-
-
 
 
     @Test
@@ -679,40 +949,6 @@ public class ScheduleTest {
         assertEquals("animal is not a kit but return value says it is", expResult1, result1);
     }
 
-    // @Test
-    // public void testScheduleBuilderGetters() {
-    //     ScheduleBuilder schedule = new ScheduleBuilder();
-    //     CreateArrayList instance = new CreateArrayList(schedule);
-    //     int[] iterationsList;
-
-    //     instance.setAnimalsArray();
-    //     instance.setTasksArray();
-    //     instance.set;
-    //     instance.setAnimalsArray();
-    // }
-
-
-
-
-    // @Test
-    // /*
-    //  * program successfully calls a backup volunteer when priortized task in an hour exceed 60 
-    //  * minutes.
-    //  * MORE DETAIL
-    // */
-    // public void testCallBackUpVolunteer() {
-    //     // implementation
-    // }
-
-
-    // @Test
-    // /*
-    //  * program successfully prompts for user input and updates the start hour in the database when a schedule cannot be made.
-    //  * 
-    // */
-    // public void testUpdateStartHourInDatabase() {
-    //     // implementation
-    // }
 
     /**
      * Tests the constructor and getters of the FinalSchedule class by creating a new instance of the class
@@ -773,7 +1009,9 @@ public class ScheduleTest {
 
     @Test
     /*
-     * 
+     * Testing the constructor of the TableGUI Class
+     * Checks if the constructor does not initialize the object to null
+     * Checks if the title of the table object is Completed Schedule
      */
     public void testTableGUIConstructor() {
       
@@ -793,6 +1031,11 @@ public class ScheduleTest {
 
 
     @Test
+    /*
+     * Testing the setUpTableData method in TableGUI
+     * Testing the getters to ensure all getters work correctly
+     * The getter used by passing in the column we want to header for 
+     */
     public void testSetUpTableData() {
       ScheduleBuilder schedule = new ScheduleBuilder();
       TableGUI tableGUI = new TableGUI(schedule);
@@ -805,6 +1048,147 @@ public class ScheduleTest {
       assertEquals("Time spent", model.getColumnName(4));
       assertEquals("Time available", model.getColumnName(5));
       assertEquals(0, model.getRowCount());
+    }
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the treatmentsArray in the ScheduleBuilder class
+     * Creates an array list of treatment objects and sets the array list to the treatmentsArray in ScheduleBuilder object
+     * Uses the getter to retrieve the treatmentsArray in ScheduleBuilder object
+     * 
+     */
+    public void testSetTreatmentArray() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        ArrayList<Treatment> treatmentsArray = new ArrayList<Treatment>();
+        treatmentsArray.add(new Treatment(1, 230, 1, 0));
+        treatmentsArray.add(new Treatment(2, 340, 4, 0));
+
+        schedule.setTreatmentsArray(treatmentsArray);
+
+        ArrayList<Treatment> expected = treatmentsArray;
+        ArrayList<Treatment> actual = schedule.getTreatmentsArray();
+
+        assertEquals("The treatment array was incorrect: ", expected, actual);
+
+    }
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the tasksArray in the ScheduleBuilder class
+     * Creates an array list of task objects and sets the array list to the tasksArray in ScheduleBuilder object
+     * Uses the getter to retrieve the tasksArray in ScheduleBuilder object
+     * 
+     */
+    public void testSetTaskArray() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        ArrayList<Task> taskArray = new ArrayList<Task>();
+        taskArray.add(new Task(1, "description", 10, 2));
+        taskArray.add(new Task(2, "description2", 40, 4));
+
+        schedule.setTasksArray(taskArray);
+
+        ArrayList<Task> expected = taskArray;
+        ArrayList<Task> actual = schedule.getTasksArray();
+
+        assertEquals("The task array was incorrect: ", expected, actual);
+
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the animalsArray in the ScheduleBuilder class
+     * Creates an array list of animal objects and sets the array list to the animalsArray in ScheduleBuilder object
+     * Uses the getter to retrieve the animalsArray in ScheduleBuilder object
+     * 
+     */
+    public void testSetAnimalArray() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        ArrayList<Animal> animalArray = new ArrayList<Animal>();
+        animalArray.add(new Animal(1, "Don", "bird"));
+        animalArray.add(new Animal(2, "Cam", "penguin"));
+
+        schedule.setAnimalsArray(animalArray);
+
+        ArrayList<Animal> expected = animalArray;
+        ArrayList<Animal> actual = schedule.getAnimalsArray();
+
+        assertEquals("The animal array was incorrect: ", expected, actual);
+
+    }
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the FinalSchedule in the ScheduleBuilder class
+     * Creates an TreeSet of Final Schedule objects and sets it to Final Schedule in ScheduleBuilder
+     * Uses the getter to retrieve the Final Schedule in ScheduleBuilder object
+     * 
+     */
+    public void testSetAndGetFinalSchedule() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        
+        HashMap<Integer, TreeSet<FinalSchedule>> testData = new HashMap<>();
+        
+        TreeSet<FinalSchedule> schedules = new TreeSet<>();
+        
+        schedules.add(new FinalSchedule(3, "description", 5, 10, 50, "Katy"));
+        
+        testData.put(0, schedules);
+
+        schedule.setFinalSchedule(0, schedules);
+
+        assertEquals("The final schedule was incorrect: ", testData, schedule.getFinalSchedule());
+    }
+
+    
+
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the finalTree in the ScheduleBuilder class
+     * Creates an TreeSet of Final Schedule objects and sets it to Final Schedule in ScheduleBuilder
+     * Uses the getter to retrieve the Final Tree in ScheduleBuilder object
+     * 
+     */
+    public void testGetFinalTree() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+
+        TreeSet<FinalSchedule> expectedTree = new TreeSet<>();
+        
+        expectedTree.add(new FinalSchedule(0, "description 1", 1, 10, 50, "Jack"));
+        expectedTree.add(new FinalSchedule(1, "description 2", 2, 20, 40, "Jill"));
+        expectedTree.add(new FinalSchedule(2, "description 3", 3, 30, 30, "Bill"));
+
+        schedule.setFinalTree(expectedTree);
+        TreeSet<FinalSchedule> actualTree = schedule.getFinalTree();
+        assertEquals("The final tree was incorrect: ", expectedTree, actualTree);
+    }
+
+
+    @Test
+    public void testResetFinalTree() {
+        // Create a new ScheduleBuilder object
+        ScheduleBuilder scheduleBuilder = new ScheduleBuilder();
+
+        // Add some values to the finalTree set
+        TreeSet<FinalSchedule> expectedFinalTree = new TreeSet<>();
+        expectedFinalTree.add(new FinalSchedule(0, "description 1", 1, 10, 50, "Jack"));
+        expectedFinalTree.add(new FinalSchedule(1, "description 2", 2, 20, 40, "Jill"));
+        expectedFinalTree.add(new FinalSchedule(2, "description 3", 3, 30, 30, "Bill"));
+        scheduleBuilder.setFinalTree(expectedFinalTree);
+
+        // Call the resetFinalTree method
+        scheduleBuilder.resetFinalTree();
+
+        // Assert that the finalTree set is empty
+        TreeSet<FinalSchedule> actualFinalTree = scheduleBuilder.getFinalTree();
+        assertTrue(actualFinalTree.isEmpty());
     }
 
 

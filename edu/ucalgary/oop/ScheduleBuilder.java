@@ -179,14 +179,28 @@ public class ScheduleBuilder {
     }
 
 
-    // had to make this setter for testing
-    // should we keep it?
     /**
      * Void method that sets the treatments array
      * @param treatmentsArray - the inputted ArrayList<Treatment> to set to treatmentsArray
      */
     public void setTreatmentsArray(ArrayList<Treatment> treatmentsArray) {
         this.treatmentsArray = treatmentsArray;
+    }
+
+    /**
+     * Void method that sets the tasks array
+     * @param array - the inputted ArrayList<Tasks> to set to tasksArray
+     */
+    public void setTasksArray(ArrayList<Task> array) {
+        this.tasksArray = array;
+    }
+
+    /**
+     * Void method that sets the animal array
+     * @param array - the inputted ArrayList<Animal> to set to animalsArray
+     */
+    public void setAnimalsArray(ArrayList<Animal> array) {
+        this.animalsArray = array;
     }
 
     /**

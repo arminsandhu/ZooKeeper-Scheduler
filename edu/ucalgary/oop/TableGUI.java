@@ -123,7 +123,7 @@ public class TableGUI extends JFrame implements ActionListener {
             Integer hour = entry.getKey();
             TreeSet<FinalSchedule> tasks = entry.getValue();
 
-            int timeSpent = 0;
+            timeSpent = 0;
             for (FinalSchedule uniqueTask : tasks) {
                 timeSpent = uniqueTask.getTimeSpent();
             }
@@ -188,25 +188,6 @@ public class TableGUI extends JFrame implements ActionListener {
 
         eliminateNullRows();
         
-        // Object lastHourLabel = 0;
-        // for (int rw = 0; rw < noNullData.length; rw++) {
-        //     if (rw > 0) {
-                
-        //          if (noNullData[rw - 1][0] == noNullData[rw][0]) {
-        //              noNullData[rw][0] = " ";
-        //          }
-        //         if (noNullData[rw - 1][0] == " " && ) {
-        //             noNullData[rw][0] = lastHourLabel;
-        //         }
-        //         else {
-        //             lastHourLabel = noNullData[rw][0];
-        //         }
-                
-        //     }
-        //     else {
-        //         lastHourLabel = noNullData[rw][0]
-        //     }
-        // }
         
     }
 
@@ -283,5 +264,4 @@ public class TableGUI extends JFrame implements ActionListener {
             System.arraycopy(data, rw, noNullData, rw, 1);
         }
     }
-         
 }
