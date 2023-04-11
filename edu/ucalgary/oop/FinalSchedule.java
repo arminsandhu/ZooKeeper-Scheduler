@@ -1,9 +1,21 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+ * A class that creates a final schedule object that implements the Comparable interface with a type parameter
+ * of FinalSchedule. 
+ */
+
 package edu.ucalgary.oop;
 
 public class FinalSchedule implements Comparable<FinalSchedule> {
-    /*
-    * A class representing a final schedule that implements the Comparable interface with a type parameter of FinalSchedule.
-    */
+    
     private final int UNIQUEID;
     private String description;
     private int quantity;
@@ -56,5 +68,4 @@ public class FinalSchedule implements Comparable<FinalSchedule> {
             return 0;
         }
     }
-
 }

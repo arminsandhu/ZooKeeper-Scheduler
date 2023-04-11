@@ -1,7 +1,19 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+ * Main class. Executes the main functionality of the program and has some methods to help with execution. 
+ */
+
 package edu.ucalgary.oop;
 
 import java.io.IOException;
-//import java.sql.*;
 import java.util.*;
 import java.awt.EventQueue;
 import java.util.concurrent.CountDownLatch;
