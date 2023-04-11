@@ -25,7 +25,7 @@ public class Treatment {
      * Treatment class constructor, takes in arguments (int, int, int, int), 
      * and assigns private class variables.
      */
-    public Treatment(int uniqueID, int id, int taskID, int hour) {
+    public Treatment(int uniqueID, int id, int taskID, int hour) throws IllegalArgumentException{
         try {
             if (uniqueID < 0 || id < 0 || taskID < 0 || hour < 0) {
                 throw new IllegalArgumentException("Invalid animal parameters");

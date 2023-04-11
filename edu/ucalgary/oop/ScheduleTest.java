@@ -1159,7 +1159,9 @@ public class ScheduleTest {
         ScheduleBuilder schedule = new ScheduleBuilder();
 
         TreeSet<FinalSchedule> expectedTree = new TreeSet<>();
+                
         
+        // Add some data to the expectedTree set
         expectedTree.add(new FinalSchedule(0, "description 1", 1, 10, 50, "Jack"));
         expectedTree.add(new FinalSchedule(1, "description 2", 2, 20, 40, "Jill"));
         expectedTree.add(new FinalSchedule(2, "description 3", 3, 30, 30, "Bill"));
@@ -1171,11 +1173,16 @@ public class ScheduleTest {
 
 
     @Test
+    /*
+     * Testing the resetFinalTree() method in ScheduleBuilder
+     * Creates a TreeSet of FinalSchedule objects and adds to the TreeSet 
+     * Calls the resetFinalTree() method 
+     */
     public void testResetFinalTree() {
         // Create a new ScheduleBuilder object
         ScheduleBuilder scheduleBuilder = new ScheduleBuilder();
 
-        // Add some values to the finalTree set
+        // Add some data to the finalTree set
         TreeSet<FinalSchedule> expectedFinalTree = new TreeSet<>();
         expectedFinalTree.add(new FinalSchedule(0, "description 1", 1, 10, 50, "Jack"));
         expectedFinalTree.add(new FinalSchedule(1, "description 2", 2, 20, 40, "Jill"));
@@ -1185,10 +1192,14 @@ public class ScheduleTest {
         // Call the resetFinalTree method
         scheduleBuilder.resetFinalTree();
 
-        // Assert that the finalTree set is empty
+        // Test that the finalTree set is empty
         TreeSet<FinalSchedule> actualFinalTree = scheduleBuilder.getFinalTree();
         assertTrue(actualFinalTree.isEmpty());
     }
+
+
+
+
 
 
 
