@@ -3,10 +3,10 @@ package edu.ucalgary.oop;
 //import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
 
 // import com.mysql.cj.xdevapi.DbDoc;
-
-// import java.awt.EventQueue;
+import java.awt.EventQueue;
 
 public class ScheduleBuilder {
     /*
@@ -350,6 +350,21 @@ public class ScheduleBuilder {
     }
 
     /**
+     * Void method to set the backup GUI pop up to visible.
+     */
+    public void backupGUI(int startHour) {
+
+        CountDownLatch latch = new CountDownLatch(1);
+        BackupVolunteerGUI gui = new BackupVolunteerGUI(latch, startHour);
+        gui.setVisible(true);
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Void method that adds applicable treatments tasks to the finalTree
      * @param hour - the inputted hour used as a key for (FINISH)
      * @param schedule - the inputted ScheduleBuilder object to get access to methods (SPECIFY I THINK)
@@ -373,6 +388,7 @@ public class ScheduleBuilder {
                                                 if (i.getIsScheduled() == false) {
                                                     if (i.getUniqueID() == treatment.getUniqueID()) {
                                                         if (treatment.getStartHour() <= hour) {
+                                                            backupGUI(treatment.getStartHour());
                                                             schedule.setCount();
                                                             schedule.setTimeRemaining(120);
                                                             schedule.setTimeCompleted(0);
@@ -408,6 +424,7 @@ public class ScheduleBuilder {
                                                             schedule.setCount();
                                                             schedule.setTimeRemaining(120);
                                                             schedule.setTimeCompleted(0);
+                                                            backupGUI(treatment.getStartHour());
                                                             for (IsScheduled in : instance.getIsScheduledTasks()) {
                                                                 for (Treatment treat : schedule.getTreatmentsArray()) {
                                                                     if (treat.getStartHour() <= hour) {
