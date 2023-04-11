@@ -55,7 +55,7 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
     public void setupGUI(CountDownLatch latch, int startHour) {
         message = new JLabel("Backup Volunteer Request");
         String taskListTime = String.valueOf(startHour) + ":00";
-        explanation = new JLabel("<html>The current task list for " + taskListTime + " cannot be completed by a single worker.<br></br>Please confirm a backup volunteer may be called.</html>");
+        explanation = new JLabel("<html>The current task list for hour " + taskListTime + " cannot be completed by a single worker.<br></br>Please confirm a backup volunteer may be called.</html>");
     
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout());
