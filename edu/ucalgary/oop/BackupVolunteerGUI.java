@@ -60,11 +60,16 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
         this.add(submitPanel, BorderLayout.PAGE_END); 
     }
    
-    
+    /**
+     * Called when the confomration button is clicked. Prompts the user with a confirmation dialog box. If the user clicks "yes",
+     * the window is closed and the count down latch is decremented.
+     *
+     * @param event the ActionEvent that triggered this method call
+     */
     public void actionPerformed(ActionEvent event){
-        int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to start the program?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, "Can a backup volunteer be called?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if(result == JOptionPane.YES_OPTION) {
-            super.dispose(); //take this out and add methods  
+            super.dispose(); 
             latch.countDown();   
         }
         
