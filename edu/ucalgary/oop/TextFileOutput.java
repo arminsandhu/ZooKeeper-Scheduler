@@ -57,7 +57,7 @@ public class TextFileOutput extends ScheduleBuilder{
             if (outputFile.createNewFile()) {
               System.out.println("File created: " + outputFile.getName());
             } else {
-              System.out.println("File already exists.");
+              System.out.println("File created: " + outputFile.getName());
             }
           } catch (IOException e) {
             System.out.println("An error occurred.");

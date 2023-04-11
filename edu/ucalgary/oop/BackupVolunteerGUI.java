@@ -67,12 +67,6 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
         JButton submitInfo = new JButton("Click here to confirm backup volunteer");
         submitInfo.addActionListener(this);
             
-        // new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         dispose();
-        //         latch.countDown();
-        //     }
-        // });
         
         JPanel submitPanel = new JPanel();
         submitPanel.setLayout(new FlowLayout());
@@ -94,6 +88,7 @@ public class BackupVolunteerGUI extends JFrame implements ActionListener {
      * @param event the ActionEvent that triggered this method call
      */
     public void actionPerformed(ActionEvent event) {
+        
         int result = JOptionPane.showConfirmDialog(this, "Can a backup volunteer be called?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             super.dispose(); 

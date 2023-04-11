@@ -44,7 +44,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         super("Welcome to the Scheduling Program"); //tab title
         this.latch = latch;
         setupGUI();
-        setSize(500,300);
+        setSize(700,300);
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);           
     }
 
@@ -54,8 +54,9 @@ public class WelcomeGUI extends JFrame implements ActionListener {
      */
     public void setupGUI() {
         message = new JLabel("Welcome the the Zoo Scheduling Program.");
-        explanation = new JLabel("<html>This program will take in an sql database containing the requirements for a given days task.<br></br> The program will create an optimized and efficient hourly schedule.</html>");
-
+        explanation = new JLabel("<html>This program will take in an sql database containing the tasks required for each hour in a given day.<br></br>Please ensure the database is named EWR.<br></br>The program will create an optimized and efficient hourly schedule.</html>");
+        
+        explanation.setBounds(50, 50, 100, 40);
         headerPanel.setLayout(new FlowLayout());
         clientPanel.setLayout(new FlowLayout());
 
@@ -80,11 +81,13 @@ public class WelcomeGUI extends JFrame implements ActionListener {
      * @param event the ActionEvent that triggered this method call
      */
     public void actionPerformed(ActionEvent event){
-        int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to start the program?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(result == JOptionPane.YES_OPTION) {
-            super.dispose();  
-            latch.countDown();   
-        }
+        super.dispose();  
+        latch.countDown();
+        // int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to start the program?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        // if(result == JOptionPane.YES_OPTION) {
+        //     super.dispose();  
+        //     latch.countDown();   
+        // }
     }
 }
 
