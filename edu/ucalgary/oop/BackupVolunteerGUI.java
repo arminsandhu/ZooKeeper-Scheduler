@@ -1,35 +1,40 @@
 package edu.ucalgary.oop;
 
 import java.awt.BorderLayout;
-
-import javax.swing.*;
-import java.awt.event.*;
-import java.util.concurrent.CountDownLatch;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
 
-public class BackupVolunteerGUI extends JFrame {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+
+public class BackupVolunteerGUI extends JFrame implements ActionListener {
     /*
      * BackupVolunteerGUI is a class the creates the GUI prompt for the user to confirm
      * the backup volunteer. It extends JFrame and implements the ActionListener interface.
      * Has two class variables of type JLabel, message and explanation.
      */
 
+    private static final long serialVersionUID = 1L;
     private JLabel message;
     private JLabel explanation;
     private CountDownLatch latch;
-
 
     /*
      * BackupVolunteerGUI constructor. Takes no arguments. Uses JFrame super to create a JFrame
      * window. Does basic JFrame setup.
      */
-    public BackupVolunteerGUI(CountDownLatch latch, int startHour){
+    public BackupVolunteerGUI(CountDownLatch latch, int startHour) {
         super("Backup Volunteer"); //tab title
+        this.latch = latch;
         setupGUI(latch, startHour);
-        setSize(500,300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        this.latch = latch;  
-      
+        setSize(500, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /*
@@ -41,50 +46,47 @@ public class BackupVolunteerGUI extends JFrame {
         System.out.println(String.valueOf(startHour));
         String taskListTime = String.valueOf(startHour) + ":00";
         explanation = new JLabel("<html>The current task list for " + taskListTime + " cannot be completed by a single worker.<br></br>Please confirm a backup volunteer may be called.</html>");
-
+    
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout());
-
+    
         JPanel clientPanel = new JPanel();
         clientPanel.setLayout(new FlowLayout());
-
+    
         JButton submitInfo = new JButton("Click here to confirm backup volunteer");
+        submitInfo.addActionListener(this);
+            
+        // new ActionListener() {
+        //     public void actionPerformed(ActionEvent e) {
+        //         dispose();
+        //         latch.countDown();
+        //     }
+        // });
         
         JPanel submitPanel = new JPanel();
         submitPanel.setLayout(new FlowLayout());
-
+        submitPanel.add(submitInfo);
+    
         headerPanel.add(message);
         clientPanel.add(explanation);
         submitPanel.add(submitInfo);
-
+    
         this.add(headerPanel, BorderLayout.NORTH);
         this.add(clientPanel, BorderLayout.CENTER);
         this.add(submitPanel, BorderLayout.PAGE_END); 
     }
-
-
-   
+    
     /**
-     * Called when the confomration button is clicked. Prompts the user with a confirmation dialog box. If the user clicks "yes",
+     * Called when the confirmation button is clicked. Prompts the user with a confirmation dialog box. If the user clicks "yes",
      * the window is closed and the count down latch is decremented.
      *
      * @param event the ActionEvent that triggered this method call
      */
-    public void actionPerformed(ActionEvent event){
+    public void actionPerformed(ActionEvent event) {
         int result = JOptionPane.showConfirmDialog(this, "Can a backup volunteer be called?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(result == JOptionPane.YES_OPTION) {
+        if (result == JOptionPane.YES_OPTION) {
             super.dispose(); 
             latch.countDown();   
         }
-        
     }
 }
-    // public static void main(String[] args) {
-        
-    //     EventQueue.invokeLater(() -> {
-    //         new BackupVolunteerGUI().setVisible(true);        
-    //     });
-
-    // }
-        
-
