@@ -370,12 +370,81 @@ public class ScheduleTest {
 
 
 
+
+    @Test
+    public void testPopulatePreppedFeedingAnimalTasks() {
+        ScheduleBuilder sched = new ScheduleBuilder();
+        CreateArrayList createArrayList = new CreateArrayList(sched);
+        
+        Animal animal = new Animal(230, "Penny", "fox");
+
+        AnimalSpecies species = AnimalSpecies.FOX;
+        
+        ArrayList<Treatment> treatmentsArray = new ArrayList<Treatment>();
+        treatmentsArray.add(new Treatment(1, 230, 2, 0));
+
+        sched.setTreatmentsArray(treatmentsArray);
+
+        createArrayList.populatePreppedFeedingAnimalTasks(animal, species);
+
+        assertFalse(createArrayList.getPreppedFeedingTasks().isEmpty());
+        assertFalse(createArrayList.getCleaningTasks().isEmpty());
+
+        assertEquals(1, createArrayList.getPreppedFeedingTasks().size());
+        assertEquals(1, createArrayList.getCleaningTasks().size());
+    }
+
+
+
+    
+    @Test
+    public void testPopulateAnimalTasks() {
+        ScheduleBuilder sched = new ScheduleBuilder();
+        CreateArrayList createArrayList = new CreateArrayList(sched);
+        
+        Animal animal = new Animal(230, "Poppy", "beaver");
+
+        AnimalSpecies species = AnimalSpecies.BEAVER;
+
+        ArrayList<Treatment> treatmentsArray = new ArrayList<Treatment>();
+        treatmentsArray.add(new Treatment(1, 230, 2, 0));
+
+        sched.setTreatmentsArray(treatmentsArray);
+
+        createArrayList.populateAnimalTasks(animal, species);
+
+        assertFalse(createArrayList.getFeedingTasks().isEmpty());
+        assertFalse(createArrayList.getCleaningTasks().isEmpty());
+
+        assertEquals(1, createArrayList.getFeedingTasks().size());
+        assertEquals(1, createArrayList.getCleaningTasks().size());
+    }
+
+
+
+    @Test
+    public void testBuildIsScheduled() {
+       
+        ScheduleBuilder sched = new ScheduleBuilder();
+        CreateArrayList createArrayList = new CreateArrayList(sched);
+
+        createArrayList.buildIsScheduled(1);
+        createArrayList.buildIsScheduled(2);
+
+        assertFalse(createArrayList.getIsScheduledTasks().isEmpty());
+        assertEquals(2, createArrayList.getIsScheduledTasks().size());
+    }
+
+
+
+
+
     @Test
     /*
      * 1-argument constructor CreateArrayList() shouldn't throw an IllegalArgumentException 
      * when a ScheduleBuilder object is passed in.
     */
-    public void testDoesNotThrowsExceptionWithInvalidObject() {
+    public void testCreateArrayListObject() {
         boolean failed = false;
         
         ScheduleBuilder schedule = new ScheduleBuilder();
@@ -658,6 +727,7 @@ public class ScheduleTest {
         FinalSchedule schedule2 = new FinalSchedule(2, "Final exam 2", 1, 0, 60, "Exam 2");
         assertTrue(schedule1.compareTo(schedule2) == 0);
     }
+
 
 
 

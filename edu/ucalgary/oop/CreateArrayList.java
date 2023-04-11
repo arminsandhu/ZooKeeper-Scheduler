@@ -36,16 +36,11 @@ public class CreateArrayList extends ScheduleBuilder {
      * No returns and no arguments.   
     */
     public void fillArrays() {
-        //ScheduleBuilder sched = new ScheduleBuilder();
-        //ArrayList<Animal> animals = new ArrayList<Animal>();
         ArrayList<Animal> animals = this.sched.getAnimalsArray();
-        //System.out.println(animals);
+
         
         for (Animal animal : animals) {
-            //System.out.println(animal.getAnimalId());
-            //System.out.println(animal.getAnimalSpecies());
             String species = animal.getAnimalSpecies();
-            //System.out.println(species);
             if (species.equals("beaver")) {
                 populateAnimalTasks(animal, AnimalSpecies.BEAVER);
             }
