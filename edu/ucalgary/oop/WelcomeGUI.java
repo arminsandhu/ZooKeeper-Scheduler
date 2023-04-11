@@ -1,3 +1,22 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+ * The WelcomeGUI class extends JFrame and implements ActionListener. It creates a GUI window with a header,
+ * a message, an explanation, and a submit button. When the submit button is clicked, it prompts the user with a
+ * confirmation dialog box. If the user clicks "yes", the window is closed and the count down latch is decremented.
+ * Has two class variables of type JLabel, message and explanation.
+ * Has three class variables of type Jpanel, headerPanel, clientPanel and submitPanel.
+ * Has one class variable of type JButton submitPanel.
+ * Has one class variable of type CountDownLatch latch.
+ */
+
 package edu.ucalgary.oop;
 
 import java.awt.BorderLayout;
@@ -7,15 +26,6 @@ import java.util.concurrent.CountDownLatch;
 import java.awt.FlowLayout;
 
 public class WelcomeGUI extends JFrame implements ActionListener {
-    /*
-     * The WelcomeGUI class extends JFrame and implements ActionListener. It creates a GUI window with a header,
-     * a message, an explanation, and a submit button. When the submit button is clicked, it prompts the user with a
-     * confirmation dialog box. If the user clicks "yes", the window is closed and the count down latch is decremented.
-     * Has two class variables of type JLabel, message and explanation.
-     * Has three class variables of type Jpanel, headerPanel, clientPanel and submitPanel.
-     * Has one class variable of type JButton submitPanel.
-     * Has one class variable of type CountDownLatch latch.
-     */
 
     private JLabel message;
     private JLabel explanation;
@@ -24,7 +34,6 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     private JPanel submitPanel = new JPanel();
     private JButton submitInfo = new JButton("Click here to start the program");
     private CountDownLatch latch;
-
 
     /**
      * Constructs a new WelcomeGUI object with the specified CountDownLatch.
@@ -36,8 +45,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         this.latch = latch;
         setupGUI();
         setSize(500,300);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-        
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);           
     }
 
     /**
@@ -65,7 +73,6 @@ public class WelcomeGUI extends JFrame implements ActionListener {
         this.add(submitPanel, BorderLayout.PAGE_END); 
     }
 
-   
     /**
      * Called when the submit button is clicked. Prompts the user with a confirmation dialog box. If the user clicks "yes",
      * the window is closed and the count down latch is decremented.

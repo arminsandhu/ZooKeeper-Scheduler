@@ -1,10 +1,20 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+ * PreppedFeeding class populates a Task ArrayList of type ArrayList<Task> that contains all 
+ * the feeding tasks with prep time for a givens database. This is the second most prioritized task.
+ */
+
 package edu.ucalgary.oop;
 
 public class PreppedFeeding {
-    /*
-     * PreppedFeeding class populates a Task ArrayList of type ArrayList<Task> that contains all 
-     * the feeding tasks with prep time for a givens database. This is the second most prioritized task.
-     */
 
     private final int UNIQUEID;
     private int startHour;
