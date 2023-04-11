@@ -2,6 +2,11 @@ package edu.ucalgary.oop;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -727,6 +732,35 @@ public class ScheduleTest {
         FinalSchedule schedule2 = new FinalSchedule(2, "Final exam 2", 1, 0, 60, "Exam 2");
         assertTrue(schedule1.compareTo(schedule2) == 0);
     }
+
+
+
+
+    @Test
+    public void testConstructor() {
+      ScheduleBuilder schedule = new ScheduleBuilder();
+      TableGUI tableGUI = new TableGUI(schedule);
+      assertNotNull(tableGUI);
+      assertEquals("Completed Schedule", tableGUI.getTitle());
+    }
+
+
+
+    @Test
+    public void testSetUpTableData() {
+      ScheduleBuilder schedule = new ScheduleBuilder();
+      TableGUI tableGUI = new TableGUI(schedule);
+      tableGUI.setUpTableData();
+      DefaultTableModel model = (DefaultTableModel) ((JTable) ((JScrollPane) tableGUI.getContentPane().getComponent(1)).getViewport().getView()).getModel();
+      assertEquals("Hour", model.getColumnName(0));
+      assertEquals("Task description", model.getColumnName(1));
+      assertEquals("Animal Name", model.getColumnName(2));
+      assertEquals("Qty", model.getColumnName(3));
+      assertEquals("Time spent", model.getColumnName(4));
+      assertEquals("Time available", model.getColumnName(5));
+      assertEquals(0, model.getRowCount());
+    }
+
 
 
 
