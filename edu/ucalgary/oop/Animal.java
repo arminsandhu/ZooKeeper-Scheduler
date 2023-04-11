@@ -24,7 +24,7 @@ public class Animal {
      * Animal class constructor, takes in arguments (int, String, String), 
      * and assigns private class variables.
      */
-    public Animal(int animalId, String animalNickname, String animalSpecies) {
+    public Animal(int animalId, String animalNickname, String animalSpecies) throws IllegalArgumentException{
         try {
             if (animalId < 0 || animalNickname == null || animalSpecies == null) {
                 throw new IllegalArgumentException("Invalid Animal Constructor parameters");
