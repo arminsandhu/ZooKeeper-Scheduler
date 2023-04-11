@@ -70,8 +70,6 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
-        System.out.println("Button has been pressed.");
 
         Main myClass = new Main();
         myClass.schedule = new ScheduleBuilder();
