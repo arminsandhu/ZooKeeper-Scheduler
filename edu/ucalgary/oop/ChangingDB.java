@@ -12,6 +12,12 @@
  * when the treatment tasks within an hour exceed 120 minutes. All class variables are private.
  */
 
+/**
+ * Hello! This class is fully functional, but with the way our logic in schedule builder is set up we 
+ * were not able to change the code to add the implementation for this method. It has been tested and is fully
+ * functional but it did not integrate well into our code, so it is currrently not in use.
+ */
+
 package edu.ucalgary.oop;
 import javax.swing.*;
 import java.sql.*;
@@ -46,7 +52,7 @@ public class ChangingDB extends JFrame {
         hourPanel.add(new JLabel("Hour:"));
         hourPanel.add(hourComboBox);
         
-        // Create a button to confirm the selection
+        //Create a button to confirm the selection
         JButton confirmButton = new JButton("Confirm");
         confirmButton.addActionListener(e -> {
             this.inputHour = (int) hourComboBox.getSelectedItem();
@@ -55,7 +61,7 @@ public class ChangingDB extends JFrame {
             updateDB(inputHour);
         });
         
-        // Create a panel to hold the confirm button
+        // create a panel to hold the confirm button
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(confirmButton);
         
