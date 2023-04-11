@@ -61,7 +61,7 @@ public class BackupVolunteerGUI extends JFrame {
         this.add(clientPanel, BorderLayout.CENTER);
         this.add(submitPanel, BorderLayout.PAGE_END); 
     }
-} 
+
 
    
     /**
@@ -78,7 +78,7 @@ public class BackupVolunteerGUI extends JFrame {
         }
         
     }
-    
+}
     // public static void main(String[] args) {
         
     //     EventQueue.invokeLater(() -> {
@@ -87,5 +87,4 @@ public class BackupVolunteerGUI extends JFrame {
 
     // }
         
-}
 
