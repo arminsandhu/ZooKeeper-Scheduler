@@ -25,7 +25,7 @@ public class Task {
      * Task class constructor, takes in arguments (int, String, int, int), 
      * and assigns private class variables.
      */
-    public Task(int taskId, String description, int duration, int maxWindow) {
+    public Task(int taskId, String description, int duration, int maxWindow) throws IllegalArgumentException{
         try {
             if (taskId < 0 || description == null || duration < 0 || maxWindow < 0) {
                 throw new IllegalArgumentException("Invalid Task Constructor parameters");
