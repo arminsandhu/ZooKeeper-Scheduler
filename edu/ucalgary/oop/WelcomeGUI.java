@@ -83,11 +83,7 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event){
         super.dispose();  
         latch.countDown();
-        // int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to start the program?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        // if(result == JOptionPane.YES_OPTION) {
-        //     super.dispose();  
-        //     latch.countDown();   
-        // }
+
     }
 }
 
