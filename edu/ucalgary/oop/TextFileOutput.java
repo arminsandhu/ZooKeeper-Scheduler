@@ -43,10 +43,8 @@ public class TextFileOutput extends ScheduleBuilder{
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
-    
     /**
      * Creates a new text file if it does not already exist.
      * If the file already exists, nothing happens.
@@ -64,8 +62,6 @@ public class TextFileOutput extends ScheduleBuilder{
             e.printStackTrace();
           }
     }
-
-
 
     /**
      * Writes the final schedule to the text file.
@@ -98,8 +94,7 @@ public class TextFileOutput extends ScheduleBuilder{
         catch (FileNotFoundException e) {
             System.out.println("File cannot be found.");
             e.printStackTrace();
-          }
-
+        }
     }
 
     /**
@@ -124,7 +119,6 @@ public class TextFileOutput extends ScheduleBuilder{
       
     }
 
-
     /**
      * Prints the hourly tasks in any given hour to the file.
      * @param tasks The tasks to print.
@@ -139,6 +133,4 @@ public class TextFileOutput extends ScheduleBuilder{
         printWriter.println(toPrint);   
     }
   }
-
-
 }

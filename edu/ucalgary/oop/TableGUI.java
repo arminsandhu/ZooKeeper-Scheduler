@@ -4,7 +4,7 @@
 @author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
 @author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
 @author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
-@version 1.177
+@version 1.180
 @since 1.0
 */
 /** Class TableGUI extends JFrame and implements ActionListener, it's responsible for creating 
@@ -58,10 +58,6 @@ public class TableGUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         
     };
-
-
-
-    
 
     /**
      * Sets up the GUI components for the table.
@@ -268,5 +264,4 @@ public class TableGUI extends JFrame implements ActionListener {
             System.arraycopy(data, rw, noNullData, rw, 1);
         }
     }
-
 }

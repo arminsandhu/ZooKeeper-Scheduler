@@ -4,7 +4,7 @@
 @author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
 @author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
 @author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
-@version 1.177
+@version 1.179
 @since 1.0
 */
 /*
@@ -83,7 +83,6 @@ public class WelcomeGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event){
         super.dispose();  
         latch.countDown();
-
     }
 }
 
