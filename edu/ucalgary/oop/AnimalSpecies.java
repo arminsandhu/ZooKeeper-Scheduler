@@ -1,10 +1,21 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+ * AnimalSpecies enumeration. Contains data regarding animal
+ * cleaning time, feeding time, food prep time, task start hour and max window.
+ */
+
 package edu.ucalgary.oop;
 
 public enum AnimalSpecies {
-    /*
-     * AnimalSpecies enumeration. Contains data regarding animal
-     * cleaning time, feeding time, food prep time, task start hour and max window.
-     */
+
     COYOTE, FOX, PORCUPINE, RACCOON, BEAVER;
 
     /*

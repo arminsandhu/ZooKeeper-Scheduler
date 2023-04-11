@@ -1,11 +1,21 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+ * Animal class populates an ArrayList of type ArrayList<Animal> that contains all of
+ * the animals for a given database. All private class variables are final.
+ */
+
 package edu.ucalgary.oop;
 
-
 public class Animal {
-    /*
-     * Animal class populates an ArrayList of type ArrayList<Animal> that contains all of
-     * the animals for a given database. All private class variables are final.
-     */
+    
     private final int ANIMALID;
     private final String ANIMALNICKNAME;
     private final String ANIMALSPECIES;

@@ -1,26 +1,34 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/** Class TableGUI extends JFrame and implements ActionListener, it's responsible for creating 
+ * and displaying the completed schedule table in the user interface.
+ * Has two class variables of type JLabel, message and closingMessage.
+ * Has a class variable of type String[], columnNames.
+ * Has two class variables of type Object[][], data and noNullData.
+ * Has a class variable of type HashMap<Integer, TreeSet<FinalSchedule>>, hash.
+ * Has two class variables of type String, taskDescription and animalName.
+ * Has a class variable of type Object, quantity.
+ * Has two class variables of type int, timeSpent and timeAvailable.
+ * */
+
 package edu.ucalgary.oop;
 
 import java.awt.BorderLayout;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 
 import java.awt.event.*;
 import java.awt.FlowLayout;
 import java.util.*;
 
 public class TableGUI extends JFrame implements ActionListener {
-    /** Class TableGUI extends JFrame and implements ActionListener, it's responsible for creating 
-     * and displaying the completed schedule table in the user interface.
-     * Has two class variables of type JLabel, message and closingMessage.
-     * Has a class variable of type String[], columnNames.
-     * Has two class variables of type Object[][], data and noNullData.
-     * Has a class variable of type HashMap<Integer, TreeSet<FinalSchedule>>, hash.
-     * Has two class variables of type String, taskDescription and animalName.
-     * Has a class variable of type Object, quantity.
-     * Has two class variables of type int, timeSpent and timeAvailable.*/
-
    
     private JLabel message;
     private JLabel closingMessage;

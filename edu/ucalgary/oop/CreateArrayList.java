@@ -1,3 +1,18 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+ * CreateArrayList is a class that extends the ScheduleBuilder class. This class creates all the
+ * ArrayLists to be used throughout our program. It populates each with objects from their
+ * corresponding classes and has getter methods for each of these ArrayLists.
+ */
+
 package edu.ucalgary.oop;
 import java.util.*;
 

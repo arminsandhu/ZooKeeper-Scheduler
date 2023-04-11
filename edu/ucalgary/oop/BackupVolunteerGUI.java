@@ -1,3 +1,19 @@
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/*
+* BackupVolunteerGUI is a class the creates the GUI prompt for the user to confirm
+* the backup volunteer. It extends JFrame and implements the ActionListener interface.
+* Has two class variables of type JLabel, message and explanation.
+*/
+
+
 package edu.ucalgary.oop;
 
 import java.awt.BorderLayout;
@@ -14,11 +30,6 @@ import javax.swing.JPanel;
 
 
 public class BackupVolunteerGUI extends JFrame implements ActionListener {
-    /*
-     * BackupVolunteerGUI is a class the creates the GUI prompt for the user to confirm
-     * the backup volunteer. It extends JFrame and implements the ActionListener interface.
-     * Has two class variables of type JLabel, message and explanation.
-     */
 
     private static final long serialVersionUID = 1L;
     private JLabel message;

@@ -1,18 +1,26 @@
-package edu.ucalgary.oop;
+/**
+ * ENSF 380 - L02 - Group 24 
+@author Armin Sandhu<a href="mailto:armin.sandhu@ucalgary.ca">armin.sandhu@ucalgary.ca</a>
+@author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
+@author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
+@author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
+@version 1.177
+@since 1.0
+*/
+/**
+ * The `TextFileOutput` class writes the final schedule to a text file named "schedule.txt".
+ * It extends the `ScheduleBuilder` class.
+ * Has a class variable of type String, filename.
+ * Has a class variable of type File, outputFile.
+ * Has a class variable of type HashMap<Integer, TreeSet<FinalSchedule>>, hash.
+ */
 
+package edu.ucalgary.oop;
 
 import java.io.*;
 import java.util.*;
 
-
 public class TextFileOutput extends ScheduleBuilder{
-    /**
-    * The `TextFileOutput` class writes the final schedule to a text file named "schedule.txt".
-    * It extends the `ScheduleBuilder` class.
-    * Has a class variable of type String, filename.
-    * Has a class variable of type File, outputFile.
-    * Has a class variable of type HashMap<Integer, TreeSet<FinalSchedule>>, hash.
-    */
 
     private String fileName = "schedule.txt";
     private File outputFile = new File(fileName);
