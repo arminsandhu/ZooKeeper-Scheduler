@@ -43,6 +43,7 @@ public class TableGUI extends JFrame implements ActionListener {
     private Object quantity;
     private int timeSpent;
     private int timeAvailable;
+    private String startHour;
     
     /**
      * Constructor for the TableGUI class.
@@ -124,14 +125,27 @@ public class TableGUI extends JFrame implements ActionListener {
             Integer hour = entry.getKey();
             TreeSet<FinalSchedule> tasks = entry.getValue();
 
+            int timeSpent = 0;
+            for (FinalSchedule uniqueTask : tasks) {
+                timeSpent = uniqueTask.getTimeSpent();
+            }
+
+            if (timeSpent > 60) {
+                startHour = hour.toString() + ":00 [+ backup volunteer]";
+            }
+            else {
+                startHour = hour.toString() + ":00";
+            }
+
             for (FinalSchedule uniqueTask : tasks) {
                 
+                //startHour = hour;
                 taskDescription = uniqueTask.getDescription();
                 animalName = uniqueTask.getNickname();
                 quantity = 0;
                 timeSpent = uniqueTask.getTimeSpent();
                 timeAvailable = uniqueTask.getTimeAvailable();
-                Object[] rowValues = {hour, taskDescription, animalName, quantity, timeSpent, timeAvailable};
+                Object[] rowValues = {startHour, taskDescription, animalName, quantity, timeSpent, timeAvailable};
 
                 for (int r = 0; r < data.length; r++) {
                     
@@ -174,7 +188,28 @@ public class TableGUI extends JFrame implements ActionListener {
         groupCleaningAndFeeding();
 
 
-        eliminateNullRows();   
+        eliminateNullRows();
+        
+        // Object lastHourLabel = 0;
+        // for (int rw = 0; rw < noNullData.length; rw++) {
+        //     if (rw > 0) {
+                
+        //          if (noNullData[rw - 1][0] == noNullData[rw][0]) {
+        //              noNullData[rw][0] = " ";
+        //          }
+        //         if (noNullData[rw - 1][0] == " " && ) {
+        //             noNullData[rw][0] = lastHourLabel;
+        //         }
+        //         else {
+        //             lastHourLabel = noNullData[rw][0];
+        //         }
+                
+        //     }
+        //     else {
+        //         lastHourLabel = noNullData[rw][0]
+        //     }
+        // }
+        
     }
 
 
