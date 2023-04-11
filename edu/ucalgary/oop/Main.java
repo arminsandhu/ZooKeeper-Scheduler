@@ -24,28 +24,23 @@ public class Main {
     private CreateArrayList instance;
     private static int[] iterationsList;
 
-    public Main() {
+    /*
+     * Empty constructor for Main. No args.
+     */
+    public Main() { }
 
-    }
+
+    /*
+     * Returns true and contains functions calls to iterate per hour of the day to build the final schedule.
+     */
     public boolean reset() {
-
-        //call method to populate treatmentsArray
         schedule.setTreatmentsArray();
-
         setIterationsList();
-        
         instance = new CreateArrayList(schedule);
         instance.fillArrays();
         instance.addScheduledTreaments(iterationsList);
-        
-        // HERE IS THE LINE TO CALL THE CHANGEDB THING!!!!!!!!!!!!!!!!!!
-        // ADD THIS LINE TO THE LOGIC
-        //ChangingDB changeDB = new ChangingDB(schedule.getConnection(), treatment.getTaskID(), myClass);
 
         for (int hour = 0; hour < 24; hour++) {
-            // System.out.println(hour);
-            // System.out.println(schedule.getTimeRemaining());
-
             if (schedule.getTimeRemaining() > 0) {
                 schedule.checkTreatments(hour, schedule, instance);
                 schedule.checkPreppedFeeding(hour, schedule, instance);
@@ -55,10 +50,6 @@ public class Main {
                 reverseOrder.addAll(schedule.getFinalTree());
                 schedule.setFinalTree(reverseOrder);
                 schedule.setFinalSchedule(hour, schedule.getFinalTree());
-                // for (FinalSchedule s : schedule.getFinalTree()) {
-                //     System.out.println(s.getDescription() + "   -   " + s.getUniqueId());
-                //     count++;
-                // }
                 schedule.setTimeRemaining(60);
                 schedule.setTimeCompleted(0);
                 schedule.resetFinalTree();
@@ -67,8 +58,10 @@ public class Main {
         return true;
     }
 
+    /*
+     * Void main method that runs the entire program.
+     */
     public static void main(String[] args) {
-        //print gui welcome message
         CountDownLatch latch = new CountDownLatch(1);
         WelcomeGUI gui = new WelcomeGUI(latch);
         gui.setVisible(true);
@@ -77,39 +70,24 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // code after the latch has been released will continue to run
+        
         System.out.println("Button has been pressed.");
 
-        //make schedule object of class ScheduleBuilder 
         Main myClass = new Main();
         myClass.schedule = new ScheduleBuilder();
         myClass.schedule.createConnection();
-                //call method to popoulate animalsArray
         myClass.schedule.setAnimalsArray();
-                //call method to populate tasksArray
         myClass.schedule.setTasksArray();
-        //call method createConnection()
-        //schedule.createConnection(); // may need to throw exception here
         boolean output = myClass.reset();
 
         if (output) {
         myClass.createOutput(myClass); }
-        // // ella and armin added to print txt file
-        // try {
-        //     new TextFileOutput(myClass.schedule);
-        // } catch (IOException e) {
-        //     System.out.println("There was an error.");
-        //     e.printStackTrace();
-        // }
-        // // ella and armin added to print txt file
-
-        // //ella added to make gui table
-        // EventQueue.invokeLater(() -> {
-        //     TableGUI tableGUI = new TableGUI(myClass.schedule);
-        //     tableGUI.setVisible(true);        
-        // });
-        // //ella added to make gui table
     }
+
+
+    /*
+     * Void method that sets the iterations list which helps create the unique ids of each task.
+     */
     public void setIterationsList() {
         int p;
         iterationsList = new int[schedule.getTreatmentsArray().size()];
@@ -118,21 +96,20 @@ public class Main {
         }
     }
 
+    /**
+     * Void method that outputs the final schedule to the user through GUI and the creation of the .txt file.
+     * @param myClass - the inputted Main object used to access the final schedule created.
+     */
     public void createOutput(Main myClass) {
-        // ella and armin added to print txt file
         try {
             new TextFileOutput(myClass.schedule);
         } catch (IOException e) {
             System.out.println("There was an error.");
             e.printStackTrace();
         }
-        // ella and armin added to print txt file
-        
-        //ella added to make gui table
         EventQueue.invokeLater(() -> {
             TableGUI tableGUI = new TableGUI(myClass.schedule);
             tableGUI.setVisible(true);        
         });
-        //ella added to make gui table
     }
 }
