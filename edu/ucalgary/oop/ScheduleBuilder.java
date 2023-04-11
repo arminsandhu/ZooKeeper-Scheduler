@@ -20,14 +20,9 @@ import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 public class ScheduleBuilder {
-    /*
-     * 
-     * Logic???
-     * 
-     */
     private Connection dbConnection;
     private ResultSet results;
-    private ArrayList<Animal> animalsArray; // should we change it back to object?
+    private ArrayList<Animal> animalsArray;
     private ArrayList<Treatment> treatmentsArray;
     private ArrayList<Task> tasksArray;
     private HashMap<Integer, TreeSet<FinalSchedule>> finalSchedule = new HashMap<Integer, TreeSet<FinalSchedule>>();
@@ -37,119 +32,11 @@ public class ScheduleBuilder {
     private int timeCompleted = 0;
     private int count = 0;
     private TreeSet<FinalSchedule> finalTree = new TreeSet<>();
-    // private String nickname;
-
-
-    // public void reset() {
-
-    // }
-    // public static void main(String[] args) {
-
-    //     //print gui welcome message
-    //     // EventQueue.invokeLater(() -> {
-    //     //      new WelcomeGUI().setVisible(true);        
-    //     //     });
-
-    //     // testing backup volunteer
-    //     // EventQueue.invokeLater(() -> {
-    //     //     new BackupVolunteerGUI().setVisible(true);        
-    //     //     });
-
-    //     //make schedule object of class ScheduleBuilder 
-        
-    //     ScheduleBuilder schedule = new ScheduleBuilder();
- 
-
-    //     //call method createConnection()
-    //     //schedule.createConnection(); // may need to throw exception here
-
-    //     //call method to popoulate animalsArray
-    //     schedule.setAnimalsArray();
-
-    //     //call method to populate tasksArray
-    //     schedule.setTasksArray();
-
-    //     //call method to populate treatmentsArray
-    //     schedule.setTreatmentsArray();
-
-    //     schedule.setIterationsList(schedule);
-    //     // This is here only to test printing the 
-    //     //System.out.println(schedule.getAnimalsArray());
-    //     // This is here only to test printing the 
-    //     //System.out.println(schedule.getAnimalsArray());
-    //     CreateArrayList instance = new CreateArrayList(schedule);
-    //     instance.addScheduledTreaments(iterationsList);
-    //     //HERE IS THE LINE TO CALL THE CHANGEDB THING!!!!!!!!!!!!!!!!!!
-    //     //ChangingDB changeDB = new ChangingDB(schedule.getConnection());
-
-    //     // THE BELOW CODE IS TO PRINT THE UNQIUE IDS OF EVERY TASK.
-    //     // ArrayList<IsScheduled> scheduledTasks = instance.getIsScheduledTasks();
-    //     // HashSet<Integer> uniqueIds = new HashSet<>();
-    //     // for (IsScheduled task : scheduledTasks) {
-    //     //     int taskId = task.getUniqueID();
-    //     //     System.out.println(taskId);
-    //     //     uniqueIds.add(taskId);
-    //     // }
-    //     //System.out.println(instance.getFeedingTasks().get(0).getDescription());
-    //     //System.out.println(instance.getPreppedFeedingTasks());
-    //     //System.out.println(instance.getCleaningTasks());
-    //     //schedule.treatmentsArray.add(new Treatment(60, 7, 9, 13));
-    //     //instance.getIsScheduledTasks().add(new IsScheduled(60));
-    //     int count = 0;
-    //     for (int hour = 0; hour < 24; hour++) {
-    //         // System.out.println(hour);
-    //         // System.out.println(schedule.getTimeRemaining());
-
-    //         if (schedule.getTimeRemaining() > 0) {
-    //             schedule.checkTreatments(hour, schedule, instance);
-    //             schedule.checkPreppedFeeding(hour, instance);
-    //             schedule.checkFeeding(hour, instance);
-    //             schedule.checkCleaning(hour, instance);
-    //             TreeSet<FinalSchedule> reverseOrder = new TreeSet<>(Collections.reverseOrder());
-    //             reverseOrder.addAll(schedule.getFinalTree());
-    //             schedule.setFinalTree(reverseOrder);
-    //             schedule.setFinalSchedule(hour, schedule.getFinalTree());
-    //             // for (FinalSchedule s : schedule.getFinalTree()) {
-    //             //     System.out.println(s.getDescription() + "   -   " + s.getUniqueId());
-    //             //     count++;
-    //             // }
-    //             schedule.setTimeRemaining(60);
-    //             schedule.setTimeCompleted(0);
-    //             schedule.resetFinalTree();
-
-                
-    //         }  
-    //     }
-    //     // for (IsScheduled i : instance.getIsScheduledTasks()) {
-    //     //     System.out.println(i.getIsScheduled());
-    //     //     System.out.println(i.getUniqueID());
-    //     // }
-    //     // System.out.println(schedule.getFinalSchedule());
-
-    //     // ella and armin added to print txt file
-    //     try {
-    //         TextFileOutput txtOutput = new TextFileOutput(schedule);
-    //     } catch (IOException e) {
-    //         System.out.println("There was an error.");
-    //         e.printStackTrace();
-    //     }
-    //     // ella and armin added to print txt file
-
-    //     //ella added to make gui table
-    //     EventQueue.invokeLater(() -> {
-    //         TableGUI tableGUI = new TableGUI(schedule);
-    //         tableGUI.setVisible(true);        
-    //         });
-    //     //ella added to make gui table
-        
-    //     // System.out.println(schedule.getFinalSchedule());
-    //     // System.out.println(count);
-
-    // }
-
-                
-    public ScheduleBuilder(){ // added this empty constructor; may not need it
-    }
+    
+    /*
+     * Empty constructor for ScheduleBuilder
+     */
+    public ScheduleBuilder(){ }
 
 
     /*
@@ -174,8 +61,6 @@ public class ScheduleBuilder {
             Statement myStmt = dbConnection.createStatement();
             results = myStmt.executeQuery("SELECT * FROM animals");
             while (results.next()){          
-                // uncomment out the bottom to test if it works on your computer
-                //System.out.println("Print results: " + results.getInt("AnimalID") + ", " + results.getString("AnimalNickname") + ", " + results.getString("AnimalSpecies"));
                 int animalID = results.getInt("AnimalID");
                 String animalNickname = results.getString("AnimalNickname");
                 String animalSpecies = results.getString("AnimalSpecies");
@@ -186,9 +71,6 @@ public class ScheduleBuilder {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
-        //pull data same form as sql table
-        //use queries
     }
 
 
@@ -214,9 +96,6 @@ public class ScheduleBuilder {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
-        //pull data same form as sql table
-        //use queries
     }
 
 
@@ -237,8 +116,6 @@ public class ScheduleBuilder {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        //pull data same form as sql table
-        //use queries
     }
 
 
@@ -709,22 +586,4 @@ public class ScheduleBuilder {
     public int getTimeCompleted() {
         return this.timeCompleted;
     }
-
-
-    // /**
-    //  * Void method that sets the nickname of the animal for a specific task.
-    //  * @param nickname - the inputted string to set as the nickname
-    //  */
-    // public void setNickname(String nickname) {
-    //     this.nickname = nickname;
-    // }
-
-    // /*
-    //  * Returns the nickname of an animal.
-    //  */
-    // public String getNickname() {
-    //     return this.nickname;
-    // }
-
-
 }

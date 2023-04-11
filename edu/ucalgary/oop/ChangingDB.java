@@ -17,7 +17,6 @@ import javax.swing.*;
 import java.sql.*;
    
 public class ChangingDB extends JFrame {
-
     private JComboBox<Integer> hourComboBox;
     private int inputHour;
     private Connection dbConnection; 
@@ -86,13 +85,6 @@ public class ChangingDB extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // try {
-            //     if (dbConnection != null) {
-            //         dbConnection.close();
-            //     }
-            // } catch (SQLException e) {
-            //     e.printStackTrace();
-            // }
         }
     }
 }

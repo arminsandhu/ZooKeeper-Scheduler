@@ -79,7 +79,11 @@ public class CreateArrayList extends ScheduleBuilder {
     }
 
 
-
+    /**
+     * Void method that populates the cleaning tasks array list and the prepped feeding tasks array list.
+     * @param animal - the inputted Animal object used to access a specific animalID
+     * @param species - the inputted AnimalSpecies object used to get the cleaning information for a specific Animal object.
+     */
     public void populatePreppedFeedingAnimalTasks (Animal animal, AnimalSpecies species) {
         cleaningTasks.add(new Cleaning(i, species.getCleaningDescription(), 
             species.getCleaningTime(), animal.getAnimalId()));
@@ -95,6 +99,11 @@ public class CreateArrayList extends ScheduleBuilder {
         } 
     }
 
+    /**
+     * Void method that populates the cleaning tasks array list and feeding tasks array list.
+     * @param animal - the inputted Animal object used to access a specific animalID
+     * @param species - the inputted AnimalSpecies object used to get the cleaning information for a specific Animal object.
+     */
     public void populateAnimalTasks (Animal animal, AnimalSpecies species) {               
         cleaningTasks.add(new Cleaning(i, species.getCleaningDescription(), 
             species.getCleaningTime(), animal.getAnimalId()));
@@ -113,7 +122,7 @@ public class CreateArrayList extends ScheduleBuilder {
 
 
     /**
-     * NEED TO FINISH
+     * Void method that adds all the tasks with a unique id to the array list of IsScheduled objects.
      * @param i - The integer list of unique IDs. 
     */
     public void addScheduledTreaments(int[] i) {
