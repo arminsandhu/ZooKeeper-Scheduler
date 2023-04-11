@@ -4,7 +4,7 @@
 @author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
 @author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
 @author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
-@version 1.177
+@version 1.182
 @since 1.0
 */
 /*
@@ -210,7 +210,7 @@ public class ScheduleBuilder {
     }
 
     /*
-     * Returns the database connection. No args.
+     * Returns the database connection Connection object. No args.
      */
     public Connection getConnection() {
         return this.dbConnection;
@@ -255,8 +255,8 @@ public class ScheduleBuilder {
     /**
      * Void method that adds applicable treatments tasks to the finalTree
      * @param hour - the inputted hour used as a key for (FINISH)
-     * @param schedule - the inputted ScheduleBuilder object to get access to methods (SPECIFY I THINK)
-     * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
+     * @param schedule - the inputted ScheduleBuilder object to get access to methods of schedule builder.
+     * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array.
      */
     public void checkTreatments(int hour, ScheduleBuilder schedule, CreateArrayList instance) {
         int timeRemaining = schedule.getTimeRemaining();
@@ -374,7 +374,7 @@ public class ScheduleBuilder {
     }
 
     /**
-     * Void method that adds applicable prepped feeding tasks to the finalTree
+     * Void method that adds applicable prepped feeding tasks to the finalTree to be scheduled by the txt and gui.
      * @param hour - the inputted hour used as a key for (FINISH)
      * @param instance - the inputted CreateArrayList object to get access to the scheduled tasks array
      */

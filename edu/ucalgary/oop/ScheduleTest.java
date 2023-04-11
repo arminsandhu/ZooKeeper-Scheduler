@@ -4,7 +4,7 @@
 @author Dominico Mendes<a href="mailto:dominico.mendes@ucalgary.ca">dominico.mendes@ucalgary.ca</a>
 @author Ella Boulanger<a href="mailto:ella.boulanger@ucalgary.ca">ella.boulanger@ucalgary.ca</a>
 @author Raina Jugdev<a href="mailto:raina.jugdev@ucalgary.ca">raina.jugdev@ucalgary.ca</a>
-@version 1.177
+@version 1.182
 @since 1.0
 */
 /*
@@ -194,8 +194,6 @@ public class ScheduleTest {
     }
 
 
-
-
     @Test
     /*
      * Testing the getter methods in a class Treament object
@@ -224,9 +222,6 @@ public class ScheduleTest {
         int result3 = treatment.getStartHour();
         assertEquals("The Start Hour was incorrect: ", expResult3, result3);
     }
-
-
-
 
     @Test
     /*
