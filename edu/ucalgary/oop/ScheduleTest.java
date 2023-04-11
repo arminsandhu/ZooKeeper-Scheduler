@@ -16,6 +16,7 @@ package edu.ucalgary.oop;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.util.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -82,7 +83,7 @@ public class ScheduleTest {
     @Test
     /*
      * Testing the getter methods in a class Animal object
-     * Gtters should correctly return the animal ID, animal nickname, animal species
+     * Getters should correctly return the animal ID, animal nickname, animal species
     */
     public void testAnimalClassGetters() {    
         Animal animal = new Animal(123, "Danny", "Dog");
@@ -684,40 +685,6 @@ public class ScheduleTest {
         assertEquals("animal is not a kit but return value says it is", expResult1, result1);
     }
 
-    // @Test
-    // public void testScheduleBuilderGetters() {
-    //     ScheduleBuilder schedule = new ScheduleBuilder();
-    //     CreateArrayList instance = new CreateArrayList(schedule);
-    //     int[] iterationsList;
-
-    //     instance.setAnimalsArray();
-    //     instance.setTasksArray();
-    //     instance.set;
-    //     instance.setAnimalsArray();
-    // }
-
-
-
-
-    // @Test
-    // /*
-    //  * program successfully calls a backup volunteer when priortized task in an hour exceed 60 
-    //  * minutes.
-    //  * MORE DETAIL
-    // */
-    // public void testCallBackUpVolunteer() {
-    //     // implementation
-    // }
-
-
-    // @Test
-    // /*
-    //  * program successfully prompts for user input and updates the start hour in the database when a schedule cannot be made.
-    //  * 
-    // */
-    // public void testUpdateStartHourInDatabase() {
-    //     // implementation
-    // }
 
     /**
      * Tests the constructor and getters of the FinalSchedule class by creating a new instance of the class
@@ -778,7 +745,9 @@ public class ScheduleTest {
 
     @Test
     /*
-     * 
+     * Testing the constructor of the TableGUI Class
+     * Checks if the constructor does not initialize the object to null
+     * Checks if the title of the table object is Completed Schedule
      */
     public void testTableGUIConstructor() {
       
@@ -798,6 +767,11 @@ public class ScheduleTest {
 
 
     @Test
+    /*
+     * Testing the setUpTableData method in TableGUI
+     * Testing the getters to ensure all getters work correctly
+     * The getter used by passing in the column we want to header for 
+     */
     public void testSetUpTableData() {
       ScheduleBuilder schedule = new ScheduleBuilder();
       TableGUI tableGUI = new TableGUI(schedule);
@@ -810,6 +784,147 @@ public class ScheduleTest {
       assertEquals("Time spent", model.getColumnName(4));
       assertEquals("Time available", model.getColumnName(5));
       assertEquals(0, model.getRowCount());
+    }
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the treatmentsArray in the ScheduleBuilder class
+     * Creates an array list of treatment objects and sets the array list to the treatmentsArray in ScheduleBuilder object
+     * Uses the getter to retrieve the treatmentsArray in ScheduleBuilder object
+     * 
+     */
+    public void testSetTreatmentArray() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        ArrayList<Treatment> treatmentsArray = new ArrayList<Treatment>();
+        treatmentsArray.add(new Treatment(1, 230, 1, 0));
+        treatmentsArray.add(new Treatment(2, 340, 4, 0));
+
+        schedule.setTreatmentsArray(treatmentsArray);
+
+        ArrayList<Treatment> expected = treatmentsArray;
+        ArrayList<Treatment> actual = schedule.getTreatmentsArray();
+
+        assertEquals("The treatment array was incorrect: ", expected, actual);
+
+    }
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the tasksArray in the ScheduleBuilder class
+     * Creates an array list of task objects and sets the array list to the tasksArray in ScheduleBuilder object
+     * Uses the getter to retrieve the tasksArray in ScheduleBuilder object
+     * 
+     */
+    public void testSetTaskArray() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        ArrayList<Task> taskArray = new ArrayList<Task>();
+        taskArray.add(new Task(1, "description", 10, 2));
+        taskArray.add(new Task(2, "description2", 40, 4));
+
+        schedule.setTasksArray(taskArray);
+
+        ArrayList<Task> expected = taskArray;
+        ArrayList<Task> actual = schedule.getTasksArray();
+
+        assertEquals("The task array was incorrect: ", expected, actual);
+
+    }
+
+
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the animalsArray in the ScheduleBuilder class
+     * Creates an array list of animal objects and sets the array list to the animalsArray in ScheduleBuilder object
+     * Uses the getter to retrieve the animalsArray in ScheduleBuilder object
+     * 
+     */
+    public void testSetAnimalArray() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        ArrayList<Animal> animalArray = new ArrayList<Animal>();
+        animalArray.add(new Animal(1, "Don", "bird"));
+        animalArray.add(new Animal(2, "Cam", "penguin"));
+
+        schedule.setAnimalsArray(animalArray);
+
+        ArrayList<Animal> expected = animalArray;
+        ArrayList<Animal> actual = schedule.getAnimalsArray();
+
+        assertEquals("The animal array was incorrect: ", expected, actual);
+
+    }
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the FinalSchedule in the ScheduleBuilder class
+     * Creates an TreeSet of Final Schedule objects and sets it to Final Schedule in ScheduleBuilder
+     * Uses the getter to retrieve the Final Schedule in ScheduleBuilder object
+     * 
+     */
+    public void testSetAndGetFinalSchedule() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+        
+        HashMap<Integer, TreeSet<FinalSchedule>> testData = new HashMap<>();
+        
+        TreeSet<FinalSchedule> schedules = new TreeSet<>();
+        
+        schedules.add(new FinalSchedule(3, "description", 5, 10, 50, "Katy"));
+        
+        testData.put(0, schedules);
+
+        schedule.setFinalSchedule(0, schedules);
+
+        assertEquals("The final schedule was incorrect: ", testData, schedule.getFinalSchedule());
+    }
+
+    
+
+
+
+    @Test
+    /*
+     * Testing the getter and setter of the finalTree in the ScheduleBuilder class
+     * Creates an TreeSet of Final Schedule objects and sets it to Final Schedule in ScheduleBuilder
+     * Uses the getter to retrieve the Final Tree in ScheduleBuilder object
+     * 
+     */
+    public void testGetFinalTree() {
+        ScheduleBuilder schedule = new ScheduleBuilder();
+
+        TreeSet<FinalSchedule> expectedTree = new TreeSet<>();
+        
+        expectedTree.add(new FinalSchedule(0, "description 1", 1, 10, 50, "Jack"));
+        expectedTree.add(new FinalSchedule(1, "description 2", 2, 20, 40, "Jill"));
+        expectedTree.add(new FinalSchedule(2, "description 3", 3, 30, 30, "Bill"));
+
+        schedule.setFinalTree(expectedTree);
+        TreeSet<FinalSchedule> actualTree = schedule.getFinalTree();
+        assertEquals("The final tree was incorrect: ", expectedTree, actualTree);
+    }
+
+
+    @Test
+    public void testResetFinalTree() {
+        // Create a new ScheduleBuilder object
+        ScheduleBuilder scheduleBuilder = new ScheduleBuilder();
+
+        // Add some values to the finalTree set
+        TreeSet<FinalSchedule> expectedFinalTree = new TreeSet<>();
+        expectedFinalTree.add(new FinalSchedule(0, "description 1", 1, 10, 50, "Jack"));
+        expectedFinalTree.add(new FinalSchedule(1, "description 2", 2, 20, 40, "Jill"));
+        expectedFinalTree.add(new FinalSchedule(2, "description 3", 3, 30, 30, "Bill"));
+        scheduleBuilder.setFinalTree(expectedFinalTree);
+
+        // Call the resetFinalTree method
+        scheduleBuilder.resetFinalTree();
+
+        // Assert that the finalTree set is empty
+        TreeSet<FinalSchedule> actualFinalTree = scheduleBuilder.getFinalTree();
+        assertTrue(actualFinalTree.isEmpty());
     }
 
 
